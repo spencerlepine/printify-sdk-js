@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode", // Prettier for code formatting
+    "dbaeumer.vscode-eslint", // ESLint for JavaScript/TypeScript linting
+    "eamodio.gitlens", // GitLens for Git integration and history
+    "formulahendry.auto-close-tag", // Auto Close Tag for automatic closing of HTML/XML tags
+    "ms-vscode.vscode-typescript-next", // TypeScript and JavaScript Nightly for the latest TypeScript/JavaScript features
+  ]
+}
