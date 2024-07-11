@@ -1,0 +1,69 @@
+name: NPM Publish
+
+# Workflow to automate NPM publishing,
+#  - Uses the NPM_TOKEN GitHub secret
+#  - Triggered when a repository 'release' is created
+#  - Runs a dry-run publish, then production publish once the admin approves
+
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
+env:
+  RELEASE_NODE_VERSION: "18.x" # https://nodejs.dev/en/about/releases
+
+jobs:
+  publish-dry-run:
+    runs-on: ubuntu-latest
+    environment: release
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.RELEASE_NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+
+      - run: yarn install
+      - run: yarn run build
+
+      - name: Set NPM_TOKEN
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
+      # Docs: https://docs.npmjs.com/cli/v8/commands/npm-whoami
+      - run: npm whoami
+        id: whoami
+
+      - run: npm publish --dry-run
+
+      - run: git status
+
+  build-and-publish:
+    needs: [publish-dry-run]
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://www.npmjs.com/package/spencerlepine-sdk-js
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.RELEASE_NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+
+      - run: yarn install
+      - run: yarn run build
+
+      - name: Create .npmrc
+        run: |
+          touch .npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+          echo "registry=https://registry.npmjs.org/" >> .npmrc
+          echo "always-auth=true" >> .npmrc
+
+      - name: Publish NPM Package
+        run: npm publish --access public --userconfig .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

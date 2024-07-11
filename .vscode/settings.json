@@ -1,0 +1,33 @@
+{
+  // Editor settings
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.renderWhitespace": "all",
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  // File and encoding settings
+  "files.encoding": "utf8",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.autoSave": "off",
+  // Language specific settings
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Other settings
+  "workbench.view.alwaysShowHeaderActions": true,
+  "workbench.sideBar.location": "right",
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.editor.historyBasedLanguageDetection": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false
+}
