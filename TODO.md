@@ -1,12 +1,12 @@
-TODO - DEVELOPMENT
+DEVELOPMENT
 
-- create .npmignore
-- create typescript
-- add rollup
-- semantically how do i make this API?
-
-- add jest?
-[FINAL] Replace all spencerlepine-sdk-js
+- GENERATE DOC FROM developers.printify.com
+- GENERATE CODE FROM DOC
+- GENERATE API.md DOC FROM code
+- Update README.md sample code
+- [BEFORE RELEASE] add jest?
+- [BEFORE RELEASE] Replace all spencerlepine-sdk-js
+- [BEFORE RELASE] any remaining TODO s
 
 ## EXAMPLES
 

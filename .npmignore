@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# Except for the following files and directories:
+!dist/
+!package.json
+!README.md
+!LICENSE
+!CHANGELOG.md
+!docs/API.md
