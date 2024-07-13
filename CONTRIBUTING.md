@@ -13,8 +13,8 @@ Welcome! We're thrilled that you are interested in contributing to our project. 
 ### Installation
 
 ```sh
-git clone https://github.com/spencerlepine/TODO.git
-cd TODO
+git clone https://github.com/spencerlepine/spencerlepine-sdk-js.git
+cd spencerlepine-sdk-js
 yarn install
 ```
 

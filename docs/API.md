@@ -8,16 +8,22 @@ The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST A
 ### Usage
 
 ```js
-var Printify = require('printify-api');
+import Printify from 'spencerlepine-sdk-js';
 
-// TODO
-// var printify = new Printify({
-//   shop_id: 123456, // global query by shop_id, if not set you must set each function
-//   access_token:'xxxxxxxxxxxxxxxxxxxxxxxxxx'
-// });
+// TODO - add snippet code
+// Create a personal access token at https://developers.printify.com/#create-a-personal-access-token
+const printify = new Printify({
+  shopId: 123456, // global query by shop_id
+  auth: '<ACCESS_TOKEN>',
+});
 
+// TODO, add something useful here
 // submit an order
 // send an order to production
+const {
+  data: { login },
+} = await printify.something.getSomething();
+console.log('Hello, %s', login);
 ```
 
 ## API
