@@ -1,1 +1,1 @@
-// TODO - printify.webhooks.list(shopId);
+// TODO - printify.webhooks.list();

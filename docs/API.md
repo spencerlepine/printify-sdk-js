@@ -42,15 +42,27 @@ console.log('Hello, %s', login);
 - `GET /v1/shops.json`
 - Description: Retrieve a list of shops in a Printify account
 
+```js
+await printify.shops.getAll();
+```
+
+Response:
+
 ```json
 [ { "id": 5432, "title": "My new store", "sales_channel": "My Sales Channel" }, { "id": 9876, "title": "My other new
 store", "sales_channel": "disconnected" } ]
 ```
 
-#### `printify.shops.deleteOne(shopId)`
+#### `printify.shops.deleteOne()`
 
 - `DELETE /v1/shops/{shop_id}/connection.json`
 - Description: Disconnect a shop
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {}
@@ -62,6 +74,12 @@ store", "sales_channel": "disconnected" } ]
 
 - `GET /v1/catalog/blueprints.json`
 - Description: Retrieve a list of all available blueprints
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 [
@@ -158,6 +176,12 @@ store", "sales_channel": "disconnected" } ]
 - `GET /v1/catalog/blueprints/{blueprint_id}.json`
 - Description: Retrieve a specific blueprint
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 {
   "id": 3,
@@ -174,6 +198,12 @@ store", "sales_channel": "disconnected" } ]
 - `GET /v1/catalog/blueprints/{blueprint_id}/print_providers.json`
 - Description: Retrieve a list of all print providers that fulfill orders for a specific blueprint
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 [
   { "id": 3, "title": "DJ" },
@@ -187,6 +217,12 @@ store", "sales_channel": "disconnected" } ]
 
 - `GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/variants.json`
 - Description: Retrieve a list of all variants of a blueprint from a specific print provider
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {
@@ -1084,6 +1120,12 @@ store", "sales_channel": "disconnected" } ]
 - `GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/shipping.json`
 - Description: Retrieve the shipping information for all variants of a blueprint from a specific print provider
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 {
   "handling_time": { "value": 30, "unit": "day" },
@@ -1170,6 +1212,12 @@ store", "sales_channel": "disconnected" } ]
 - `GET /v1/catalog/print_providers.json`
 - Description: Retrieve a list of all available print-providers
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 [
   {
@@ -1210,6 +1258,12 @@ store", "sales_channel": "disconnected" } ]
 
 - `GET /v1/catalog/print_providers/{print_provider_id}.json`
 - Description: Retrieve a specific print-provider and a list of associated blueprint offerings
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {
@@ -1580,10 +1634,16 @@ store", "sales_channel": "disconnected" } ]
 
 ### Products
 
-#### `printify.products.getAll(shopId)`
+#### `printify.products.getAll()`
 
 - `GET /v1/shops/{shop_id}/products.json`
 - Description: Retrieve a list of all products (default: 10, maximum: 100)
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {
@@ -1657,10 +1717,16 @@ store", "sales_channel": "disconnected" } ]
 }
 ```
 
-#### `printify.products.getOne(shopId, productId)`
+#### `printify.products.getOne(productId)`
 
 - `GET /v1/shops/{shop_id}/products/{product_id}.json`
 - Description: Retrieve a product
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {
@@ -1717,15 +1783,13 @@ store", "sales_channel": "disconnected" } ]
 }
 ```
 
-#### `printify.products.create(shopId, data)`
+#### `printify.products.create(data)`
 
 - `POST /v1/shops/{shop_id}/products.json`
 - Description: Create a new product
 
-Request Body:
-
 ```json
-{
+const data = {
   "title": "Product",
   "description": "Good product",
   "blueprint_id": 384,
@@ -1743,6 +1807,8 @@ Request Body:
     }
   ]
 }
+
+await printify.products.create(data);
 ```
 
 Response:
@@ -1823,68 +1889,7 @@ Response:
   "images": [
     { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2187/product.jpg", "variant_ids": [45740], "position": "front", "is_default": true },
     { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2188/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2189/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2190/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2191/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2192/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2193/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2194/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2195/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2196/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2197/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2198/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2199/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2200/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2201/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2202/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2187/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2188/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2189/product.jpg", "variant_ids": [45742], "position": "front", "is_default": true },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2190/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2191/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2192/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2193/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2194/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2195/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2196/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2197/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2198/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2199/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2200/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2201/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2202/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2187/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2188/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2189/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2190/product.jpg", "variant_ids": [45744], "position": "front", "is_default": true },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2191/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2192/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2193/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2194/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2195/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2196/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2197/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2198/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2199/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2200/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2201/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2202/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2187/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2188/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2189/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2190/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2191/product.jpg", "variant_ids": [45746], "position": "front", "is_default": true },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2192/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2193/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2194/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2195/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2196/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2197/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2198/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2199/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2200/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2201/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2202/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false }
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2189/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false }
   ],
   "created_at": "2019-07-25 13:52:17+00:00",
   "updated_at": "2019-07-25 13:52:18+00:00",
@@ -1916,15 +1921,14 @@ Response:
 }
 ```
 
-#### `printify.products.updateOne(shopId, productId, data)`
+#### `printify.products.updateOne(productId, data)`
 
 - `PUT /v1/shops/{shop_id}/products/{product_id}.json`
 - Description: Update a product
 
-Request Body:
-
-```json
-{ "title": "Product" }
+```js
+const data = { title: 'Product' };
+await printify.products.updateOne('productId', data);
 ```
 
 Response:
@@ -2098,16 +2102,22 @@ Response:
 }
 ```
 
-#### `printify.products.deleteOne(shopId, productId)`
+#### `printify.products.deleteOne(productId)`
 
 - `DELETE /v1/shops/{shop_id}/products/{product_id}.json`
 - Description: Delete a product
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {}
 ```
 
-#### `printify.products.publishOne(shopId, productId)`
+#### `printify.products.publishOne(productId, data)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publish.json`
 - Description: Publish a product
@@ -2117,10 +2127,10 @@ Response:
 > your store to react to if implemented. The case is the same for attempting to publish a product from the Printify app. See
 > [product events](https://developers.printify.com/#product-events) for reference.
 
-Request Body:
+```js
+const data = { title: true, description: true, images: true, variants: true, tags: true, keyFeatures: true, shipping_template: true };
 
-```json
-{ "title": true, "description": true, "images": true, "variants": true, "tags": true, "keyFeatures": true, "shipping_template": true }
+await printify.products.publishOne('productId', data);
 ```
 
 Response:
@@ -2129,16 +2139,16 @@ Response:
 {}
 ```
 
-#### `printify.products.setPublishSucceeded(shopId, productId)`
+#### `printify.products.setPublishSucceeded(productId, data)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publishing_succeeded.json`
 - Description: Set product publish status to succeeded. Removes the product from the locked status on the Printify app and sets it's external property with the handle you provide
   in the request body.
 
-Request body:
+```js
+const data = { external: { id: '5941187eb8e7e37b3f0e62e5', handle: 'https://example.com/path/to/product' } };
 
-```json
-{ "external": { "id": "5941187eb8e7e37b3f0e62e5", "handle": "https://example.com/path/to/product" } }
+await printify.products.setPublishSucceeded('productId', data);
 ```
 
 Response:
@@ -2147,15 +2157,15 @@ Response:
 {}
 ```
 
-#### `printify.products.setPublishFailed(shopId, productId)`
+#### `printify.products.setPublishFailed(productId)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publishing_failed.json`
 - Description: Set product publish status to failed. Removes the product from the locked status on the Printify app.
 
-Request body:
+```js
+const data = { reason: 'Request timed out' };
 
-```json
-{ "reason": "Request timed out" }
+await printify.products.setPublishSucceeded('productId', data);
 ```
 
 Response:
@@ -2164,10 +2174,14 @@ Response:
 {}
 ```
 
-#### `printify.products.notifyUnpublished(shopId, productId)`
+#### `printify.products.notifyUnpublished(productId)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/unpublish.json`
 - Description: Notify that a product has been unpublished
+
+```js
+await printify.TODOs();
+```
 
 Response:
 
@@ -2177,12 +2191,18 @@ Response:
 
 ### Orders
 
-#### `printify.orders.list(shopId)`
+#### `printify.orders.list()`
 
 <!-- TODO, combine the listOrders, w/ "page, limit, status, sku"? -->
 
 - `GET /v1/shops/{shop_id}/orders.json`
 - Description: Retrieve a list of orders
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {
@@ -2234,48 +2254,77 @@ Response:
 }
 ```
 
-#### `printify.orders.list(shopId, page)`
+#### `printify.orders.list(page)`
 
 - `GET /v1/shops/{shop_id}/orders.json?page=2`
 - Description: Retrieve a list of orders
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "Jack", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.list(shopId, status)`
+#### `printify.orders.list(status)`
 
 - `GET /v1/shops/{shop_id}/orders.json?status=fulfilled`
 - Description: Retrieve a list of orders
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.list(shopId, sku)`
+#### `printify.orders.list(sku)`
 
 - `GET /v1/shops/{shop_id}/orders.json?sku=168699843`
 - Description: Retrieve a list of orders
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.get(shopId, orderId)`
+#### `printify.orders.get(orderId)`
 
 - `GET /v1/shops/{shop_id}/orders/{order_id}.json`
 - Description: Get order details by id
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 { "id": "5a96f649b2439217d070f507", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "Retie", "zip": "2470", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "BE", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, }
 ```
 
-#### `printify.orders.submit(shopId, data)`
+#### `printify.orders.submit(data)`
 
 <!-- TODO, separate the publishOrder, w/ "byProductId, externalImage, existingSKU"? -->
 
 - `POST /v1/shops/{shop_id}/orders.json`
 - Description: Submit an order
+
+```js
+const data = {}; // TODO, add body data after splitting up section
+await printify.TODOs();
+```
 
 Request Body:
 
@@ -2409,36 +2458,36 @@ Response:
 { "id": "5a96f649b2439217d070f507" }
 ```
 
-#### `printify.orders.submitExpress(shopId, data)`
+#### `printify.orders.submitExpress(data)`
 
 - `POST /v1/shops/{shop_id}/express.json`
 - Description: Submit a Printify Express order
 
-Request Body:
-
-```json
-{
-  "external_id": "2750e210-39bb-11e9-a503-452618153e4a",
-  "label": "00012",
-  "line_items": [
-    { "product_id": "5b05842f3921c9547531758d", "variant_id": 12359, "quantity": 1 },
-    { "product_id": "5b05842f3921c34764fa478bc", "variant_id": 17887, "quantity": 1 }
+```js
+const data = {
+  external_id: '2750e210-39bb-11e9-a503-452618153e4a',
+  label: '00012',
+  line_items: [
+    { product_id: '5b05842f3921c9547531758d', variant_id: 12359, quantity: 1 },
+    { product_id: '5b05842f3921c34764fa478bc', variant_id: 17887, quantity: 1 },
   ],
-  "shipping_method": 3,
-  "send_shipping_notification": false,
-  "address_to": {
-    "first_name": "John",
-    "last_name": "Smith",
-    "email": "example@example.com",
-    "phone": "0574 69 21 90",
-    "country": "BE",
-    "region": "",
-    "address1": "ExampleBaan 121",
-    "address2": "45",
-    "city": "Retie",
-    "zip": "2470"
-  }
-}
+  shipping_method: 3,
+  send_shipping_notification: false,
+  address_to: {
+    first_name: 'John',
+    last_name: 'Smith',
+    email: 'example@example.com',
+    phone: '0574 69 21 90',
+    country: 'BE',
+    region: '',
+    address1: 'ExampleBaan 121',
+    address2: '45',
+    city: 'Retie',
+    zip: '2470',
+  },
+};
+
+await printify.orders.submitExpress(data);
 ```
 
 Response:
@@ -2492,10 +2541,14 @@ Response:
 }
 ```
 
-#### `printify.orders.sendToProduction(shopId, orderId)`
+#### `printify.orders.sendToProduction(orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/send_to_production.json`
 - Description: Send an existing order to production
+
+```js
+await printify.TODOs();
+```
 
 Response:
 
@@ -2536,33 +2589,33 @@ Response:
 }
 ```
 
-#### `printify.orders.calculateShipping(shopId, data)`
+#### `printify.orders.calculateShipping(data)`
 
 - `POST /v1/shops/{shop_id}/orders/shipping.json`
 - Description: Calculate the shipping cost of an order
 
-Request Body:
-
-```json
-{
-  "line_items": [
-    { "product_id": "5bfd0b66a342bcc9b5563216", "variant_id": 17887, "quantity": 1 },
-    { "print_provider_id": 5, "blueprint_id": 9, "variant_id": 17887, "quantity": 1 },
-    { "sku": "MY-SKU", "quantity": 1 }
+```js
+const data = {
+  line_items: [
+    { product_id: '5bfd0b66a342bcc9b5563216', variant_id: 17887, quantity: 1 },
+    { print_provider_id: 5, blueprint_id: 9, variant_id: 17887, quantity: 1 },
+    { sku: 'MY-SKU', quantity: 1 },
   ],
-  "address_to": {
-    "first_name": "John",
-    "last_name": "Smith",
-    "email": "example@msn.com",
-    "phone": "0574 69 21 90",
-    "country": "BE",
-    "region": "",
-    "address1": "ExampleBaan 121",
-    "address2": "45",
-    "city": "Retie",
-    "zip": "2470"
-  }
-}
+  address_to: {
+    first_name: 'John',
+    last_name: 'Smith',
+    email: 'example@msn.com',
+    phone: '0574 69 21 90',
+    country: 'BE',
+    region: '',
+    address1: 'ExampleBaan 121',
+    address2: '45',
+    city: 'Retie',
+    zip: '2470',
+  },
+};
+
+await printify.orders.calculateShipping(data);
 ```
 
 Response:
@@ -2583,10 +2636,14 @@ Response contains the shipping options that are defined in the following table:
 > **Note:** The `printify_express` is a shipping option (as of July 2024) that will later in the future change its name to the `express`. Current express option will be renamed to
 > the priority name.
 
-#### `printify.orders.cancelUnpaid(shopId, orderId)`
+#### `printify.orders.cancelUnpaid(orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/cancel.json`
 - Description: Cancel an unpaid order
+
+```js
+await printify.TODOs();
+```
 
 Response:
 
@@ -2641,6 +2698,12 @@ Response:
 - `GET /v1/uploads.json`
 - Description: Retrieve a list of all uploaded images
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 {
   "current_page": 1,
@@ -2683,6 +2746,12 @@ Response:
 
 - `GET /v1/uploads.json?page=2`
 - Description: Retrieve specific page from upload results
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {
@@ -2727,6 +2796,12 @@ Response:
 - `GET /v1/uploads.json?limit=1`
 - Description: Retrieve limited upload results
 
+```js
+await printify.TODOs();
+```
+
+Response:
+
 ```json
 { "current_page": 1, "data": [ { "id": "5e16d66791287a0006e522b2", "file_name": "png-images-logo-1.jpg", "height": 5979, "width": 17045, "size": 1138575, "mime_type": "image/png", "preview_url": "https://example.com/image-storage/uuid1", "upload_time": "2020-01-09 07:29:43" } ], "first_page_url": "/?page=1", "from": 1, "last_page": 2, "last_page_url": "/?page=2", "next_page_url": /?page=2, "path": "/", "per_page": 1, "prev_page_url": null, "to": 2, "total": 2 }
 ```
@@ -2735,6 +2810,12 @@ Response:
 
 - `GET /v1/uploads/{image_id}.json`
 - Description: Retrieve an uploaded image by id
+
+```js
+await printify.TODOs();
+```
+
+Response:
 
 ```json
 {
@@ -2756,16 +2837,13 @@ Response:
 - `POST /v1/uploads/images.json`
 - Description: Upload an image
 
-Request Body:
+```js
+const data = { file_name: '1x1-ff00007f.png', url: 'http://png-pixel.com/1x1-ff00007f.png' };
 
-```json
-{ "file_name": "1x1-ff00007f.png", "url": "http://png-pixel.com/1x1-ff00007f.png" }
-```
+// ALTERNATE: upload the image content in base64 format (we recommend use URLs, this will be deprecated in the future)
+// const data = { "file_name": "image.png", "contents": "<base-64-encoded-content>" }
 
-Alternate Request Body: upload the image content in base64 format (we recommend use URLs, this will be deprecated in the future)
-
-```json
-{ "file_name": "image.png", "contents": "<base-64-encoded-content>" }
+await printify.uploads.uploadImage(data);
 ```
 
 Response:
@@ -2788,6 +2866,10 @@ Response:
 - `POST /v1/uploads/{image_id}/archive.json`
 - Description: Archive an uploaded image
 
+```js
+await printify.TODOs();
+```
+
 Response:
 
 ```json
@@ -2799,10 +2881,16 @@ Response:
 Use these endpoints to **configure** the Webhooks (for Printify [Events](https://developers.printify.com/#events)). You must implement your own server-side logic receive the actual
 payloads
 
-#### `printify.webhooks.list(shopId)`
+#### `printify.webhooks.list()`
 
 - `GET /v1/shops/{shop_id}/webhooks.json`
 - Description: Retrieve a list of webhooks
+
+```js
+await printify.webhooks.list();
+```
+
+Response:
 
 ```json
 [
@@ -2811,15 +2899,14 @@ payloads
 ]
 ```
 
-#### `printify.webhooks.create(shopId, data)`
+#### `printify.webhooks.create(data)`
 
 - `POST /v1/shops/{shop_id}/webhooks.json`
 - Description: Create a new webhook
 
-Request Body:
-
-```json
-{ "topic": "order:created", "url": "https://example.com/webhooks/order/created" }
+```js
+const data = { topic: 'order:created', url: 'https://example.com/webhooks/order/created' };
+await printify.webhooks.create(data);
 ```
 
 Response:
@@ -2833,10 +2920,9 @@ Response:
 - `PUT /v1/shops/{shop_id}/webhooks/{webhook_id}.json`
 - Description: Modify a webhook
 
-Request Body:
-
-```json
-{ "url": "https://example.com/callback/order/created" }
+```js
+const data = { url: 'https://example.com/callback/order/created' };
+await printify.webhooks.updateOne('webhookId', data);
 ```
 
 Response:
@@ -2849,6 +2935,10 @@ Response:
 
 - `DELETE /v1/shops/{shop_id}/webhooks/{webhook_id}.json`
 - Description: Delete a webhook
+
+```js
+await printify.webhooks.deleteOne(webhookId);
+```
 
 Response:
 

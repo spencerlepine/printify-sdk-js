@@ -14,7 +14,7 @@ class Webhooks {
     this.shopId = shopId;
 
     // this.list = list;
-    this.create = create(this.fetchData);
+    this.create = create(this.fetchData, this.shopId);
     // this.updateOne = updateOne;
     // this.deleteOne = deleteOne;
   }

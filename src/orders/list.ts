@@ -1,4 +1,4 @@
-// TODO - printify.orders.list(shopId);
-// printify.orders.list(shopId, page);
-// printify.orders.list(shopId, status);
-// printify.orders.list(shopId, sku);
+// TODO - printify.orders.list();
+// printify.orders.list(page);
+// printify.orders.list(status);
+// printify.orders.list(sku);

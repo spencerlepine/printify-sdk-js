@@ -1,1 +1,1 @@
-// TODO - printify.orders.cancelUnpaid(shopId, orderId);
+// TODO - printify.orders.cancelUnpaid(orderId);

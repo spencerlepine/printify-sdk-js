@@ -1,1 +1,1 @@
-// TODO - printify.products.notifyUnpublished(shopId, productId);
+// TODO - printify.products.notifyUnpublished(productId);

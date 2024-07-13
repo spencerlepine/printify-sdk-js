@@ -1,1 +1,1 @@
-// TODO - printify.products.getOne(shopId, productId);
+// TODO - printify.products.getOne(productId);

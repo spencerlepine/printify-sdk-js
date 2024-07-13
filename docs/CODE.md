@@ -1,6 +1,6 @@
 ```
 printify.shops.getAll();
-printify.shops.deleteOne(shopId);
+printify.shops.deleteOne();
 
 printify.catalog.listBlueprints();
 printify.catalog.getBlueprint(blueprintId);
@@ -10,26 +10,26 @@ printify.catalog.getVariantShipping(blueprintId, printProviderId);
 printify.catalog.listProviders();
 printify.catalog.getProvider(printProviderId);
 
-printify.products.getAll(shopId);
-printify.products.getOne(shopId, productId);
-printify.products.create(shopId, data);
-printify.products.updateOne(shopId, productId, data);
-printify.products.deleteOne(shopId, productId);
-printify.products.publishOne(shopId, productId);
-printify.products.setPublishSucceeded(shopId, productId);
-printify.products.setPublishFailed(shopId, productId);
-printify.products.notifyUnpublished(shopId, productId);
+printify.products.getAll();
+printify.products.getOne(productId);
+printify.products.create(data);
+printify.products.updateOne(productId, data);
+printify.products.deleteOne(productId);
+printify.products.publishOne(productId, data);
+printify.products.setPublishSucceeded(productId, data);
+printify.products.setPublishFailed(productId);
+printify.products.notifyUnpublished(productId);
 
-printify.orders.list(shopId);
-printify.orders.list(shopId, page);
-printify.orders.list(shopId, status);
-printify.orders.list(shopId, sku);
-printify.orders.get(shopId, orderId);
-printify.orders.submit(shopId, data);
-printify.orders.submitExpress(shopId, data);
-printify.orders.sendToProduction(shopId, orderId);
-printify.orders.calculateShipping(shopId, data);
-printify.orders.cancelUnpaid(shopId, orderId);
+printify.orders.list();
+printify.orders.list(page);
+printify.orders.list(status);
+printify.orders.list(sku);
+printify.orders.get(orderId);
+printify.orders.submit(data);
+printify.orders.submitExpress(data);
+printify.orders.sendToProduction(orderId);
+printify.orders.calculateShipping(data);
+printify.orders.cancelUnpaid(orderId);
 
 printify.uploads.list();
 printify.uploads.list(page);
@@ -38,8 +38,8 @@ printify.uploads.getById(imageId);
 printify.uploads.uploadImage(data);
 printify.uploads.archive(imageId);
 
-printify.webhooks.list(shopId);
-printify.webhooks.create(shopId, data);
+printify.webhooks.list();
+printify.webhooks.create(data);
 printify.webhooks.updateOne(webhookId, data);
 printify.webhooks.deleteOne(webhookId);
 ```

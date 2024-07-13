@@ -1,1 +1,1 @@
-// TODO - printify.orders.submit(shopId, data);
+// TODO - printify.orders.submit(data);

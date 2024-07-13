@@ -1,1 +1,1 @@
-// TODO - printify.orders.sendToProduction(shopId, orderId);
+// TODO - printify.orders.sendToProduction(orderId);

@@ -1,1 +1,1 @@
-// TODO - printify.shops.deleteOne(shopId)
+// TODO - printify.shops.deleteOne()

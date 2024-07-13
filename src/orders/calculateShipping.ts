@@ -1,1 +1,1 @@
-// TODO - printify.orders.calculateShipping(shopId, data);
+// TODO - printify.orders.calculateShipping(data);

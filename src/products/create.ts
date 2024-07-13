@@ -1,1 +1,1 @@
-// TODO - printify.products.create(shopId, data);
+// TODO - printify.products.create(data);

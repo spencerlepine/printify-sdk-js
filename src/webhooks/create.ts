@@ -12,18 +12,17 @@ interface Response {
   id: string;
 }
 
-export type CreateFunc = (shopId: string, data: Data) => Promise<Response>;
+export type CreateFunc = (data: Data) => Promise<Response>;
 
 /**
  * Create a new webhook
  *
- * @param {string} shopId - The ID of the shop
  * @param {Data} data - The webhook data to be sent in the request body
  * @returns {Promise<Response>} The created webhook response
  *
  * @example
- * const Data = { topic: "order:created", url: "https://example.com/webhooks/order/created" };
- * const response = await printify.webhooks.create('shopId', Data);
+ * const data = { topic: "order:created", url: "https://example.com/webhooks/order/created" };
+ * const response = await printify.webhooks.create(data);
  * // Expected response:
  * // {
  * //   "topic": "order:created",
@@ -33,8 +32,8 @@ export type CreateFunc = (shopId: string, data: Data) => Promise<Response>;
  * // }
  */
 const create =
-  (fetchData: FetchDataFunc) =>
-  async (shopId: string, data: Data): Promise<Response> => {
+  (fetchData: FetchDataFunc, shopId: string) =>
+  async (data: Data): Promise<Response> => {
     const response = await fetchData(`/v1/shops/${shopId}/webhooks.json`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -43,4 +42,4 @@ const create =
     return response.json();
   };
 
-export default (fetchData: FetchDataFunc) => create(fetchData);
+export default (fetchData: FetchDataFunc, shopId: string) => create(fetchData, shopId);

@@ -1,1 +1,1 @@
-// TODO - printify.products.setPublishFailed(shopId, productId);
+// TODO - printify.products.setPublishFailed(productId);

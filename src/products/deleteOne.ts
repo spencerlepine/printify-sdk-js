@@ -1,1 +1,1 @@
-// TODO - printify.products.deleteOne(shopId, productId);
+// TODO - printify.products.deleteOne(productId);

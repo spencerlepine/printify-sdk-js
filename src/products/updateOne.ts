@@ -1,1 +1,1 @@
-// TODO - printify.products.updateOne(shopId, productId, data);
+// TODO - printify.products.updateOne(productId, data);
