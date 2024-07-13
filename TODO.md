@@ -8,6 +8,8 @@ DEVELOPMENT
 - [BEFORE RELEASE] Replace all spencerlepine-sdk-js
 - [BEFORE RELASE] any remaining TODO s
 
+`curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: Bearer $PRINTIFY_API_TOKEN"`
+
 ## EXAMPLES
 
 - <https://github.com/jacob-hyde/Printify-PHP-SDK>

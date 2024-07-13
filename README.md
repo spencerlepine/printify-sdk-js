@@ -1,8 +1,8 @@
 # Printify SDK for JavaScript (Node.js)
 
->> **⚠️ Announcement:** Printify API v1 will be deprecated in Month 202N (TODO)
+>> **⚠️ Note:** this does not currently support *Webhooks and Events*
 
-Basic JavaScript wrapper for working with Printify API (v1). Guidelines and source endpoints can be found here: [developers.printify.com](https://developers.printify.com/)
+The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here: [developers.printify.com](https://developers.printify.com/).
 
 ## Getting started
 
@@ -17,6 +17,8 @@ npm install spencerlepine-sdk-js
 ```
 
 ## Usage
+
+> For security purposes, this is intended only for server-side use, the API does not support CORS and will not process requests from a frontend application
 
 ```js
 var Printify = require('printify-api');
