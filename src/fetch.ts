@@ -1,5 +1,10 @@
 export type FetchDataFunc = (url: string, config?: RequestInit) => Promise<any>;
 
+// Printify REST API (v1) Specification:
+// header: `Authorization: Bearer ${PRINTIFY_API_TOKEN}`
+// ContentType: application/json;charset=utf-8
+// baseUrl: https://api.printify.com/v1/
+
 class FetchUtil {
   accessToken: string;
 

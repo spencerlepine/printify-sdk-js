@@ -12,35 +12,35 @@ printify.catalog.getProvider(printProviderId);
 
 printify.products.getAll(shopId);
 printify.products.getOne(shopId, productId);
-printify.products.create(shopId, data); // added missing 'data' parameter for consistency
+printify.products.create(shopId, data);
 printify.products.updateOne(shopId, productId, data);
 printify.products.deleteOne(shopId, productId);
 printify.products.publishOne(shopId, productId);
-printify.products.setPublishSucceeded(shopId, productId); // shortened method name for brevity
-printify.products.setPublishFailed(shopId, productId); // shortened method name for brevity
-printify.products.notifyUnpublished(shopId, productId); // shortened method name for brevity
+printify.products.setPublishSucceeded(shopId, productId);
+printify.products.setPublishFailed(shopId, productId);
+printify.products.notifyUnpublished(shopId, productId);
 
-printify.orders.list(shopId); // simplified method name for consistency
+printify.orders.list(shopId);
 printify.orders.list(shopId, page);
 printify.orders.list(shopId, status);
 printify.orders.list(shopId, sku);
-printify.orders.get(shopId, orderId); // simplified method name for consistency
-printify.orders.submit(shopId, data); // simplified method name for consistency
-printify.orders.submitExpress(shopId, data); // simplified method name for consistency
-printify.orders.sendToProduction(shopId, orderId); // simplified method name for consistency
+printify.orders.get(shopId, orderId);
+printify.orders.submit(shopId, data);
+printify.orders.submitExpress(shopId, data);
+printify.orders.sendToProduction(shopId, orderId);
 printify.orders.calculateShipping(shopId, data);
-printify.orders.cancelUnpaid(shopId, orderId); // simplified method name for consistency
+printify.orders.cancelUnpaid(shopId, orderId);
 
-printify.uploads.list(); // simplified method name for consistency
+printify.uploads.list();
 printify.uploads.list(page);
 printify.uploads.list(limit);
-printify.uploads.getById(imageId); // simplified method name for consistency
-printify.uploads.upload(data); // simplified method name for consistency
-printify.uploads.archive(imageId); // simplified method name for consistency
+printify.uploads.getById(imageId);
+printify.uploads.uploadImage(data);
+printify.uploads.archive(imageId);
 
-printify.webhooks.list(shopId); // added missing 'list' method for consistency
-printify.webhooks.create(shopId, data); // added missing 'shopId' and 'data' parameters for consistency
-printify.webhooks.updateOne(webhookId, data); // added missing 'data' parameter for consistency
+printify.webhooks.list(shopId);
+printify.webhooks.create(shopId, data);
+printify.webhooks.updateOne(webhookId, data);
 printify.webhooks.deleteOne(webhookId);
 ```
 
@@ -85,7 +85,7 @@ src/
 │   ├── index.ts
 │   ├── list.ts
 │   ├── getById.ts
-│   ├── upload.ts
+│   ├── uploadImage.ts
 │   ├── archive.ts
 ├── webhooks/
 │   ├── index.ts

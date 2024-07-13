@@ -13,7 +13,7 @@ import Printify from 'spencerlepine-sdk-js';
 // TODO - add snippet code
 // Create a personal access token at https://developers.printify.com/#create-a-personal-access-token
 const printify = new Printify({
-  shopId: 123456, // global query by shop_id
+  shopId: '123456', // global query by shop_id
   auth: '<ACCESS_TOKEN>',
 });
 
@@ -1717,7 +1717,7 @@ store", "sales_channel": "disconnected" } ]
 }
 ```
 
-#### `printify.products.create(shop_id)`
+#### `printify.products.create(shopId, data)`
 
 - `POST /v1/shops/{shop_id}/products.json`
 - Description: Create a new product
@@ -2129,7 +2129,7 @@ Response:
 {}
 ```
 
-#### `printify.products.setProductPublishSucceeded(shopId, productId)`
+#### `printify.products.setPublishSucceeded(shopId, productId)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publishing_succeeded.json`
 - Description: Set product publish status to succeeded. Removes the product from the locked status on the Printify app and sets it's external property with the handle you provide
@@ -2147,7 +2147,7 @@ Response:
 {}
 ```
 
-#### `printify.products.setProductPublishFailed(shopId, productId)`
+#### `printify.products.setPublishFailed(shopId, productId)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publishing_failed.json`
 - Description: Set product publish status to failed. Removes the product from the locked status on the Printify app.
@@ -2164,7 +2164,7 @@ Response:
 {}
 ```
 
-#### `printify.products.notifyProductUnpublished(shopId, productId)`
+#### `printify.products.notifyUnpublished(shopId, productId)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/unpublish.json`
 - Description: Notify that a product has been unpublished
@@ -2177,7 +2177,7 @@ Response:
 
 ### Orders
 
-#### `printify.orders.listOrders(shopId)`
+#### `printify.orders.list(shopId)`
 
 <!-- TODO, combine the listOrders, w/ "page, limit, status, sku"? -->
 
@@ -2234,7 +2234,7 @@ Response:
 }
 ```
 
-#### `printify.orders.listOrders(shopId, page)`
+#### `printify.orders.list(shopId, page)`
 
 - `GET /v1/shops/{shop_id}/orders.json?page=2`
 - Description: Retrieve a list of orders
@@ -2243,7 +2243,7 @@ Response:
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "Jack", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.listOrders(shopId, status)`
+#### `printify.orders.list(shopId, status)`
 
 - `GET /v1/shops/{shop_id}/orders.json?status=fulfilled`
 - Description: Retrieve a list of orders
@@ -2252,7 +2252,7 @@ Response:
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.listOrders(shopId, sku)`
+#### `printify.orders.list(shopId, sku)`
 
 - `GET /v1/shops/{shop_id}/orders.json?sku=168699843`
 - Description: Retrieve a list of orders
@@ -2261,7 +2261,7 @@ Response:
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.getOrder(shopId, orderId)`
+#### `printify.orders.get(shopId, orderId)`
 
 - `GET /v1/shops/{shop_id}/orders/{order_id}.json`
 - Description: Get order details by id
@@ -2270,7 +2270,7 @@ Response:
 { "id": "5a96f649b2439217d070f507", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "Retie", "zip": "2470", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "BE", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, }
 ```
 
-#### `printify.orders.submitOrder(shopId, data)`
+#### `printify.orders.submit(shopId, data)`
 
 <!-- TODO, separate the publishOrder, w/ "byProductId, externalImage, existingSKU"? -->
 
@@ -2409,7 +2409,7 @@ Response:
 { "id": "5a96f649b2439217d070f507" }
 ```
 
-#### `printify.orders.submitExpressOrder(shopId, data)`
+#### `printify.orders.submitExpress(shopId, data)`
 
 - `POST /v1/shops/{shop_id}/express.json`
 - Description: Submit a Printify Express order
@@ -2492,7 +2492,7 @@ Response:
 }
 ```
 
-#### `printify.orders.sendOrderToProduction(shopId, orderId)`
+#### `printify.orders.sendToProduction(shopId, orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/send_to_production.json`
 - Description: Send an existing order to production
@@ -2583,7 +2583,7 @@ Response contains the shipping options that are defined in the following table:
 > **Note:** The `printify_express` is a shipping option (as of July 2024) that will later in the future change its name to the `express`. Current express option will be renamed to
 > the priority name.
 
-#### `printify.orders.cancelUnpaidOrder(shopId, orderId)`
+#### `printify.orders.cancelUnpaid(shopId, orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/cancel.json`
 - Description: Cancel an unpaid order
@@ -2634,7 +2634,7 @@ Response:
 
 ### Uploads
 
-#### `printify.uploads.listUploads()`
+#### `printify.uploads.list()`
 
 <!-- TODO, combine the getUploads, w/ "page, limit"? -->
 
@@ -2679,7 +2679,7 @@ Response:
 }
 ```
 
-#### `printify.uploads.listUploads(page)`
+#### `printify.uploads.list(page)`
 
 - `GET /v1/uploads.json?page=2`
 - Description: Retrieve specific page from upload results
@@ -2722,7 +2722,7 @@ Response:
 }
 ```
 
-#### `printify.uploads.listUploads(limit)`
+#### `printify.uploads.list(limit)`
 
 - `GET /v1/uploads.json?limit=1`
 - Description: Retrieve limited upload results
@@ -2731,7 +2731,7 @@ Response:
 { "current_page": 1, "data": [ { "id": "5e16d66791287a0006e522b2", "file_name": "png-images-logo-1.jpg", "height": 5979, "width": 17045, "size": 1138575, "mime_type": "image/png", "preview_url": "https://example.com/image-storage/uuid1", "upload_time": "2020-01-09 07:29:43" } ], "first_page_url": "/?page=1", "from": 1, "last_page": 2, "last_page_url": "/?page=2", "next_page_url": /?page=2, "path": "/", "per_page": 1, "prev_page_url": null, "to": 2, "total": 2 }
 ```
 
-#### `printify.uploads.getImageById(imageId)`
+#### `printify.uploads.getById(imageId)`
 
 - `GET /v1/uploads/{image_id}.json`
 - Description: Retrieve an uploaded image by id
@@ -2783,7 +2783,7 @@ Response:
 }
 ```
 
-#### `printify.uploads.archiveImageUpload(imageId)`
+#### `printify.uploads.archive(imageId)`
 
 - `POST /v1/uploads/{image_id}/archive.json`
 - Description: Archive an uploaded image
@@ -2799,7 +2799,7 @@ Response:
 Use these endpoints to **configure** the Webhooks (for Printify [Events](https://developers.printify.com/#events)). You must implement your own server-side logic receive the actual
 payloads
 
-#### `printify.uploads.listWebhooks(shopId)`
+#### `printify.webhooks.list(shopId)`
 
 - `GET /v1/shops/{shop_id}/webhooks.json`
 - Description: Retrieve a list of webhooks
@@ -2811,7 +2811,7 @@ payloads
 ]
 ```
 
-#### `printify.webhooks.create(webhookId)`
+#### `printify.webhooks.create(shopId, data)`
 
 - `POST /v1/shops/{shop_id}/webhooks.json`
 - Description: Create a new webhook
@@ -2828,7 +2828,7 @@ Response:
 { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 ```
 
-#### `printify.webhooks.updateOne(webhookId)`
+#### `printify.webhooks.updateOne(webhookId, data)`
 
 - `PUT /v1/shops/{shop_id}/webhooks/{webhook_id}.json`
 - Description: Modify a webhook
