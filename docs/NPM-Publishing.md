@@ -114,8 +114,8 @@ Creating a release and triggering the `npm publish` [workflow](https://github.co
 ```sh
 git clone https://github.com/spencerlepine/spencerlepine-sdk-js.git
 cd spencerlepine-sdk-js
-npm i
-npm run release
+yarn
+yarn build
 git status
 
 npm login
@@ -123,4 +123,4 @@ npm publish --dry-run
 npm publish --access=public
 ```
 
-3. View release: <https://www.npmjs.com/package/spencerlepine/spencerlepine-sdk-js>
+3. View release: <https://www.npmjs.com/package/spencerlepine-sdk-js>
