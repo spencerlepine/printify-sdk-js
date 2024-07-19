@@ -11,7 +11,8 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "./dist/types"
+    "declarationDir": "./dist/types",
+    "importHelpers": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]

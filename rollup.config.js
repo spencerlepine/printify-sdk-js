@@ -11,6 +11,7 @@ export default {
       file: 'dist/bundle.cjs.js',
       format: 'cjs',
       sourcemap: true,
+      exports: 'auto',
     },
     {
       file: 'dist/bundle.esm.js',
