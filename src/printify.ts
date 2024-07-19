@@ -1,10 +1,11 @@
 import Catalog from './catalog';
-import FetchUtil, { FetchDataFunc } from './fetch';
 import Orders from './orders';
 import Products from './products';
 import Shops from './shops';
 import Uploads from './uploads';
 import Webhooks from './webhooks';
+
+export type FetchDataFunc = (url: string, config?: RequestInit) => Promise<any>;
 
 interface PrintifyConfig {
   shopId: string;
@@ -13,26 +14,55 @@ interface PrintifyConfig {
 
 class Printify {
   shopId: string;
-  accessToken: string;
-  fetchData: FetchDataFunc;
+  #accessToken: string;
   catalog: Object;
   orders: Object;
   products: Object;
   shops: Object;
   uploads: Object;
-  webhooks: Object;
+  webhooks: any;
 
   constructor(config: PrintifyConfig) {
     this.shopId = config.shopId;
-    this.accessToken = config.accessToken;
-    this.fetchData = new FetchUtil(this.accessToken).fetchData;
+    this.#accessToken = config.accessToken;
 
-    this.catalog = new Catalog(this.fetchData, this.shopId);
-    this.orders = new Orders(this.fetchData, this.shopId);
-    this.products = new Products(this.fetchData, this.shopId);
-    this.shops = new Shops(this.fetchData, this.shopId);
-    this.uploads = new Uploads(this.fetchData, this.shopId);
-    this.webhooks = new Webhooks(this.fetchData, this.shopId);
+    this.catalog = new Catalog(this.fetchData.bind(this), this.shopId);
+    this.orders = new Orders(this.fetchData.bind(this), this.shopId);
+    this.products = new Products(this.fetchData.bind(this), this.shopId);
+    this.shops = new Shops(this.fetchData.bind(this), this.shopId);
+    this.uploads = new Uploads(this.fetchData.bind(this), this.shopId);
+    this.webhooks = new Webhooks(this.fetchData.bind(this), this.shopId);
+  }
+
+  // Printify REST API (v1) Specification:
+  // header: `Authorization: Bearer ${PRINTIFY_API_TOKEN}`
+  // ContentType: application/json;charset=utf-8
+  // baseUrl: https://api.printify.com/v1/
+  private BASE_URL = 'https://api.printify.com';
+  private async fetchData(url: string, config: RequestInit = {}): Promise<any> {
+    const defaultHeaders = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.#accessToken}`,
+    };
+
+    const requestData = {
+      ...config,
+      headers: {
+        ...defaultHeaders,
+        ...(config.headers || {}),
+      },
+    };
+
+    try {
+      const response = await fetch(`${this.BASE_URL}${url}`, requestData);
+      if (!response.ok) {
+        throw new Error(`Printify SDK Error: ${response.status} ${response.statusText}`);
+      }
+      return await response.json();
+    } catch (error) {
+      // Rethrow the error for upstream code to handle
+      throw error;
+    }
   }
 }
 

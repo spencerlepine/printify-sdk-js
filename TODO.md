@@ -1,9 +1,7 @@
 DEVELOPMENT
 
-- [x] GENERATE DOC FROM developers.printify.com
 - [ ] GENERATE CODE FROM DOC
 - [ ] Update README.md sample code with the real API
-- [BEFORE RELEASE] add jest? - GENERATE unit tests from code/doc (mocking real endpoints)
 - [BEFORE RELEASE] Replace all spencerlepine-sdk-js
 - [BEFORE RELASE] any remaining TODOs
 

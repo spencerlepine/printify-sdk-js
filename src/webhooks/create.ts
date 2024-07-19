@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../fetch';
+import { FetchDataFunc } from '../printify';
 
 interface Data {
   topic: string;
@@ -38,8 +38,7 @@ const create =
       method: 'POST',
       body: JSON.stringify(data),
     });
-
-    return response.json();
+    return response;
   };
 
 export default (fetchData: FetchDataFunc, shopId: string) => create(fetchData, shopId);

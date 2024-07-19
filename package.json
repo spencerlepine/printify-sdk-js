@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "test": "echo \"Done!\" && exit 0",
+    "test": "jest --passWithNoTests",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
@@ -54,6 +54,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.14.10",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
@@ -69,5 +70,9 @@
   },
   "engines": {
     "node": ">= 18"
+  },
+  "dependencies": {
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.3"
   }
 }

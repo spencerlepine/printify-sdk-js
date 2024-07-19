@@ -42,27 +42,15 @@ console.log('Hello, %s', login);
 - `GET /v1/shops.json`
 - Description: Retrieve a list of shops in a Printify account
 
-```js
-await printify.shops.getAll();
-```
-
-Response:
-
 ```json
 [ { "id": 5432, "title": "My new store", "sales_channel": "My Sales Channel" }, { "id": 9876, "title": "My other new
 store", "sales_channel": "disconnected" } ]
 ```
 
-#### `printify.shops.deleteOne(printify.shopId)`
+#### `printify.shops.deleteOne(shopId)`
 
 - `DELETE /v1/shops/{shop_id}/connection.json`
 - Description: Disconnect a shop
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {}
@@ -74,12 +62,6 @@ Response:
 
 - `GET /v1/catalog/blueprints.json`
 - Description: Retrieve a list of all available blueprints
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 [
@@ -176,12 +158,6 @@ Response:
 - `GET /v1/catalog/blueprints/{blueprint_id}.json`
 - Description: Retrieve a specific blueprint
 
-```js
-await printify.TODOs();
-```
-
-Response:
-
 ```json
 {
   "id": 3,
@@ -198,12 +174,6 @@ Response:
 - `GET /v1/catalog/blueprints/{blueprint_id}/print_providers.json`
 - Description: Retrieve a list of all print providers that fulfill orders for a specific blueprint
 
-```js
-await printify.TODOs();
-```
-
-Response:
-
 ```json
 [
   { "id": 3, "title": "DJ" },
@@ -217,12 +187,6 @@ Response:
 
 - `GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/variants.json`
 - Description: Retrieve a list of all variants of a blueprint from a specific print provider
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -300,8 +264,817 @@ Response:
         { "position": "back", "height": 3995, "width": 3153 },
         { "position": "front", "height": 3995, "width": 3153 }
       ]
+    },
+    {
+      "id": 17516,
+      "title": "Solid Light Blue / XS",
+      "options": { "color": "Solid Light Blue", "size": "XS" },
+      "placeholders": [
+        { "position": "back", "height": 3995, "width": 3153 },
+        { "position": "front", "height": 3995, "width": 3153 }
+      ]
+    },
+    {
+      "id": 17552,
+      "title": "Solid Maroon / XS",
+      "options": { "color": "Solid Maroon", "size": "XS" },
+      "placeholders": [
+        { "position": "back", "height": 3995, "width": 3153 },
+        { "position": "front", "height": 3995, "width": 3153 }
+      ]
+    },
+    {
+      "id": 17588,
+      "title": "Solid Red / XS",
+      "options": { "color": "Solid Red", "size": "XS" },
+      "placeholders": [
+        { "position": "back", "height": 3995, "width": 3153 },
+        { "position": "front", "height": 3995, "width": 3153 }
+      ]
+    },
+    {
+      "id": 17597,
+      "title": "Solid Royal / XS",
+      "options": { "color": "Solid Royal", "size": "XS" },
+      "placeholders": [
+        { "position": "back", "height": 3995, "width": 3153 },
+        { "position": "front", "height": 3995, "width": 3153 }
+      ]
+    },
+    {
+      "id": 17606,
+      "title": "Solid Sand / XS",
+      "options": { "color": "Solid Sand", "size": "XS" },
+      "placeholders": [
+        { "position": "back", "height": 3995, "width": 3153 },
+        { "position": "front", "height": 3995, "width": 3153 }
+      ]
+    },
+    {
+      "id": 17642,
+      "title": "Solid White / XS",
+      "options": { "color": "Solid White", "size": "XS" },
+      "placeholders": [
+        { "position": "back", "height": 3995, "width": 3153 },
+        { "position": "front", "height": 3995, "width": 3153 }
+      ]
+    },
+    {
+      "id": 17391,
+      "title": "Heather Grey / S",
+      "options": { "color": "Heather Grey", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17427,
+      "title": "Solid Black / S",
+      "options": { "color": "Solid Black", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17436,
+      "title": "Solid Scarlet / S",
+      "options": { "color": "Solid Scarlet", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17445,
+      "title": "Solid Cool Blue / S",
+      "options": { "color": "Solid Cool Blue", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17454,
+      "title": "Solid Cream / S",
+      "options": { "color": "Solid Cream", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17463,
+      "title": "Solid Dark Chocolate / S",
+      "options": { "color": "Solid Dark Chocolate", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17481,
+      "title": "Solid Heavy Metal / S",
+      "options": { "color": "Solid Heavy Metal", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17490,
+      "title": "Solid Indigo / S",
+      "options": { "color": "Solid Indigo", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17517,
+      "title": "Solid Light Blue / S",
+      "options": { "color": "Solid Light Blue", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17553,
+      "title": "Solid Maroon / S",
+      "options": { "color": "Solid Maroon", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17589,
+      "title": "Solid Red / S",
+      "options": { "color": "Solid Red", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17598,
+      "title": "Solid Royal / S",
+      "options": { "color": "Solid Royal", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17607,
+      "title": "Solid Sand / S",
+      "options": { "color": "Solid Sand", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17643,
+      "title": "Solid White / S",
+      "options": { "color": "Solid White", "size": "S" },
+      "placeholders": [
+        { "position": "back", "height": 4563, "width": 3602 },
+        { "position": "front", "height": 4563, "width": 3602 }
+      ]
+    },
+    {
+      "id": 17392,
+      "title": "Heather Grey / M",
+      "options": { "color": "Heather Grey", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17428,
+      "title": "Solid Black / M",
+      "options": { "color": "Solid Black", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17437,
+      "title": "Solid Scarlet / M",
+      "options": { "color": "Solid Scarlet", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17446,
+      "title": "Solid Cool Blue / M",
+      "options": { "color": "Solid Cool Blue", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17455,
+      "title": "Solid Cream / M",
+      "options": { "color": "Solid Cream", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17464,
+      "title": "Solid Dark Chocolate / M",
+      "options": { "color": "Solid Dark Chocolate", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17482,
+      "title": "Solid Heavy Metal / M",
+      "options": { "color": "Solid Heavy Metal", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17491,
+      "title": "Solid Indigo / M",
+      "options": { "color": "Solid Indigo", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17518,
+      "title": "Solid Light Blue / M",
+      "options": { "color": "Solid Light Blue", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17554,
+      "title": "Solid Maroon / M",
+      "options": { "color": "Solid Maroon", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17590,
+      "title": "Solid Red / M",
+      "options": { "color": "Solid Red", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17599,
+      "title": "Solid Royal / M",
+      "options": { "color": "Solid Royal", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17608,
+      "title": "Solid Sand / M",
+      "options": { "color": "Solid Sand", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17644,
+      "title": "Solid White / M",
+      "options": { "color": "Solid White", "size": "M" },
+      "placeholders": [
+        { "position": "back", "height": 5131, "width": 4051 },
+        { "position": "front", "height": 5131, "width": 4051 }
+      ]
+    },
+    {
+      "id": 17393,
+      "title": "Heather Grey / L",
+      "options": { "color": "Heather Grey", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17429,
+      "title": "Solid Black / L",
+      "options": { "color": "Solid Black", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17438,
+      "title": "Solid Scarlet / L",
+      "options": { "color": "Solid Scarlet", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17447,
+      "title": "Solid Cool Blue / L",
+      "options": { "color": "Solid Cool Blue", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17456,
+      "title": "Solid Cream / L",
+      "options": { "color": "Solid Cream", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17465,
+      "title": "Solid Dark Chocolate / L",
+      "options": { "color": "Solid Dark Chocolate", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17483,
+      "title": "Solid Heavy Metal / L",
+      "options": { "color": "Solid Heavy Metal", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17492,
+      "title": "Solid Indigo / L",
+      "options": { "color": "Solid Indigo", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17519,
+      "title": "Solid Light Blue / L",
+      "options": { "color": "Solid Light Blue", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17555,
+      "title": "Solid Maroon / L",
+      "options": { "color": "Solid Maroon", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17591,
+      "title": "Solid Red / L",
+      "options": { "color": "Solid Red", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17600,
+      "title": "Solid Royal / L",
+      "options": { "color": "Solid Royal", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17609,
+      "title": "Solid Sand / L",
+      "options": { "color": "Solid Sand", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17645,
+      "title": "Solid White / L",
+      "options": { "color": "Solid White", "size": "L" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17394,
+      "title": "Heather Grey / XL",
+      "options": { "color": "Heather Grey", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17430,
+      "title": "Solid Black / XL",
+      "options": { "color": "Solid Black", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17439,
+      "title": "Solid Scarlet / XL",
+      "options": { "color": "Solid Scarlet", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17448,
+      "title": "Solid Cool Blue / XL",
+      "options": { "color": "Solid Cool Blue", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17457,
+      "title": "Solid Cream / XL",
+      "options": { "color": "Solid Cream", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17466,
+      "title": "Solid Dark Chocolate / XL",
+      "options": { "color": "Solid Dark Chocolate", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17484,
+      "title": "Solid Heavy Metal / XL",
+      "options": { "color": "Solid Heavy Metal", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17493,
+      "title": "Solid Indigo / XL",
+      "options": { "color": "Solid Indigo", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17520,
+      "title": "Solid Light Blue / XL",
+      "options": { "color": "Solid Light Blue", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17556,
+      "title": "Solid Maroon / XL",
+      "options": { "color": "Solid Maroon", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17592,
+      "title": "Solid Red / XL",
+      "options": { "color": "Solid Red", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17601,
+      "title": "Solid Royal / XL",
+      "options": { "color": "Solid Royal", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17610,
+      "title": "Solid Sand / XL",
+      "options": { "color": "Solid Sand", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17646,
+      "title": "Solid White / XL",
+      "options": { "color": "Solid White", "size": "XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17395,
+      "title": "Heather Grey / 2XL",
+      "options": { "color": "Heather Grey", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17431,
+      "title": "Solid Black / 2XL",
+      "options": { "color": "Solid Black", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17440,
+      "title": "Solid Scarlet / 2XL",
+      "options": { "color": "Solid Scarlet", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17449,
+      "title": "Solid Cool Blue / 2XL",
+      "options": { "color": "Solid Cool Blue", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17458,
+      "title": "Solid Cream / 2XL",
+      "options": { "color": "Solid Cream", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17467,
+      "title": "Solid Dark Chocolate / 2XL",
+      "options": { "color": "Solid Dark Chocolate", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17485,
+      "title": "Solid Heavy Metal / 2XL",
+      "options": { "color": "Solid Heavy Metal", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17494,
+      "title": "Solid Indigo / 2XL",
+      "options": { "color": "Solid Indigo", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17521,
+      "title": "Solid Light Blue / 2XL",
+      "options": { "color": "Solid Light Blue", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17557,
+      "title": "Solid Maroon / 2XL",
+      "options": { "color": "Solid Maroon", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17593,
+      "title": "Solid Red / 2XL",
+      "options": { "color": "Solid Red", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17602,
+      "title": "Solid Royal / 2XL",
+      "options": { "color": "Solid Royal", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17611,
+      "title": "Solid Sand / 2XL",
+      "options": { "color": "Solid Sand", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17647,
+      "title": "Solid White / 2XL",
+      "options": { "color": "Solid White", "size": "2XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17396,
+      "title": "Heather Grey / 3XL",
+      "options": { "color": "Heather Grey", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17432,
+      "title": "Solid Black / 3XL",
+      "options": { "color": "Solid Black", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17441,
+      "title": "Solid Scarlet / 3XL",
+      "options": { "color": "Solid Scarlet", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17450,
+      "title": "Solid Cool Blue / 3XL",
+      "options": { "color": "Solid Cool Blue", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17459,
+      "title": "Solid Cream / 3XL",
+      "options": { "color": "Solid Cream", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17468,
+      "title": "Solid Dark Chocolate / 3XL",
+      "options": { "color": "Solid Dark Chocolate", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17486,
+      "title": "Solid Heavy Metal / 3XL",
+      "options": { "color": "Solid Heavy Metal", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17495,
+      "title": "Solid Indigo / 3XL",
+      "options": { "color": "Solid Indigo", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17522,
+      "title": "Solid Light Blue / 3XL",
+      "options": { "color": "Solid Light Blue", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17558,
+      "title": "Solid Maroon / 3XL",
+      "options": { "color": "Solid Maroon", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17594,
+      "title": "Solid Red / 3XL",
+      "options": { "color": "Solid Red", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17603,
+      "title": "Solid Royal / 3XL",
+      "options": { "color": "Solid Royal", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17612,
+      "title": "Solid Sand / 3XL",
+      "options": { "color": "Solid Sand", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
+    },
+    {
+      "id": 17648,
+      "title": "Solid White / 3XL",
+      "options": { "color": "Solid White", "size": "3XL" },
+      "placeholders": [
+        { "position": "back", "height": 5700, "width": 4500 },
+        { "position": "front", "height": 5700, "width": 4500 }
+      ]
     }
-    // ...
   ]
 }
 ```
@@ -310,12 +1083,6 @@ Response:
 
 - `GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/shipping.json`
 - Description: Retrieve the shipping information for all variants of a blueprint from a specific print provider
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -403,12 +1170,6 @@ Response:
 - `GET /v1/catalog/print_providers.json`
 - Description: Retrieve a list of all available print-providers
 
-```js
-await printify.TODOs();
-```
-
-Response:
-
 ```json
 [
   {
@@ -449,12 +1210,6 @@ Response:
 
 - `GET /v1/catalog/print_providers/{print_provider_id}.json`
 - Description: Retrieve a specific print-provider and a list of associated blueprint offerings
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -825,16 +1580,10 @@ Response:
 
 ### Products
 
-#### `printify.products.getAll()`
+#### `printify.products.getAll(shopId)`
 
 - `GET /v1/shops/{shop_id}/products.json`
 - Description: Retrieve a list of all products (default: 10, maximum: 100)
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -908,16 +1657,10 @@ Response:
 }
 ```
 
-#### `printify.products.getOne(productId)`
+#### `printify.products.getOne(shopId, productId)`
 
 - `GET /v1/shops/{shop_id}/products/{product_id}.json`
 - Description: Retrieve a product
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -974,13 +1717,15 @@ Response:
 }
 ```
 
-#### `printify.products.create(data)`
+#### `printify.products.create(shopId, data)`
 
 - `POST /v1/shops/{shop_id}/products.json`
 - Description: Create a new product
 
+Request Body:
+
 ```json
-const data = {
+{
   "title": "Product",
   "description": "Good product",
   "blueprint_id": 384,
@@ -998,128 +1743,6 @@ const data = {
     }
   ]
 }
-
-await printify.products.create(data);
-```
-
-Response:
-
-```json
-{
-  "id": "5d39b411749d0a000f30e0f4",
-  "title": "Product",
-  "description": "Good product",
-  "tags": ["Home & Living", "Stickers"],
-  "options": [
-    {
-      "name": "Size",
-      "type": "size",
-      "values": [
-        { "id": 2017, "title": "2x2\"" },
-        { "id": 2018, "title": "3x3\"" },
-        { "id": 2019, "title": "4x4\"" },
-        { "id": 2020, "title": "6x6\"" }
-      ]
-    },
-    { "name": "Type", "type": "surface", "values": [{ "id": 2114, "title": "White" }] }
-  ],
-  "variants": [
-    {
-      "id": 45740,
-      "sku": "866375988",
-      "cost": 134,
-      "price": 400,
-      "title": "2x2\" / White",
-      "grams": 10,
-      "is_enabled": true,
-      "is_default": true,
-      "is_available": true,
-      "is_printify_express_eligible": true,
-      "options": [2017, 2114]
-    },
-    {
-      "id": 45742,
-      "sku": "866375989",
-      "cost": 149,
-      "price": 400,
-      "title": "3x3\" / White",
-      "grams": 10,
-      "is_enabled": true,
-      "is_default": false,
-      "is_available": true,
-      "is_printify_express_eligible": true,
-      "options": [2018, 2114]
-    },
-    {
-      "id": 45744,
-      "sku": "866375990",
-      "cost": 187,
-      "price": 400,
-      "title": "4x4\" / White",
-      "grams": 10,
-      "is_enabled": true,
-      "is_default": false,
-      "is_available": true,
-      "is_printify_express_eligible": true,
-      "options": [2019, 2114]
-    },
-    {
-      "id": 45746,
-      "sku": "866375991",
-      "cost": 216,
-      "price": 400,
-      "title": "6x6\" / White",
-      "grams": 10,
-      "is_enabled": true,
-      "is_default": false,
-      "is_available": true,
-      "is_printify_express_eligible": true,
-      "options": [2020, 2114]
-    }
-  ],
-  "images": [
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2187/product.jpg", "variant_ids": [45740], "position": "front", "is_default": true },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2188/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2189/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false }
-  ],
-  "created_at": "2019-07-25 13:52:17+00:00",
-  "updated_at": "2019-07-25 13:52:18+00:00",
-  "visible": true,
-  "is_locked": false,
-  "is_printify_express_eligible": true,
-  "is_printify_express_enabled": true,
-  "is_economy_shipping_eligible": true,
-  "is_economy_shipping_enabled": true,
-  "blueprint_id": 384,
-  "user_id": 1337,
-  "shop_id": 1337,
-  "print_provider_id": 1,
-  "print_areas": [
-    {
-      "variant_ids": [45740, 45742, 45744, 45746],
-      "placeholders": [
-        {
-          "position": "front",
-          "images": [
-            { "id": "5d15ca551163cde90d7b2203", "name": "Asset 65@3x.png", "type": "image/png", "height": 1200, "width": 1200, "x": 0.5, "y": 0.5, "scale": 1, "angle": 0 }
-          ]
-        }
-      ],
-      "background": "#ffffff"
-    }
-  ],
-  "sales_channel_properties": []
-}
-```
-
-#### `printify.products.updateOne(productId, data)`
-
-- `PUT /v1/shops/{shop_id}/products/{product_id}.json`
-- Description: Update a product
-
-```js
-const data = { title: 'Product' };
-await printify.products.updateOne('productId', data);
 ```
 
 Response:
@@ -1293,22 +1916,198 @@ Response:
 }
 ```
 
-#### `printify.products.deleteOne(productId)`
+#### `printify.products.updateOne(shopId, productId, data)`
 
-- `DELETE /v1/shops/{shop_id}/products/{product_id}.json`
-- Description: Delete a product
+- `PUT /v1/shops/{shop_id}/products/{product_id}.json`
+- Description: Update a product
 
-```js
-await printify.TODOs();
+Request Body:
+
+```json
+{ "title": "Product" }
 ```
 
 Response:
 
 ```json
+{
+  "id": "5d39b411749d0a000f30e0f4",
+  "title": "Product",
+  "description": "Good product",
+  "tags": ["Home & Living", "Stickers"],
+  "options": [
+    {
+      "name": "Size",
+      "type": "size",
+      "values": [
+        { "id": 2017, "title": "2x2\"" },
+        { "id": 2018, "title": "3x3\"" },
+        { "id": 2019, "title": "4x4\"" },
+        { "id": 2020, "title": "6x6\"" }
+      ]
+    },
+    { "name": "Type", "type": "surface", "values": [{ "id": 2114, "title": "White" }] }
+  ],
+  "variants": [
+    {
+      "id": 45740,
+      "sku": "866375988",
+      "cost": 134,
+      "price": 400,
+      "title": "2x2\" / White",
+      "grams": 10,
+      "is_enabled": true,
+      "is_default": true,
+      "is_available": true,
+      "is_printify_express_eligible": true,
+      "options": [2017, 2114]
+    },
+    {
+      "id": 45742,
+      "sku": "866375989",
+      "cost": 149,
+      "price": 400,
+      "title": "3x3\" / White",
+      "grams": 10,
+      "is_enabled": true,
+      "is_default": false,
+      "is_available": true,
+      "is_printify_express_eligible": true,
+      "options": [2018, 2114]
+    },
+    {
+      "id": 45744,
+      "sku": "866375990",
+      "cost": 187,
+      "price": 400,
+      "title": "4x4\" / White",
+      "grams": 10,
+      "is_enabled": true,
+      "is_default": false,
+      "is_available": true,
+      "is_printify_express_eligible": true,
+      "options": [2019, 2114]
+    },
+    {
+      "id": 45746,
+      "sku": "866375991",
+      "cost": 216,
+      "price": 400,
+      "title": "6x6\" / White",
+      "grams": 10,
+      "is_enabled": true,
+      "is_default": false,
+      "is_available": true,
+      "is_printify_express_eligible": true,
+      "options": [2020, 2114]
+    }
+  ],
+  "images": [
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2187/product.jpg", "variant_ids": [45740], "position": "front", "is_default": true },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2188/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2189/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2190/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2191/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2192/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2193/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2194/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2195/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2196/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2197/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2198/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2199/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2200/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2201/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2202/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2187/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2188/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2189/product.jpg", "variant_ids": [45742], "position": "front", "is_default": true },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2190/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2191/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2192/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2193/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2194/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2195/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2196/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2197/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2198/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2199/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2200/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2201/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2202/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2187/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2188/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2189/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2190/product.jpg", "variant_ids": [45744], "position": "front", "is_default": true },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2191/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2192/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2193/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2194/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2195/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2196/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2197/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2198/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2199/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2200/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2201/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2202/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2187/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2188/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2189/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2190/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2191/product.jpg", "variant_ids": [45746], "position": "front", "is_default": true },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2192/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2193/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2194/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2195/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2196/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2197/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2198/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2199/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2200/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2201/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
+    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2202/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false }
+  ],
+  "created_at": "2019-07-25 13:52:17+00:00",
+  "updated_at": "2019-07-25 13:52:18+00:00",
+  "visible": true,
+  "is_locked": false,
+  "is_printify_express_eligible": true,
+  "is_printify_express_enabled": true,
+  "is_economy_shipping_eligible": true,
+  "is_economy_shipping_enabled": true,
+  "blueprint_id": 384,
+  "user_id": 1337,
+  "shop_id": 1337,
+  "print_provider_id": 1,
+  "print_areas": [
+    {
+      "variant_ids": [45740, 45742, 45744, 45746],
+      "placeholders": [
+        {
+          "position": "front",
+          "images": [
+            { "id": "5d15ca551163cde90d7b2203", "name": "Asset 65@3x.png", "type": "image/png", "height": 1200, "width": 1200, "x": 0.5, "y": 0.5, "scale": 1, "angle": 0 }
+          ]
+        }
+      ],
+      "background": "#ffffff"
+    }
+  ],
+  "sales_channel_properties": []
+}
+```
+
+#### `printify.products.deleteOne(shopId, productId)`
+
+- `DELETE /v1/shops/{shop_id}/products/{product_id}.json`
+- Description: Delete a product
+
+```json
 {}
 ```
 
-#### `printify.products.publishOne(productId, data)`
+#### `printify.products.publishOne(shopId, productId, data)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publish.json`
 - Description: Publish a product
@@ -1318,10 +2117,10 @@ Response:
 > your store to react to if implemented. The case is the same for attempting to publish a product from the Printify app. See
 > [product events](https://developers.printify.com/#product-events) for reference.
 
-```js
-const data = { title: true, description: true, images: true, variants: true, tags: true, keyFeatures: true, shipping_template: true };
+Request Body:
 
-await printify.products.publishOne('productId', data);
+```json
+{ "title": true, "description": true, "images": true, "variants": true, "tags": true, "keyFeatures": true, "shipping_template": true }
 ```
 
 Response:
@@ -1330,16 +2129,16 @@ Response:
 {}
 ```
 
-#### `printify.products.setPublishSucceeded(productId, data)`
+#### `printify.products.setPublishSucceeded(shopId, productId, data)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publishing_succeeded.json`
 - Description: Set product publish status to succeeded. Removes the product from the locked status on the Printify app and sets it's external property with the handle you provide
   in the request body.
 
-```js
-const data = { external: { id: '5941187eb8e7e37b3f0e62e5', handle: 'https://example.com/path/to/product' } };
+Request body:
 
-await printify.products.setPublishSucceeded('productId', data);
+```json
+{ "external": { "id": "5941187eb8e7e37b3f0e62e5", "handle": "https://example.com/path/to/product" } }
 ```
 
 Response:
@@ -1348,15 +2147,15 @@ Response:
 {}
 ```
 
-#### `printify.products.setPublishFailed(productId)`
+#### `printify.products.setPublishFailed(shopId, productId)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/publishing_failed.json`
 - Description: Set product publish status to failed. Removes the product from the locked status on the Printify app.
 
-```js
-const data = { reason: 'Request timed out' };
+Request body:
 
-await printify.products.setPublishSucceeded('productId', data);
+```json
+{ "reason": "Request timed out" }
 ```
 
 Response:
@@ -1365,14 +2164,10 @@ Response:
 {}
 ```
 
-#### `printify.products.notifyUnpublished(productId)`
+#### `printify.products.notifyUnpublished(shopId, productId)`
 
 - `POST /v1/shops/{shop_id}/products/{product_id}/unpublish.json`
 - Description: Notify that a product has been unpublished
-
-```js
-await printify.TODOs();
-```
 
 Response:
 
@@ -1382,18 +2177,12 @@ Response:
 
 ### Orders
 
-#### `printify.orders.list()`
+#### `printify.orders.list(shopId)`
 
 <!-- TODO, combine the listOrders, w/ "page, limit, status, sku"? -->
 
 - `GET /v1/shops/{shop_id}/orders.json`
 - Description: Retrieve a list of orders
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -1445,77 +2234,48 @@ Response:
 }
 ```
 
-#### `printify.orders.list(page)`
+#### `printify.orders.list(shopId, page)`
 
 - `GET /v1/shops/{shop_id}/orders.json?page=2`
 - Description: Retrieve a list of orders
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "Jack", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.list(status)`
+#### `printify.orders.list(shopId, status)`
 
 - `GET /v1/shops/{shop_id}/orders.json?status=fulfilled`
 - Description: Retrieve a list of orders
 
-```js
-await printify.TODOs();
-```
-
-Response:
-
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.list(sku)`
+#### `printify.orders.list(shopId, sku)`
 
 - `GET /v1/shops/{shop_id}/orders.json?sku=168699843`
 - Description: Retrieve a list of orders
 
-```js
-await printify.TODOs();
-```
-
-Response:
-
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
-#### `printify.orders.get(orderId)`
+#### `printify.orders.get(shopId, orderId)`
 
 - `GET /v1/shops/{shop_id}/orders/{order_id}.json`
 - Description: Get order details by id
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 { "id": "5a96f649b2439217d070f507", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "Retie", "zip": "2470", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "BE", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, }
 ```
 
-#### `printify.orders.submit(data)`
+#### `printify.orders.submit(shopId, data)`
 
 <!-- TODO, separate the publishOrder, w/ "byProductId, externalImage, existingSKU"? -->
 
 - `POST /v1/shops/{shop_id}/orders.json`
 - Description: Submit an order
-
-```js
-const data = {}; // TODO, add body data after splitting up section
-await printify.TODOs();
-```
 
 Request Body:
 
@@ -1649,36 +2409,36 @@ Response:
 { "id": "5a96f649b2439217d070f507" }
 ```
 
-#### `printify.orders.submitExpress(data)`
+#### `printify.orders.submitExpress(shopId, data)`
 
 - `POST /v1/shops/{shop_id}/express.json`
 - Description: Submit a Printify Express order
 
-```js
-const data = {
-  external_id: '2750e210-39bb-11e9-a503-452618153e4a',
-  label: '00012',
-  line_items: [
-    { product_id: '5b05842f3921c9547531758d', variant_id: 12359, quantity: 1 },
-    { product_id: '5b05842f3921c34764fa478bc', variant_id: 17887, quantity: 1 },
-  ],
-  shipping_method: 3,
-  send_shipping_notification: false,
-  address_to: {
-    first_name: 'John',
-    last_name: 'Smith',
-    email: 'example@example.com',
-    phone: '0574 69 21 90',
-    country: 'BE',
-    region: '',
-    address1: 'ExampleBaan 121',
-    address2: '45',
-    city: 'Retie',
-    zip: '2470',
-  },
-};
+Request Body:
 
-await printify.orders.submitExpress(data);
+```json
+{
+  "external_id": "2750e210-39bb-11e9-a503-452618153e4a",
+  "label": "00012",
+  "line_items": [
+    { "product_id": "5b05842f3921c9547531758d", "variant_id": 12359, "quantity": 1 },
+    { "product_id": "5b05842f3921c34764fa478bc", "variant_id": 17887, "quantity": 1 }
+  ],
+  "shipping_method": 3,
+  "send_shipping_notification": false,
+  "address_to": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "example@example.com",
+    "phone": "0574 69 21 90",
+    "country": "BE",
+    "region": "",
+    "address1": "ExampleBaan 121",
+    "address2": "45",
+    "city": "Retie",
+    "zip": "2470"
+  }
+}
 ```
 
 Response:
@@ -1732,14 +2492,10 @@ Response:
 }
 ```
 
-#### `printify.orders.sendToProduction(orderId)`
+#### `printify.orders.sendToProduction(shopId, orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/send_to_production.json`
 - Description: Send an existing order to production
-
-```js
-await printify.TODOs();
-```
 
 Response:
 
@@ -1780,33 +2536,33 @@ Response:
 }
 ```
 
-#### `printify.orders.calculateShipping(data)`
+#### `printify.orders.calculateShipping(shopId, data)`
 
 - `POST /v1/shops/{shop_id}/orders/shipping.json`
 - Description: Calculate the shipping cost of an order
 
-```js
-const data = {
-  line_items: [
-    { product_id: '5bfd0b66a342bcc9b5563216', variant_id: 17887, quantity: 1 },
-    { print_provider_id: 5, blueprint_id: 9, variant_id: 17887, quantity: 1 },
-    { sku: 'MY-SKU', quantity: 1 },
-  ],
-  address_to: {
-    first_name: 'John',
-    last_name: 'Smith',
-    email: 'example@msn.com',
-    phone: '0574 69 21 90',
-    country: 'BE',
-    region: '',
-    address1: 'ExampleBaan 121',
-    address2: '45',
-    city: 'Retie',
-    zip: '2470',
-  },
-};
+Request Body:
 
-await printify.orders.calculateShipping(data);
+```json
+{
+  "line_items": [
+    { "product_id": "5bfd0b66a342bcc9b5563216", "variant_id": 17887, "quantity": 1 },
+    { "print_provider_id": 5, "blueprint_id": 9, "variant_id": 17887, "quantity": 1 },
+    { "sku": "MY-SKU", "quantity": 1 }
+  ],
+  "address_to": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "example@msn.com",
+    "phone": "0574 69 21 90",
+    "country": "BE",
+    "region": "",
+    "address1": "ExampleBaan 121",
+    "address2": "45",
+    "city": "Retie",
+    "zip": "2470"
+  }
+}
 ```
 
 Response:
@@ -1827,14 +2583,10 @@ Response contains the shipping options that are defined in the following table:
 > **Note:** The `printify_express` is a shipping option (as of July 2024) that will later in the future change its name to the `express`. Current express option will be renamed to
 > the priority name.
 
-#### `printify.orders.cancelUnpaid(orderId)`
+#### `printify.orders.cancelUnpaid(shopId, orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/cancel.json`
 - Description: Cancel an unpaid order
-
-```js
-await printify.TODOs();
-```
 
 Response:
 
@@ -1889,12 +2641,6 @@ Response:
 - `GET /v1/uploads.json`
 - Description: Retrieve a list of all uploaded images
 
-```js
-await printify.TODOs();
-```
-
-Response:
-
 ```json
 {
   "current_page": 1,
@@ -1937,12 +2683,6 @@ Response:
 
 - `GET /v1/uploads.json?page=2`
 - Description: Retrieve specific page from upload results
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -1987,12 +2727,6 @@ Response:
 - `GET /v1/uploads.json?limit=1`
 - Description: Retrieve limited upload results
 
-```js
-await printify.TODOs();
-```
-
-Response:
-
 ```json
 { "current_page": 1, "data": [ { "id": "5e16d66791287a0006e522b2", "file_name": "png-images-logo-1.jpg", "height": 5979, "width": 17045, "size": 1138575, "mime_type": "image/png", "preview_url": "https://example.com/image-storage/uuid1", "upload_time": "2020-01-09 07:29:43" } ], "first_page_url": "/?page=1", "from": 1, "last_page": 2, "last_page_url": "/?page=2", "next_page_url": /?page=2, "path": "/", "per_page": 1, "prev_page_url": null, "to": 2, "total": 2 }
 ```
@@ -2001,12 +2735,6 @@ Response:
 
 - `GET /v1/uploads/{image_id}.json`
 - Description: Retrieve an uploaded image by id
-
-```js
-await printify.TODOs();
-```
-
-Response:
 
 ```json
 {
@@ -2028,13 +2756,16 @@ Response:
 - `POST /v1/uploads/images.json`
 - Description: Upload an image
 
-```js
-const data = { file_name: '1x1-ff00007f.png', url: 'http://png-pixel.com/1x1-ff00007f.png' };
+Request Body:
 
-// ALTERNATE: upload the image content in base64 format (we recommend use URLs, this will be deprecated in the future)
-// const data = { "file_name": "image.png", "contents": "<base-64-encoded-content>" }
+```json
+{ "file_name": "1x1-ff00007f.png", "url": "http://png-pixel.com/1x1-ff00007f.png" }
+```
 
-await printify.uploads.uploadImage(data);
+Alternate Request Body: upload the image content in base64 format (we recommend use URLs, this will be deprecated in the future)
+
+```json
+{ "file_name": "image.png", "contents": "<base-64-encoded-content>" }
 ```
 
 Response:
@@ -2057,10 +2788,6 @@ Response:
 - `POST /v1/uploads/{image_id}/archive.json`
 - Description: Archive an uploaded image
 
-```js
-await printify.TODOs();
-```
-
 Response:
 
 ```json
@@ -2072,16 +2799,10 @@ Response:
 Use these endpoints to **configure** the Webhooks (for Printify [Events](https://developers.printify.com/#events)). You must implement your own server-side logic receive the actual
 payloads
 
-#### `printify.webhooks.list()`
+#### `printify.webhooks.list(shopId)`
 
 - `GET /v1/shops/{shop_id}/webhooks.json`
 - Description: Retrieve a list of webhooks
-
-```js
-await printify.webhooks.list();
-```
-
-Response:
 
 ```json
 [
@@ -2090,14 +2811,15 @@ Response:
 ]
 ```
 
-#### `printify.webhooks.create(data)`
+#### `printify.webhooks.create(shopId, data)`
 
 - `POST /v1/shops/{shop_id}/webhooks.json`
 - Description: Create a new webhook
 
-```js
-const data = { topic: 'order:created', url: 'https://example.com/webhooks/order/created' };
-await printify.webhooks.create(data);
+Request Body:
+
+```json
+{ "topic": "order:created", "url": "https://example.com/webhooks/order/created" }
 ```
 
 Response:
@@ -2106,14 +2828,15 @@ Response:
 { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 ```
 
-#### `printify.webhooks.updateOne(webhookId, data)`
+#### `printify.webhooks.updateOne(shopId, webhookId, data)`
 
 - `PUT /v1/shops/{shop_id}/webhooks/{webhook_id}.json`
 - Description: Modify a webhook
 
-```js
-const data = { url: 'https://example.com/callback/order/created' };
-await printify.webhooks.updateOne('webhookId', data);
+Request Body:
+
+```json
+{ "url": "https://example.com/callback/order/created" }
 ```
 
 Response:
@@ -2126,10 +2849,6 @@ Response:
 
 - `DELETE /v1/shops/{shop_id}/webhooks/{webhook_id}.json`
 - Description: Delete a webhook
-
-```js
-await printify.webhooks.deleteOne(webhookId);
-```
 
 Response:
 

@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../fetch';
+import { FetchDataFunc } from '../printify';
 // import getAll, { GetAllFunc } from './getAll';
 
 class Products {

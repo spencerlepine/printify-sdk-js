@@ -1,1 +1,44 @@
-// TODO - printify.webhooks.updateOne(webhookId, data);
+import { FetchDataFunc } from '../printify';
+
+interface UpdateData {
+  url: string;
+}
+
+interface Response {
+  topic: string;
+  url: string;
+  shop_id: string;
+  id: string;
+}
+
+export type UpdateOneFunc = (webhookId: string, data: UpdateData) => Promise<Response>;
+
+/**
+ * Modify a webhook
+ *
+ * @param {string} webhookId - The ID of the webhook to be updated
+ * @param {UpdateData} data - The data to update the webhook with
+ * @returns {Promise<Response>} The updated webhook response
+ *
+ * @example
+ * const data = { url: 'https://example.com/callback/order/created' };
+ * const response = await printify.webhooks.updateOne('5cb87a8cd490a2ccb256cec4', data);
+ * // Expected response:
+ * // {
+ * //   "topic": "order:created",
+ * //   "url": "https://example.com/callback/order/created",
+ * //   "shop_id": "1",
+ * //   "id": "5cb87a8cd490a2ccb256cec4"
+ * // }
+ */
+const updateOne =
+  (fetchData: FetchDataFunc, shopId: string) =>
+  async (webhookId: string, data: UpdateData): Promise<Response> => {
+    const response = await fetchData(`/v1/shops/${shopId}/webhooks/${webhookId}.json`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+    return response;
+  };
+
+export default (fetchData: FetchDataFunc, shopId: string) => updateOne(fetchData, shopId);

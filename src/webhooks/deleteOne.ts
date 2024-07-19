@@ -1,1 +1,31 @@
-// TODO - printify.webhooks.deleteOne(webhookId);
+import { FetchDataFunc } from '../printify';
+
+interface Response {
+  id: string;
+}
+
+export type DeleteOneFunc = (webhookId: string) => Promise<Response>;
+
+/**
+ * Delete a webhook
+ *
+ * @param {string} webhookId - The ID of the webhook to be deleted
+ * @returns {Promise<Response>} The deleted webhook response
+ *
+ * @example
+ * const response = await printify.webhooks.deleteOne('5cb87a8cd490a2ccb256cec4');
+ * // Expected response:
+ * // {
+ * //   "id": "5cb87a8cd490a2ccb256cec4"
+ * // }
+ */
+const deleteOne =
+  (fetchData: FetchDataFunc, shopId: string) =>
+  async (webhookId: string): Promise<Response> => {
+    const response = await fetchData(`/v1/shops/${shopId}/webhooks/${webhookId}.json`, {
+      method: 'DELETE',
+    });
+    return response;
+  };
+
+export default (fetchData: FetchDataFunc, shopId: string) => deleteOne(fetchData, shopId);
