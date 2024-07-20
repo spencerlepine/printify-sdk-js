@@ -1,1 +1,26 @@
-// TODO - printify.shops.deleteOne()
+import { FetchDataFunc } from '../printify';
+
+export type DeleteOneFunc = (shopId?: string) => Promise<void>;
+
+/**
+ * Disconnect a shop
+ *
+ * @param {string} shopId - The ID of the shop to disconnect
+ * @returns {Promise<void>}
+ *
+ * @example
+ * await printify.shops.deleteOne(); // defaults to "printify.shopId"
+ * // Expected response: {}
+ *
+ * const customShopId = "67890";
+ * await printify.shops.deleteOne(customShopId);
+ */
+const deleteOne =
+  (fetchData: FetchDataFunc, defaultShopId: string): DeleteOneFunc =>
+  async (shopId?: string): Promise<void> => {
+    await fetchData(`/v1/shops/${defaultShopId || shopId}/connection.json`, {
+      method: 'DELETE',
+    });
+  };
+
+export default deleteOne;

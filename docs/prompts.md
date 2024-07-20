@@ -2,41 +2,32 @@ I am building a TypeScript SDK. I will give you the documentation for an SDK fun
 business logic, and the second file is the unit test. Wait for my input, here is the example code you will use. Make sure to keep {printify.shopId} in the mockUrl, don't change it.
 Also, please generate just the it block in the unit test, don't fill in any code for fetch or describe
 
-// webhooks/create.ts
+// upload/archive.ts import { FetchDataFunc } from '../printify';
 
-import { FetchDataFunc } from '../printify';
+interface Data { imageId: string; }
 
-interface Data { topic: string; url: string; }
+interface Response {}
 
-interface Response { topic: string; url: string; shop_id: string; id: string; }
-
-export type CreateFunc = (data: Data) => Promise<Response>;
+export type ArchiveFunc = (imageId: string) => Promise<Response>;
 
 /\*\*
 
-- Create a new webhook
+- Archive an uploaded image
 -
-- @param {Data} data - The webhook data to be sent in the request body
-- @returns {Promise<Response>} The created webhook response
+- @param {string} imageId - The ID of the image to be archived
+- @returns {Promise<Response>}
 -
 - @example
-- const data = { topic: "order:created", url: "https://example.com/webhooks/order/created" };
-- const response = await printify.webhooks.create(data);
-- // Expected response:
-- // {
-- // "topic": "order:created",
-- // "url": "https://example.com/webhooks/order/created",
-- // "shop_id": "1",
-- // "id": "5cb87a8cd490a2ccb256cec4"
-- // } \*/ const create = (fetchData: FetchDataFunc, shopId: string) => async (data: Data): Promise<Response> => { const response = await
-  fetchData(`/v1/shops/${shopId}/webhooks.json`, { method: 'POST', body: JSON.stringify(data), }); return response; };
+- const imageId = "5cb87a8cd490a2ccb256cec4";
+- await printify.uploads.archive(imageId);
+- // Expected response: {} \*/ const archive = (fetchData: FetchDataFunc) => async (imageId: string): Promise<Response> => { await fetchData(`/v1/uploads/${imageId}/archive.json`,
+  { method: 'POST', }); };
 
-export default (fetchData: FetchDataFunc, shopId: string) => create(fetchData, shopId);
+export default (fetchData: FetchDataFunc) => archive(fetchData);
 
-// webhooks.test.ts
+// upload.test.ts
 
-it('should handle the create webhook endpoint', async () => { // Act const mockData = { topic: 'order:created', url: 'https://example.com/webhooks/order/created' }; await
-printify.webhooks.create(mockData);
+it('should handle the archive upload endpoint', async () => { // Act const mockImageId = '5cb87a8cd490a2ccb256cec4'; await printify.uploads.archive(mockImageId);
 
-// Assert const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/webhooks.json`; const mockOptions = { method: 'POST', headers: { 'Content-Type': 'application/json',
-Authorization: `Bearer mockAccessToken`, }, body: JSON.stringify(mockData), }; expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions); });
+// Assert const mockUrl = `https://api.printify.com/v1/uploads/${mockImageId}/archive.json`; const mockOptions = { method: 'POST', headers: { Authorization:
+`Bearer mockAccessToken`, }, }; expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions); });

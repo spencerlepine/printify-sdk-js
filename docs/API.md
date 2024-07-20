@@ -5,7 +5,7 @@
 The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here:
 [developers.printify.com](https://developers.printify.com/).
 
-### Usage
+## Usage
 
 ```js
 import Printify from 'spencerlepine-sdk-js';
@@ -828,11 +828,15 @@ Response:
 #### `printify.products.list()`
 
 - `GET /v1/shops/{shop_id}/products.json`
-- Description: Retrieve a list of all products (default: 10, maximum: 100)
+- `GET /v1/shops/{shop_id}/products.json?limit=1`
+- `GET /v1/shops/{shop_id}/products.json?page=2`
+
+- Description: Retrieve a list of all products (results default: 10, maximum: 100)
 
 ```js
-// TODO - support pagination
 await printify.products.list();
+await printify.products.list((page = 2));
+await printify.products.list(undefined, (limit = 2));
 ```
 
 Response:
@@ -1508,147 +1512,178 @@ Response:
 
 #### `printify.orders.submit(data)`
 
-<!-- TODO , separate the publishOrder, w/ "byProductId, externalImage, existingSKU"? -->
-
 - `POST /v1/shops/{shop_id}/orders.json`
-- Description: Submit an order
+- Description: Submit an order (this creates a draft, you will send to production separately)
 
 ```js
-// TODO , add body data after splitting up section
-const data = {};
+// Example #1 - Submit order by productId
+
+const data = {
+  external_id: '2750e210-39bb-11e9-a503-452618153e4a',
+  label: '00012',
+  line_items: [{ product_id: '5bfd0b66a342bcc9b5563216', variant_id: 17887, quantity: 1 }],
+  shipping_method: 1,
+  is_printify_express: false,
+  is_economy_shipping: false,
+  send_shipping_notification: false,
+  address_to: {
+    first_name: 'John',
+    last_name: 'Smith',
+    email: 'example@msn.com',
+    phone: '0574 69 21 90',
+    country: 'BE',
+    region: '',
+    address1: 'ExampleBaan 121',
+    address2: '45',
+    city: 'Retie',
+    zip: '2470',
+  },
+};
 await printify.orders.submit(data);
+// response: { "id": "5a96f649b2439217d070f507" }
 ```
 
-Request Body:
+```js
+// Example #2 - Submit order by external image URL (simple image positioning)
 
-```json
-{
-  "external_id": "2750e210-39bb-11e9-a503-452618153e4a",
-  "label": "00012",
-  "line_items": [{ "product_id": "5bfd0b66a342bcc9b5563216", "variant_id": 17887, "quantity": 1 }],
-  "shipping_method": 1,
-  "is_printify_express": false,
-  "is_economy_shipping": false,
-  "send_shipping_notification": false,
-  "address_to": {
-    "first_name": "John",
-    "last_name": "Smith",
-    "email": "example@msn.com",
-    "phone": "0574 69 21 90",
-    "country": "BE",
-    "region": "",
-    "address1": "ExampleBaan 121",
-    "address2": "45",
-    "city": "Retie",
-    "zip": "2470"
-  }
-}
+const data = {
+  external_id: '2750e210-39bb-11e9-a503-452618153e5a',
+  label: '00012',
+  line_items: [{ print_provider_id: 5, blueprint_id: 9, variant_id: 17887, print_areas: { front: 'https://images.example.com/image.png' }, quantity: 1 }],
+  shipping_method: 1,
+  is_printify_express: false,
+  is_economy_shipping: false,
+  send_shipping_notification: false,
+  address_to: {
+    first_name: 'John',
+    last_name: 'Smith',
+    email: 'example@msn.com',
+    phone: '0574 69 21 90',
+    country: 'BE',
+    region: '',
+    address1: 'ExampleBaan 121',
+    address2: '45',
+    city: 'Retie',
+    zip: '2470',
+  },
+};
+await printify.orders.submit(data);
+// response: { "id": "5a96f649b2439217d070f507" }
 ```
 
-Alternate Request Body: Create a product with an order (simple image positioning)
+```js
+// Example #3 - Submit order by external image URL (advanced image positioning)
 
-```json
-{
-  "external_id": "2750e210-39bb-11e9-a503-452618153e5a",
-  "label": "00012",
-  "line_items": [{ "print_provider_id": 5, "blueprint_id": 9, "variant_id": 17887, "print_areas": { "front": "https://images.example.com/image.png" }, "quantity": 1 }],
-  "shipping_method": 1,
-  "is_printify_express": false,
-  "is_economy_shipping": false,
-  "send_shipping_notification": false,
-  "address_to": {
-    "first_name": "John",
-    "last_name": "Smith",
-    "email": "example@msn.com",
-    "phone": "0574 69 21 90",
-    "country": "BE",
-    "region": "",
-    "address1": "ExampleBaan 121",
-    "address2": "45",
-    "city": "Retie",
-    "zip": "2470"
-  }
-}
-```
-
-Alternate Request Body: Create a product with an order (advanced image positioning)
-
-```json
-{
-  "external_id": "2750e210-39bb-11e9-a503-452618153e5a",
-  "label": "00012",
-  "line_items": [
+const data = {
+  external_id: '2750e210-39bb-11e9-a503-452618153e5a',
+  label: '00012',
+  line_items: [
     {
-      "print_provider_id": 5,
-      "blueprint_id": 9,
-      "variant_id": 17887,
-      "print_areas": {
-        "front": [
-          { "src": "https://images.example.com/image.png", "scale": 0.15, "x": 0.8, "y": 0.34, "angle": 0.34 },
-          { "src": "https://images.example.com/image.png", "scale": 1, "x": 0.5, "y": 0.5, "angle": 1 }
-        ]
+      print_provider_id: 5,
+      blueprint_id: 9,
+      variant_id: 17887,
+      print_areas: {
+        front: [
+          { src: 'https://images.example.com/image.png', scale: 0.15, x: 0.8, y: 0.34, angle: 0.34 },
+          { src: 'https://images.example.com/image.png', scale: 1, x: 0.5, y: 0.5, angle: 1 },
+        ],
       },
-      "quantity": 1
-    }
+      quantity: 1,
+    },
   ],
-  "shipping_method": 1,
-  "is_printify_express": false,
-  "is_economy_shipping": false,
-  "send_shipping_notification": false,
-  "address_to": {
-    "first_name": "John",
-    "last_name": "Smith",
-    "email": "example@msn.com",
-    "phone": "0574 69 21 90",
-    "country": "BE",
-    "region": "",
-    "address1": "ExampleBaan 121",
-    "address2": "45",
-    "city": "Retie",
-    "zip": "2470"
-  }
-}
+  shipping_method: 1,
+  is_printify_express: false,
+  is_economy_shipping: false,
+  send_shipping_notification: false,
+  address_to: {
+    first_name: 'John',
+    last_name: 'Smith',
+    email: 'example@msn.com',
+    phone: '0574 69 21 90',
+    country: 'BE',
+    region: '',
+    address1: 'ExampleBaan 121',
+    address2: '45',
+    city: 'Retie',
+    zip: '2470',
+  },
+};
+await printify.orders.submit(data);
+// response: { "id": "5a96f649b2439217d070f507" }
 ```
 
-Alternate Request Body: Create a product with an order (with specifying print details for printing on sides)
+```js
+// Example #4 - Submit order by external image URL (with specifying print details for printing on sides)
 
-```json
-{
-  "external_id": "2750e210-39bb-11e9-a503-452618153e5a",
-  "label": "00012",
-  "line_items": [
+const data = {
+  external_id: '2750e210-39bb-11e9-a503-452618153e5a',
+  label: '00012',
+  line_items: [
     {
-      "print_provider_id": 5,
-      "blueprint_id": 9,
-      "variant_id": 17887,
-      "print_areas": { "front": "https://images.example.com/image.png" },
-      "print_details": { "print_on_side": "mirror" },
-      "quantity": 1
-    }
+      print_provider_id: 5,
+      blueprint_id: 9,
+      variant_id: 17887,
+      print_areas: {
+        front: 'https://images.example.com/image.png',
+      },
+      print_details: {
+        print_on_side: 'mirror',
+      },
+      quantity: 1,
+    },
   ],
-  "shipping_method": 1,
-  "is_printify_express": false,
-  "is_economy_shipping": false,
-  "send_shipping_notification": false,
-  "address_to": {
-    "first_name": "John",
-    "last_name": "Smith",
-    "email": "example@msn.com",
-    "phone": "0574 69 21 90",
-    "country": "BE",
-    "region": "",
-    "address1": "ExampleBaan 121",
-    "address2": "45",
-    "city": "Retie",
-    "zip": "2470"
-  }
-}
+  shipping_method: 1,
+  is_printify_express: false,
+  is_economy_shipping: false,
+  send_shipping_notification: false,
+  address_to: {
+    first_name: 'John',
+    last_name: 'Smith',
+    email: 'example@msn.com',
+    phone: '0574 69 21 90',
+    country: 'BE',
+    region: '',
+    address1: 'ExampleBaan 121',
+    address2: '45',
+    city: 'Retie',
+    zip: '2470',
+  },
+};
+await printify.orders.submit(data);
+// response: { "id": "5a96f649b2439217d070f507" }
 ```
 
-Response:
+```js
+// Example #5 - Submit order by only an existing SKU
 
-```json
-{ "id": "5a96f649b2439217d070f507" }
+const data = {
+  external_id: '2750e210-39bb-11e9-a503-452618153e6a',
+  label: '00012',
+  line_items: [
+    {
+      sku: 'MY-SKU',
+      quantity: 1,
+    },
+  ],
+  shipping_method: 1,
+  is_printify_express: false,
+  is_economy_shipping: false,
+  send_shipping_notification: false,
+  address_to: {
+    first_name: 'John',
+    last_name: 'Smith',
+    email: 'example@msn.com',
+    phone: '0574 69 21 90',
+    country: 'BE',
+    region: '',
+    address1: 'ExampleBaan 121',
+    address2: '45',
+    city: 'Retie',
+    zip: '2470',
+  },
+};
+await printify.orders.submit(data);
+// response: { "id": "5a96f649b2439217d070f507" }
 ```
 
 #### `printify.orders.submitExpress(data)`
@@ -1832,11 +1867,10 @@ Response contains the shipping options that are defined in the following table:
 #### `printify.orders.cancelUnpaid(orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/cancel.json`
-<!-- TODO - explain this "unpaid" -->
-- Description: Cancel an unpaid order
+- Description: Cancel an unpaid order. Status must be "on-hold" or "payment-not-received"
 
 ```js
-await printify..orders.cancelUnpaid(orderId);
+await printify.orders.cancelUnpaid(orderId);
 ```
 
 Response:
@@ -1887,13 +1921,16 @@ Response:
 
 #### `printify.uploads.list()`
 
-<!-- TODO , combine the getUploads, w/ "page, limit"? -->
-
 - `GET /v1/uploads.json`
-- Description: Retrieve a list of all uploaded images
+- `GET /v1/uploads.json?page=2`
+- `GET /v1/uploads.json?limit=1`
+
+- Description: Retrieve a list of all uploaded images (results default: 10, maximum: 100)
 
 ```js
 await printify.uploads.list();
+await printify.uploads.list((page = 2));
+await printify.uploads.list(undefined, (limit = 5));
 ```
 
 Response:
@@ -1934,70 +1971,6 @@ Response:
   "to": 2,
   "total": 2
 }
-```
-
-#### `printify.uploads.list(page)`
-
-- `GET /v1/uploads.json?page=2`
-- Description: Retrieve specific page from upload results
-
-```js
-await printify.uploads.list(page);
-```
-
-Response:
-
-```json
-{
-  "current_page": 2,
-  "data": [
-    {
-      "id": "5e16d66791287a0006e522b2",
-      "file_name": "png-images-logo-1.jpg",
-      "height": 5979,
-      "width": 17045,
-      "size": 1138575,
-      "mime_type": "image/png",
-      "preview_url": "https://example.com/image-storage/uuid1",
-      "upload_time": "2020-01-09 07:29:43"
-    },
-    {
-      "id": "5de50bf612c348000892b366",
-      "file_name": "png-images-logo-2.jpg",
-      "height": 360,
-      "width": 360,
-      "size": 19589,
-      "mime_type": "image/jpeg",
-      "preview_url": "https://example.com/image-storage/uuid2",
-      "upload_time": "2019-12-02 13:04:54"
-    }
-  ],
-  "first_page_url": "/?page=1",
-  "from": 1,
-  "last_page": 2,
-  "last_page_url": "/?page=2",
-  "next_page_url": null,
-  "path": "/",
-  "per_page": 10,
-  "prev_page_url": 1,
-  "to": 2,
-  "total": 2
-}
-```
-
-#### `printify.uploads.list(limit)`
-
-- `GET /v1/uploads.json?limit=1`
-- Description: Retrieve limited upload results
-
-```js
-await printify.uploads.list(limit);
-```
-
-Response:
-
-```json
-{ "current_page": 1, "data": [ { "id": "5e16d66791287a0006e522b2", "file_name": "png-images-logo-1.jpg", "height": 5979, "width": 17045, "size": 1138575, "mime_type": "image/png", "preview_url": "https://example.com/image-storage/uuid1", "upload_time": "2020-01-09 07:29:43" } ], "first_page_url": "/?page=1", "from": 1, "last_page": 2, "last_page_url": "/?page=2", "next_page_url": /?page=2, "path": "/", "per_page": 1, "prev_page_url": null, "to": 2, "total": 2 }
 ```
 
 #### `printify.uploads.getById(imageId)`
