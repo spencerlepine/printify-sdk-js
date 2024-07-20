@@ -37,7 +37,7 @@ console.log('Hello, %s', login);
 
 ### Shops
 
-#### `printify.shops.getAll()`
+#### `printify.shops.list()`
 
 - `GET /v1/shops.json`
 - Description: Retrieve a list of shops in a Printify account
@@ -1580,7 +1580,7 @@ store", "sales_channel": "disconnected" } ]
 
 ### Products
 
-#### `printify.products.getAll(shopId)`
+#### `printify.products.list()`
 
 - `GET /v1/shops/{shop_id}/products.json`
 - Description: Retrieve a list of all products (default: 10, maximum: 100)

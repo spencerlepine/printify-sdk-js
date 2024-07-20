@@ -1,5 +1,5 @@
 ```
-printify.shops.getAll();
+printify.shops.list();
 printify.shops.deleteOne();
 
 printify.catalog.listBlueprints();
@@ -10,7 +10,7 @@ printify.catalog.getVariantShipping(blueprintId, printProviderId);
 printify.catalog.listProviders();
 printify.catalog.getProvider(printProviderId);
 
-printify.products.getAll();
+printify.products.list();
 printify.products.getOne(productId);
 printify.products.create(data);
 printify.products.updateOne(productId, data);

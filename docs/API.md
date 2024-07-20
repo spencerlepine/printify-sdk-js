@@ -37,13 +37,13 @@ console.log('Hello, %s', login);
 
 ### Shops
 
-#### `printify.shops.getAll()`
+#### `printify.shops.list()`
 
 - `GET /v1/shops.json`
 - Description: Retrieve a list of shops in a Printify account
 
 ```js
-await printify.shops.getAll();
+await printify.shops.list();
 ```
 
 Response:
@@ -825,13 +825,14 @@ Response:
 
 ### Products
 
-#### `printify.products.getAll()`
+#### `printify.products.list()`
 
 - `GET /v1/shops/{shop_id}/products.json`
 - Description: Retrieve a list of all products (default: 10, maximum: 100)
 
 ```js
-await printify.TODOs();
+// TODO - support pagination
+await printify.products.list();
 ```
 
 Response:

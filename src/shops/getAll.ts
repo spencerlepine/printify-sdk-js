@@ -1,1 +1,0 @@
-// TODO - printify.shops.getAll();

@@ -1,16 +1,20 @@
 import { FetchDataFunc } from '../printify';
-// import getAll, { GetAllFunc } from './getAll';
+import archive, { ArchiveFunc } from './archive';
+import getById, { GetByIdFunc } from './getById';
+import list, { ListFunc } from './list';
+import uploadImage, { UploadImageFunc } from './uploadImage';
 
 class Uploads {
-  fetchData: FetchDataFunc;
-  shopId: string;
-  // getAll: GetAllFunc;
+  archive: ArchiveFunc;
+  getById: GetByIdFunc;
+  list: ListFunc;
+  uploadImage: UploadImageFunc;
 
   constructor(fetchData: FetchDataFunc, shopId: string) {
-    this.fetchData = fetchData;
-    this.shopId = shopId;
-
-    // this.getAll = getAll(this.fetchData);
+    this.archive = archive(fetchData, shopId);
+    this.getById = getById(fetchData, shopId);
+    this.list = list(fetchData, shopId);
+    this.uploadImage = uploadImage(fetchData, shopId);
   }
 }
 
