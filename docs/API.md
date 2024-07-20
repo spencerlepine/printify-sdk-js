@@ -1,4 +1,4 @@
-# SDK Documentation
+# Printify SDK Documentation
 
 ## Introduction
 
@@ -46,12 +46,15 @@ console.log('Hello, %s', login);
 await printify.shops.list();
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 [ { "id": 5432, "title": "My new store", "sales_channel": "My Sales Channel" }, { "id": 9876, "title": "My other new
 store", "sales_channel": "disconnected" } ]
 ```
+
+</details>
 
 #### `printify.shops.deleteOne(printify.shopId)`
 
@@ -427,21 +430,7 @@ Response:
     "id": 6,
     "title": "T shirt and Sons",
     "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" }
-  },
-  { "id": 7, "title": "Prodigi", "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  { "id": 8, "title": "Fifth Sun", "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  { "id": 9, "title": "WPaPS", "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  { "id": 10, "title": "MWW On Demand", "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  { "id": 14, "title": "ArtsAdd", "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  { "id": 16, "title": "MyLocker", "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  {
-    "id": 20,
-    "title": "Troupe Jewelry",
-    "location": { "address1": "89 Weirfield St", "address2": null, "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" }
-  },
-  { "id": 23, "title": "WOYC", "location": { "address1": "89 Weirfield St", "address2": "", "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  { "id": 24, "title": "Inklocker", "location": { "address1": "89 Weirfield St", "address2": "", "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } },
-  { "id": 25, "title": "DTG2Go", "location": { "address1": "89 Weirfield St", "address2": "", "city": "Brooklyn", "country": "US", "region": "NY", "zip": "11221-5120" } }
+  }
 ]
 ```
 
@@ -477,348 +466,8 @@ Response:
       "brand": "Case Mate",
       "model": "6/6s Tough",
       "images": ["https://images.printify.com/5853fe7dce46f30f8327f5f1.png", "https://images.printify.com/5853fe7dce46f30f8327f5f4.png"]
-    },
-    {
-      "id": 54,
-      "title": "Slim Iphone 6/6s Plus",
-      "brand": "Case Mate",
-      "model": "6/6s Plus Slim",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f61b.png", "https://images.printify.com/5853fe7dce46f30f8327f61e.png"]
-    },
-    {
-      "id": 55,
-      "title": "Tough Iphone 6/6s Plus",
-      "brand": "Case Mate",
-      "model": "6/6s Plus Tough",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f615.png", "https://images.printify.com/5853fe7dce46f30f8327f618.png"]
-    },
-    {
-      "id": 56,
-      "title": "Slim Iphone 5/5s/5se",
-      "brand": "Case Mate",
-      "model": "5/5s/5se Slim",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f5f7.png", "https://images.printify.com/5853fe7dce46f30f8327f5fa.png"]
-    },
-    {
-      "id": 57,
-      "title": "Tough Iphone 5/5s/5se",
-      "brand": "Case Mate",
-      "model": "5/5s/5se Tough",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f5fd.png", "https://images.printify.com/5853fe7dce46f30f8327f600.png"]
-    },
-    {
-      "id": 58,
-      "title": "Slim Iphone 5C",
-      "brand": "Case Mate",
-      "model": "5C Slim",
-      "images": ["https://images.printify.com/5853fe80ce46f30f8327f7cf.png", "https://images.printify.com/5853fe80ce46f30f8327f7d7.png"]
-    },
-    {
-      "id": 59,
-      "title": "Slim Iphone 4/4s",
-      "brand": "Case Mate",
-      "model": "4/4s Slim",
-      "images": ["https://images.printify.com/5853fe7ece46f30f8327f639.png", "https://images.printify.com/5853fe7ece46f30f8327f63c.png"]
-    },
-    {
-      "id": 60,
-      "title": "Tough Iphone 4/4s",
-      "brand": "Case Mate",
-      "model": "4/4s Tough",
-      "images": ["https://images.printify.com/5853fe7ece46f30f8327f63f.png", "https://images.printify.com/5853fe7ece46f30f8327f642.png"]
-    },
-    {
-      "id": 61,
-      "title": "Slim Samsung Galaxy S7",
-      "brand": "Case Mate",
-      "model": "S7 Slim",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f621.png", "https://images.printify.com/5853fe7dce46f30f8327f624.png"]
-    },
-    {
-      "id": 62,
-      "title": "Slim Samsung Galaxy S6",
-      "brand": "Case Mate",
-      "model": "S6 Slim",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f627.png", "https://images.printify.com/5853fe7ece46f30f8327f62a.png"]
-    },
-    {
-      "id": 63,
-      "title": "Tough Samsung Galaxy S6",
-      "brand": "Case Mate",
-      "model": "S6 Tough",
-      "images": ["https://images.printify.com/5853fe7ece46f30f8327f62d.png", "https://images.printify.com/5853fe7ece46f30f8327f630.png"]
-    },
-    {
-      "id": 64,
-      "title": "Slim Samsung Galaxy S5",
-      "brand": "Case Mate",
-      "model": "S5 Slim",
-      "images": ["https://images.printify.com/5853fe7ece46f30f8327f633.png", "https://images.printify.com/5853fe7ece46f30f8327f636.png"]
-    },
-    {
-      "id": 68,
-      "title": "Mug 11oz",
-      "brand": "Generic brand",
-      "model": "",
-      "images": ["https://images.printify.com/5d09e78c47045f00083cd10d.png", "https://images.printify.com/58ac5d64b2439213b51b25ff.png"]
-    },
-    {
-      "id": 69,
-      "title": "Mug 15oz",
-      "brand": "Generic brand",
-      "model": "",
-      "images": ["https://images.printify.com/5853fe7bce46f30f8327f4ff.png", "https://images.printify.com/5c5c1516a342bcb8e421d242.png"]
-    },
-    {
-      "id": 70,
-      "title": "Stainless Steel Travel Mug",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5d09f7e247045f00083cd110.png",
-        "https://images.printify.com/5853fe7bce46f30f8327f502.png",
-        "https://images.printify.com/58ac0e46b2439209155d3375.png",
-        "https://images.printify.com/58ac5ac0b2439214ad09bd1b.png"
-      ]
-    },
-    {
-      "id": 71,
-      "title": "Laptop Sleeve",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5853fe7bce46f30f8327f4e2.png",
-        "https://images.printify.com/58ac0dadb2439209e3265564.png",
-        "https://images.printify.com/58ac0db9b24392090e55b2f8.png",
-        "https://images.printify.com/58cbdd4eb24392676d7f6961.png",
-        "https://images.printify.com/58cbdd67b243926fe26236c2.png"
-      ]
-    },
-    {
-      "id": 74,
-      "title": "Spiral Notebook - Ruled Line",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5d03643bd155b4000a00cae5.png",
-        "https://images.printify.com/58cbed76b2439279864551c0.png",
-        "https://images.printify.com/58cbf1ddb243926fe909d567.png"
-      ]
-    },
-    {
-      "id": 75,
-      "title": "Journal - Ruled Line",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5d03aa7dd155b400094c4d60.png",
-        "https://images.printify.com/5853fe7bce46f30f8327f4de.png",
-        "https://images.printify.com/5c49c395a342bc53475e5412.png"
-      ]
-    },
-    {
-      "id": 76,
-      "title": "Journal - Blank",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5d03aad4d155b4000a00cb82.png",
-        "https://images.printify.com/585a7e24ce46f3416b5db1c7.png",
-        "https://images.printify.com/5c49c3cba342bc53c0283808.png"
-      ]
-    },
-    {
-      "id": 84,
-      "title": "Slim iPhone 7, iPhone 8",
-      "brand": "Case Mate",
-      "model": "Slim iPhone 7, iPhone 8",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f603.png", "https://images.printify.com/5853fe7dce46f30f8327f606.png"]
-    },
-    {
-      "id": 85,
-      "title": "Tough iPhone 7, IPhone 8",
-      "brand": "Case Mate",
-      "model": "Tough iPhone 7, IPhone 8",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f5e5.png", "https://images.printify.com/5853fe7dce46f30f8327f5e8.png"]
-    },
-    {
-      "id": 86,
-      "title": "Slim iPhone 7 Plus, iPhone 8 Plus",
-      "brand": "Case Mate",
-      "model": "Slim iPhone 7 Plus, , iPhone 8 Plus",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f609.png", "https://images.printify.com/5853fe7dce46f30f8327f60c.png"]
-    },
-    {
-      "id": 87,
-      "title": "Tough iPhone 7 Plus, iPhone 8 Plus",
-      "brand": "Case Mate",
-      "model": "Tough iPhone 7 Plus, iPhone 8 Plus",
-      "images": ["https://images.printify.com/5853fe7dce46f30f8327f60f.png", "https://images.printify.com/5853fe7dce46f30f8327f612.png"]
-    },
-    {
-      "id": 99,
-      "title": "All US Phone cases",
-      "brand": "Case Mate",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5853fe7dce46f30f8327f5eb.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5ee.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5f1.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5f4.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f61b.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f61e.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f615.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f618.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5f7.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5fa.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5fd.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f600.png",
-        "https://images.printify.com/5853fe80ce46f30f8327f7cf.png",
-        "https://images.printify.com/5853fe80ce46f30f8327f7d7.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f639.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f63c.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f63f.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f642.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f621.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f624.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f627.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f62a.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f62d.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f630.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f633.png",
-        "https://images.printify.com/5853fe7ece46f30f8327f636.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f603.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f606.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5e5.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f5e8.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f609.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f60c.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f60f.png",
-        "https://images.printify.com/5853fe7dce46f30f8327f612.png"
-      ]
-    },
-    {
-      "id": 125,
-      "title": "Mugs",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5853fe7bce46f30f8327f4fc.png",
-        "https://images.printify.com/58ac5d64b2439213b51b25ff.png",
-        "https://images.printify.com/5853fe7bce46f30f8327f4ff.png",
-        "https://images.printify.com/5c5c1516a342bcb8e421d242.png"
-      ]
-    },
-    { "id": 268, "title": "Case Mate Slim Phone Cases", "brand": "Case Mate", "model": "", "images": ["https://images.printify.com/5d08c85847045f00097be5b3.png"] },
-    {
-      "id": 269,
-      "title": "Case Mate Tough Phone Cases",
-      "brand": "Case Mate",
-      "model": "",
-      "images": ["https://images.printify.com/5d132242c1bdb8000a6e474c.png", "https://images.printify.com/5d131fadc1bdb800125d2efd.png"]
-    },
-    {
-      "id": 277,
-      "title": "Wall clock",
-      "brand": "Generic brand",
-      "model": "",
-      "images": ["https://images.printify.com/5d0b31f347045f01ae2eeb1f.png", "https://images.printify.com/5a033c07b8e7e328100d3c27.png"]
-    },
-    {
-      "id": 289,
-      "title": "Latte mug",
-      "brand": "Generic brand",
-      "model": "",
-      "images": ["https://images.printify.com/5d0a0e6047045f0189376682.png", "https://images.printify.com/5a325c76b8e7e355db3449e8.png"]
-    },
-    { "id": 352, "title": "Beach Towel", "brand": "Generic brand", "model": "", "images": ["https://images.printify.com/5afeba40a342bcea7045d84e.png"] },
-    { "id": 353, "title": "Tumbler 20oz", "brand": "Generic brand", "model": "", "images": ["https://images.printify.com/5ad0a5baa342bc91115b6927.png"] },
-    { "id": 354, "title": "Tumbler 10oz", "brand": "Generic brand", "model": "", "images": ["https://images.printify.com/5ad0a68ca342bc911954d928.png"] },
-    { "id": 355, "title": "Can Holder", "brand": "Generic brand", "model": "", "images": ["https://images.printify.com/5ad0a53ca342bc9114070039.png"] },
-    {
-      "id": 376,
-      "title": "Sublimation Socks",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5d13450ec1bdb800125d2f0d.png",
-        "https://images.printify.com/5be1ae47a342bc3390628e22.png",
-        "https://images.printify.com/5bbc8702a342bc24e4283e2c.png"
-      ]
-    },
-    {
-      "id": 384,
-      "title": "Square Stickers",
-      "brand": "Generic brand",
-      "model": "",
-      "images": ["https://images.printify.com/5cf4f606705f1900141a667c.png", "https://images.printify.com/5c6685a6a342bc4c6340bf82.png"]
-    },
-    {
-      "id": 400,
-      "title": "Kiss-Cut Stickers",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5cf4fabe705f190009393f38.png",
-        "https://images.printify.com/5c48648aa342bc7e304661f2.png",
-        "https://images.printify.com/5c4864a2a342bc7e256c1d6c.png"
-      ]
-    },
-    {
-      "id": 423,
-      "title": "Alex' Test Product (do not delete)",
-      "brand": "Bella+Canvas",
-      "model": "9999",
-      "images": [
-        "https://images.printify.com/5c8bdf3d21a6ed001111c202.png",
-        "https://images.printify.com/5c7565d51e58a3000964b4e2.png",
-        "https://images.printify.com/5c8bdfa721a6ed000f1d19d2.png",
-        "https://images.printify.com/5c8be08a21a6ed00102eaa97.png",
-        "https://images.printify.com/5c8be09321a6ed0014663572.png"
-      ]
-    },
-    {
-      "id": 425,
-      "title": "Mug 15oz",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5d0a08d647045f00097be6cd.png",
-        "https://images.printify.com/5d0a07b547045f00083cd116.png",
-        "https://images.printify.com/5cab36e06b4a8300124cea40.png",
-        "https://images.printify.com/5cab21ef6b4a83000970c497.png"
-      ]
-    },
-    {
-      "id": 427,
-      "title": "Magnets",
-      "brand": "Generic brand",
-      "model": "",
-      "images": ["https://images.printify.com/5d0b831a47045f02006b0b7a.png", "https://images.printify.com/5ce534113aa847000600d60c.png"]
-    },
-    {
-      "id": 429,
-      "title": "Laptop Sleeve",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5d2325ebce7a9c07c221c926.png",
-        "https://images.printify.com/5d23233fce7a9c07c105f393.png",
-        "https://images.printify.com/5d232340ce7a9c07c04f9aa7.png",
-        "https://images.printify.com/5d23233ece7a9c07c04f9aa3.png"
-      ]
-    },
-    {
-      "id": 430,
-      "title": "Pin Buttons",
-      "brand": "Generic brand",
-      "model": "",
-      "images": [
-        "https://images.printify.com/5cfa4880cf4eed002673c8c2.png",
-        "https://images.printify.com/5cfa46a8cf4eed00101202d9.png",
-        "https://images.printify.com/5cfa0db8cf4eed00101202d2.png"
-      ]
     }
+    // ...
   ]
 }
 ```
@@ -1205,68 +854,8 @@ Response:
   "images": [
     { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2187/product.jpg", "variant_ids": [45740], "position": "front", "is_default": true },
     { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2188/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2189/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2190/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2191/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2192/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2193/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2194/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2195/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2196/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2197/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2198/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2199/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2200/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2201/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45740/2202/product.jpg", "variant_ids": [45740], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2187/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2188/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2189/product.jpg", "variant_ids": [45742], "position": "front", "is_default": true },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2190/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2191/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2192/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2193/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2194/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2195/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2196/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2197/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2198/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2199/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2200/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2201/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45742/2202/product.jpg", "variant_ids": [45742], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2187/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2188/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2189/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2190/product.jpg", "variant_ids": [45744], "position": "front", "is_default": true },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2191/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2192/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2193/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2194/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2195/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2196/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2197/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2198/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2199/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2200/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2201/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45744/2202/product.jpg", "variant_ids": [45744], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2187/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2188/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2189/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2190/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2191/product.jpg", "variant_ids": [45746], "position": "front", "is_default": true },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2192/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2193/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2194/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2195/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2196/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2197/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2198/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2199/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2200/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
-    { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2201/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false },
     { "src": "https://images.printify.com/mockup/5d39b411749d0a000f30e0f4/45746/2202/product.jpg", "variant_ids": [45746], "position": "front", "is_default": false }
+    // ...
   ],
   "created_at": "2019-07-25 13:52:17+00:00",
   "updated_at": "2019-07-25 13:52:18+00:00",

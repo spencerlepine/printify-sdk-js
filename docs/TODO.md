@@ -1,5 +1,6 @@
 DEVELOPMENT
 
+- UPDATE ALL API.md to use collapsible `<details>`
 - [ ] GENERATE CODE FROM DOC
 - [ ] Update README.md sample code with the real API
 - [BEFORE RELEASE] Replace all spencerlepine-sdk-js

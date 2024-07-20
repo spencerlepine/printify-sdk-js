@@ -1,6 +1,6 @@
-I am building a TypeScript SDK. I will give you the documentation for an SDK function. I want you to use the input and output two generate two files. The first file is the actual
-business logic, and the second file is the unit test. Wait for my input, here is the example code you will use. Make sure to keep {printify.shopId} in the mockUrl, don't change it.
-Also, please generate just the it block in the unit test, don't fill in any code for fetch or describe
+I am building a TypeScript SDK and need to generate files. I will give you the documentation for an SDK function. I want you to use the input and output two generate two files. The
+first file is the actual business logic, and the second file is the unit test. Wait for my input, here is the example code you will use. Make sure to keep {printify.shopId} in the
+mockUrl, don't change it. Also, please generate just the it block in the unit test, don't fill in any code for fetch or describe
 
 // upload/archive.ts import { FetchDataFunc } from '../printify';
 
