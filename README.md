@@ -22,14 +22,14 @@ npm install spencerlepine-sdk-js
 ```js
 import Printify from 'spencerlepine-sdk-js';
 
-// TODO - add snippet code
+// TODO-FINAL - add snippet code
 // Create a personal access token at https://developers.printify.com/#create-a-personal-access-token
 const printify = new Printify({
   shopId: '123456', // global query by shop_id
   accessToken: '<ACCESS_TOKEN>',
 });
 
-// TODO, add something useful here
+// TODO-FINAL, add something useful here
 // submit an order
 // send an order to production
 const {

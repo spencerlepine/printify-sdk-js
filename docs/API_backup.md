@@ -10,14 +10,14 @@ The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST A
 ```js
 import Printify from 'spencerlepine-sdk-js';
 
-// TODO - add snippet code
+// - add snippet code
 // Create a personal access token at https://developers.printify.com/#create-a-personal-access-token
 const printify = new Printify({
   shopId: '123456', // global query by shop_id
   auth: '<ACCESS_TOKEN>',
 });
 
-// TODO, add something useful here
+// , add something useful here
 // submit an order
 // send an order to production
 const {
@@ -2179,8 +2179,6 @@ Response:
 
 #### `printify.orders.list(shopId)`
 
-<!-- TODO, combine the listOrders, w/ "page, limit, status, sku"? -->
-
 - `GET /v1/shops/{shop_id}/orders.json`
 - Description: Retrieve a list of orders
 
@@ -2271,8 +2269,6 @@ Response:
 ```
 
 #### `printify.orders.submit(shopId, data)`
-
-<!-- TODO, separate the publishOrder, w/ "byProductId, externalImage, existingSKU"? -->
 
 - `POST /v1/shops/{shop_id}/orders.json`
 - Description: Submit an order
@@ -2635,8 +2631,6 @@ Response:
 ### Uploads
 
 #### `printify.uploads.list()`
-
-<!-- TODO, combine the getUploads, w/ "page, limit"? -->
 
 - `GET /v1/uploads.json`
 - Description: Retrieve a list of all uploaded images

@@ -10,14 +10,14 @@ The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST A
 ```js
 import Printify from 'spencerlepine-sdk-js';
 
-// TODO - add snippet code
+// TODO-FINAL - add snippet code
 // Create a personal access token at https://developers.printify.com/#create-a-personal-access-token
 const printify = new Printify({
   shopId: '123456', // global query by shop_id
   auth: '<ACCESS_TOKEN>',
 });
 
-// TODO, add something useful here
+// TODO-FINAL, add something useful here
 // submit an order
 // send an order to production
 const {
@@ -59,7 +59,7 @@ store", "sales_channel": "disconnected" } ]
 - Description: Disconnect a shop
 
 ```js
-await printify.TODOs();
+await printify.shops.deleteOne(printify.shopId);
 ```
 
 Response:
@@ -76,7 +76,7 @@ Response:
 - Description: Retrieve a list of all available blueprints
 
 ```js
-await printify.TODOs();
+await printify.catalog.listBlueprints();
 ```
 
 Response:
@@ -177,7 +177,7 @@ Response:
 - Description: Retrieve a specific blueprint
 
 ```js
-await printify.TODOs();
+await printify.catalog.getBlueprint(blueprintId);
 ```
 
 Response:
@@ -199,7 +199,7 @@ Response:
 - Description: Retrieve a list of all print providers that fulfill orders for a specific blueprint
 
 ```js
-await printify.TODOs();
+await printify.catalog.getBlueprintProviders(blueprintId);
 ```
 
 Response:
@@ -219,7 +219,7 @@ Response:
 - Description: Retrieve a list of all variants of a blueprint from a specific print provider
 
 ```js
-await printify.TODOs();
+await printify.catalog.getBlueprintVariants(blueprintId, printProviderId);
 ```
 
 Response:
@@ -312,7 +312,7 @@ Response:
 - Description: Retrieve the shipping information for all variants of a blueprint from a specific print provider
 
 ```js
-await printify.TODOs();
+await printify.catalog.getVariantShipping(blueprintId, printProviderId);
 ```
 
 Response:
@@ -404,7 +404,7 @@ Response:
 - Description: Retrieve a list of all available print-providers
 
 ```js
-await printify.TODOs();
+await printify.catalog.listProviders();
 ```
 
 Response:
@@ -451,7 +451,7 @@ Response:
 - Description: Retrieve a specific print-provider and a list of associated blueprint offerings
 
 ```js
-await printify.TODOs();
+await printify.catalog.getProvider(printProviderId);
 ```
 
 Response:
@@ -915,7 +915,7 @@ Response:
 - Description: Retrieve a product
 
 ```js
-await printify.TODOs();
+await printify.products.getOne(productId);
 ```
 
 Response:
@@ -1300,7 +1300,7 @@ Response:
 - Description: Delete a product
 
 ```js
-await printify.TODOs();
+await printify.products.deleteOne(productId);
 ```
 
 Response:
@@ -1372,7 +1372,7 @@ Response:
 - Description: Notify that a product has been unpublished
 
 ```js
-await printify.TODOs();
+await printify.products.notifyUnpublished(productId);
 ```
 
 Response:
@@ -1391,7 +1391,7 @@ Response:
 - Description: Retrieve a list of orders
 
 ```js
-await printify.TODOs();
+await printify.orders.list();
 ```
 
 Response:
@@ -1452,7 +1452,7 @@ Response:
 - Description: Retrieve a list of orders
 
 ```js
-await printify.TODOs();
+await printify.orders.list(page);
 ```
 
 Response:
@@ -1467,7 +1467,7 @@ Response:
 - Description: Retrieve a list of orders
 
 ```js
-await printify.TODOs();
+await printify.orders.list(status);
 ```
 
 Response:
@@ -1482,7 +1482,7 @@ Response:
 - Description: Retrieve a list of orders
 
 ```js
-await printify.TODOs();
+await printify.orders.list(sku);
 ```
 
 Response:
@@ -1497,7 +1497,7 @@ Response:
 - Description: Get order details by id
 
 ```js
-await printify.TODOs();
+await printify.orders.get(orderId);
 ```
 
 Response:
@@ -1508,14 +1508,15 @@ Response:
 
 #### `printify.orders.submit(data)`
 
-<!-- TODO, separate the publishOrder, w/ "byProductId, externalImage, existingSKU"? -->
+<!-- TODO , separate the publishOrder, w/ "byProductId, externalImage, existingSKU"? -->
 
 - `POST /v1/shops/{shop_id}/orders.json`
 - Description: Submit an order
 
 ```js
-const data = {}; // TODO, add body data after splitting up section
-await printify.TODOs();
+// TODO , add body data after splitting up section
+const data = {};
+await printify.orders.submit(data);
 ```
 
 Request Body:
@@ -1739,7 +1740,7 @@ Response:
 - Description: Send an existing order to production
 
 ```js
-await printify.TODOs();
+await printify.orders.sendToProduction(orderId);
 ```
 
 Response:
@@ -1831,10 +1832,11 @@ Response contains the shipping options that are defined in the following table:
 #### `printify.orders.cancelUnpaid(orderId)`
 
 - `POST /v1/shops/{shop_id}/orders/{order_id}/cancel.json`
+<!-- TODO - explain this "unpaid" -->
 - Description: Cancel an unpaid order
 
 ```js
-await printify.TODOs();
+await printify..orders.cancelUnpaid(orderId);
 ```
 
 Response:
@@ -1885,13 +1887,13 @@ Response:
 
 #### `printify.uploads.list()`
 
-<!-- TODO, combine the getUploads, w/ "page, limit"? -->
+<!-- TODO , combine the getUploads, w/ "page, limit"? -->
 
 - `GET /v1/uploads.json`
 - Description: Retrieve a list of all uploaded images
 
 ```js
-await printify.TODOs();
+await printify.uploads.list();
 ```
 
 Response:
@@ -1940,7 +1942,7 @@ Response:
 - Description: Retrieve specific page from upload results
 
 ```js
-await printify.TODOs();
+await printify.uploads.list(page);
 ```
 
 Response:
@@ -1989,7 +1991,7 @@ Response:
 - Description: Retrieve limited upload results
 
 ```js
-await printify.TODOs();
+await printify.uploads.list(limit);
 ```
 
 Response:
@@ -2004,7 +2006,7 @@ Response:
 - Description: Retrieve an uploaded image by id
 
 ```js
-await printify.TODOs();
+await printify.uploads.getById(imageId);
 ```
 
 Response:
@@ -2059,7 +2061,7 @@ Response:
 - Description: Archive an uploaded image
 
 ```js
-await printify.TODOs();
+await printify.uploads.archive(imageId);
 ```
 
 Response:
