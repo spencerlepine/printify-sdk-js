@@ -1,6 +1,5 @@
 import { FetchDataFunc } from '../printify';
 
-// Define the response type
 interface Shop {
   id: number;
   title: string;

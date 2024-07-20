@@ -117,7 +117,8 @@ const list =
     if (page) queryParams.append('page', page.toString());
     if (limit) queryParams.append('limit', limit.toString());
 
-    const response = await fetchData(`/v1/shops/${shopId}/products.json?${queryParams.toString()}`, {
+    const query = queryParams.toString() ? `?${queryParams.toString()}` : '';
+    const response = await fetchData(`/v1/shops/${shopId}/products.json${query}`, {
       method: 'GET',
     });
     return response;

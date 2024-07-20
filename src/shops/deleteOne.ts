@@ -17,8 +17,8 @@ export type DeleteOneFunc = (shopId?: string) => Promise<void>;
  */
 const deleteOne =
   (fetchData: FetchDataFunc, defaultShopId: string): DeleteOneFunc =>
-  async (shopId?: string): Promise<void> => {
-    await fetchData(`/v1/shops/${defaultShopId || shopId}/connection.json`, {
+  async (customShopId?: string): Promise<void> => {
+    await fetchData(`/v1/shops/${customShopId || defaultShopId}/connection.json`, {
       method: 'DELETE',
     });
   };

@@ -29,7 +29,7 @@ const getBlueprintProviders =
   (fetchData: FetchDataFunc) =>
   async (blueprintId: string): Promise<PrintProvider[]> => {
     const response = await fetchData(`/v1/catalog/blueprints/${blueprintId}/print_providers.json`, { method: 'GET' });
-    return response.json();
+    return response;
   };
 
 export default (fetchData: FetchDataFunc) => getBlueprintProviders(fetchData);

@@ -56,7 +56,7 @@ const listProviders =
   (fetchData: FetchDataFunc): ListProvidersFunc =>
   async (): Promise<Provider[]> => {
     const response = await fetchData('/v1/catalog/print_providers.json', { method: 'GET' });
-    return response.json();
+    return response;
   };
 
 export default (fetchData: FetchDataFunc) => listProviders(fetchData);

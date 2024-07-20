@@ -47,7 +47,7 @@ const listBlueprints =
   (fetchData: FetchDataFunc): ListBlueprintsFunc =>
   async (): Promise<Blueprint[]> => {
     const response = await fetchData('/v1/catalog/blueprints.json', { method: 'GET' });
-    return response.json();
+    return response;
   };
 
 export default (fetchData: FetchDataFunc) => listBlueprints(fetchData);

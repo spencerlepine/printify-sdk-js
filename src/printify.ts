@@ -15,11 +15,11 @@ interface PrintifyConfig {
 class Printify {
   shopId: string;
   #accessToken: string;
-  catalog: Object;
-  orders: Object;
-  products: Object;
-  shops: Object;
-  uploads: Object;
+  catalog: any;
+  orders: any;
+  products: any;
+  shops: any;
+  uploads: any;
   webhooks: any;
 
   constructor(config: PrintifyConfig) {

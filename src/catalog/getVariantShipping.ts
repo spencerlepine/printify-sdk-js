@@ -40,7 +40,7 @@ const getVariantShipping =
   (fetchData: FetchDataFunc) =>
   async (blueprintId: string, printProviderId: string): Promise<VariantShipping> => {
     const response = await fetchData(`/v1/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping.json`, { method: 'GET' });
-    return response.json();
+    return response;
   };
 
 export default (fetchData: FetchDataFunc) => getVariantShipping(fetchData);

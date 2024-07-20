@@ -11,6 +11,7 @@ describe('Products', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -26,6 +27,7 @@ describe('Products', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);

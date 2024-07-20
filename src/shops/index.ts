@@ -8,7 +8,7 @@ class Shops {
 
   constructor(fetchData: FetchDataFunc, shopId: string) {
     this.deleteOne = deleteOne(fetchData, shopId);
-    this.list = list(fetchData, shopId);
+    this.list = list(fetchData);
   }
 }
 

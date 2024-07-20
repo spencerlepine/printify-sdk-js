@@ -21,13 +21,13 @@ class Catalog {
   constructor(fetchData: FetchDataFunc, shopId: string) {
     this.fetchData = fetchData;
     this.shopId = shopId;
-    this.listBlueprints = listBlueprints(fetchData, shopId);
-    this.getBlueprint = getBlueprint(fetchData, shopId);
-    this.getBlueprintProviders = getBlueprintProviders(fetchData, shopId);
-    this.getBlueprintVariants = getBlueprintVariants(fetchData, shopId);
-    this.getVariantShipping = getVariantShipping(fetchData, shopId);
-    this.listProviders = listProviders(fetchData, shopId);
-    this.getProvider = getProvider(fetchData, shopId);
+    this.listBlueprints = listBlueprints(fetchData);
+    this.getBlueprint = getBlueprint(fetchData);
+    this.getBlueprintProviders = getBlueprintProviders(fetchData);
+    this.getBlueprintVariants = getBlueprintVariants(fetchData);
+    this.getVariantShipping = getVariantShipping(fetchData);
+    this.listProviders = listProviders(fetchData);
+    this.getProvider = getProvider(fetchData);
   }
 }
 

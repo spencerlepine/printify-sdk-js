@@ -11,10 +11,10 @@ class Uploads {
   uploadImage: UploadImageFunc;
 
   constructor(fetchData: FetchDataFunc, shopId: string) {
-    this.archive = archive(fetchData, shopId);
-    this.getById = getById(fetchData, shopId);
-    this.list = list(fetchData, shopId);
-    this.uploadImage = uploadImage(fetchData, shopId);
+    this.archive = archive(fetchData);
+    this.getById = getById(fetchData);
+    this.list = list(fetchData);
+    this.uploadImage = uploadImage(fetchData);
   }
 }
 

@@ -11,6 +11,7 @@ describe('Shops', () => {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -27,6 +28,7 @@ describe('Shops', () => {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -42,6 +44,7 @@ describe('Shops', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);

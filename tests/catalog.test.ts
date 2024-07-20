@@ -12,6 +12,7 @@ describe('Catalog', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -28,6 +29,7 @@ describe('Catalog', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -45,6 +47,7 @@ describe('Catalog', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -62,6 +65,7 @@ describe('Catalog', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -78,6 +82,7 @@ describe('Catalog', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -89,7 +94,13 @@ describe('Catalog', () => {
 
     // Assert
     const mockUrl = 'https://api.printify.com/v1/catalog/blueprints.json';
-    const mockOptions = { method: 'GET', headers: { Authorization: `Bearer mockAccessToken` } };
+    const mockOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
+      },
+    };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
   });
 
@@ -99,7 +110,13 @@ describe('Catalog', () => {
 
     // Assert
     const mockUrl = 'https://api.printify.com/v1/catalog/print_providers.json';
-    const mockOptions = { method: 'GET', headers: { Authorization: `Bearer mockAccessToken` } };
+    const mockOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
+      },
+    };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
   });
 });

@@ -12,6 +12,7 @@ describe('Uploads', () => {
       method: 'POST',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -28,6 +29,7 @@ describe('Uploads', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
@@ -45,6 +47,7 @@ describe('Uploads', () => {
       method: 'GET',
       headers: {
         Authorization: `Bearer mockAccessToken`,
+        'Content-Type': 'application/json',
       },
     };
     expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
