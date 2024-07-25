@@ -11,7 +11,7 @@ interface Upload {
   upload_time: string;
 }
 
-interface Response {
+interface ListUploadsResponse {
   current_page: number;
   data: Upload[];
   first_page_url: string;
@@ -26,14 +26,14 @@ interface Response {
   total: number;
 }
 
-export type ListFunc = (page?: number, limit?: number) => Promise<Response>;
+export type ListFunc = (page?: number, limit?: number) => Promise<ListUploadsResponse>;
 
 /**
  * Retrieve a list of uploaded images with optional pagination and limit.
  *
  * @param {number} [page] - Page number
  * @param {number} [limit] - Results per page
- * @returns {Promise<Response>}
+ * @returns {Promise<ListUploadsResponse>}
  *
  * @example
  * await printify.uploads.list();
@@ -49,7 +49,7 @@ export type ListFunc = (page?: number, limit?: number) => Promise<Response>;
  */
 const list =
   (fetchData: FetchDataFunc) =>
-  async (page?: number, limit?: number): Promise<Response> => {
+  async (page?: number, limit?: number): Promise<ListUploadsResponse> => {
     const queryParams = new URLSearchParams();
     if (page !== undefined) queryParams.append('page', page.toString());
     if (limit !== undefined) queryParams.append('limit', limit.toString());

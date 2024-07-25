@@ -1,16 +1,16 @@
 import { FetchDataFunc } from '../printify';
 
-interface Response {
+interface DeleteWebhookResponse {
   id: string;
 }
 
-export type DeleteOneFunc = (webhookId: string) => Promise<Response>;
+export type DeleteOneFunc = (webhookId: string) => Promise<DeleteWebhookResponse>;
 
 /**
  * Delete a webhook
  *
  * @param {string} webhookId - The ID of the webhook to be deleted
- * @returns {Promise<Response>} The deleted webhook response
+ * @returns {Promise<DeleteWebhookResponse>} The deleted webhook response
  *
  * @example
  * const response = await printify.webhooks.deleteOne('5cb87a8cd490a2ccb256cec4');
@@ -21,7 +21,7 @@ export type DeleteOneFunc = (webhookId: string) => Promise<Response>;
  */
 const deleteOne =
   (fetchData: FetchDataFunc, shopId: string) =>
-  async (webhookId: string): Promise<Response> => {
+  async (webhookId: string): Promise<DeleteWebhookResponse> => {
     const response = await fetchData(`/v1/shops/${shopId}/webhooks/${webhookId}.json`, {
       method: 'DELETE',
     });

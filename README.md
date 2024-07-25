@@ -20,22 +20,19 @@ npm install spencerlepine-sdk-js
 > ⚠️ For security purposes, this is intended only for server-side use, the API does not support CORS and will not process requests from a frontend application
 
 ```js
-import Printify from 'spencerlepine-sdk-js';
+const Printify = require('spencerlepine-sdk-js');
 
-// TODO-FINAL - add snippet code
-// Create a personal access token at https://developers.printify.com/#create-a-personal-access-token
 const printify = new Printify({
-  shopId: '123456', // global query by shop_id
-  accessToken: '<ACCESS_TOKEN>',
+  shopId: '16326523', // global query by shop_id
+  accessToken: API_TOKEN,
 });
 
-// TODO-FINAL, add something useful here
-// submit an order
-// send an order to production
-const {
-  data: { login },
-} = await printify.something.getSomething();
-console.log('Hello, %s', login);
+(async () => {
+  const result = await printify.orders.submit({
+    /* order details */
+  });
+  console.log(result.id);
+})();
 ```
 
 ## API

@@ -4,21 +4,21 @@ interface UpdateData {
   url: string;
 }
 
-interface Response {
+interface UpdateWebhookResponse {
   topic: string;
   url: string;
   shop_id: string;
   id: string;
 }
 
-export type UpdateOneFunc = (webhookId: string, data: UpdateData) => Promise<Response>;
+export type UpdateOneFunc = (webhookId: string, data: UpdateData) => Promise<UpdateWebhookResponse>;
 
 /**
  * Modify a webhook
  *
  * @param {string} webhookId - The ID of the webhook to be updated
  * @param {UpdateData} data - The data to update the webhook with
- * @returns {Promise<Response>} The updated webhook response
+ * @returns {Promise<UpdateWebhookResponse>} The updated webhook response
  *
  * @example
  * const data = { url: 'https://example.com/callback/order/created' };
@@ -33,7 +33,7 @@ export type UpdateOneFunc = (webhookId: string, data: UpdateData) => Promise<Res
  */
 const updateOne =
   (fetchData: FetchDataFunc, shopId: string) =>
-  async (webhookId: string, data: UpdateData): Promise<Response> => {
+  async (webhookId: string, data: UpdateData): Promise<UpdateWebhookResponse> => {
     const response = await fetchData(`/v1/shops/${shopId}/webhooks/${webhookId}.json`, {
       method: 'PUT',
       body: JSON.stringify(data),

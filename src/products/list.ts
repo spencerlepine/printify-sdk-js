@@ -58,7 +58,7 @@ interface Product {
   sales_channel_properties: any[];
 }
 
-interface Response {
+interface ListProductsResponse {
   current_page: number;
   data: Product[];
   first_page_url: string;
@@ -73,14 +73,14 @@ interface Response {
   total: number;
 }
 
-export type ListFunc = (page?: number, limit?: number) => Promise<Response>;
+export type ListFunc = (page?: number, limit?: number) => Promise<ListProductsResponse>;
 
 /**
  * Retrieve a list of all products with optional pagination and limit.
  *
  * @param {number} [page] - Page number
  * @param {number} [limit] - Results per page
- * @returns {Promise<Response>}
+ * @returns {Promise<ListProductsResponse>}
  *
  * @example
  * await printify.products.list();

@@ -4,6 +4,7 @@ import Products from './products';
 import Shops from './shops';
 import Uploads from './uploads';
 import Webhooks from './webhooks';
+import { BASE_URL } from './constants';
 
 export type FetchDataFunc = (url: string, config?: RequestInit) => Promise<any>;
 
@@ -38,7 +39,6 @@ class Printify {
   // header: `Authorization: Bearer ${PRINTIFY_API_TOKEN}`
   // ContentType: application/json;charset=utf-8
   // baseUrl: https://api.printify.com/v1/
-  private BASE_URL = 'https://api.printify.com';
   private async fetchData(url: string, config: RequestInit = {}): Promise<any> {
     const defaultHeaders = {
       'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ class Printify {
     };
 
     try {
-      const response = await fetch(`${this.BASE_URL}${url}`, requestData);
+      const response = await fetch(`${BASE_URL}${url}`, requestData);
       if (!response.ok) {
         throw new Error(`Printify SDK Error: ${response.status} ${response.statusText}`);
       }

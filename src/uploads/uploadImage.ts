@@ -10,7 +10,7 @@ interface UploadImageDataBase64 {
   contents: string;
 }
 
-interface Response {
+interface UploadImageResponse {
   id: string;
   file_name: string;
   height: number;
@@ -21,13 +21,13 @@ interface Response {
   upload_time: string;
 }
 
-export type UploadImageFunc = (data: UploadImageDataUrl | UploadImageDataBase64) => Promise<Response>;
+export type UploadImageFunc = (data: UploadImageDataUrl | UploadImageDataBase64) => Promise<UploadImageResponse>;
 
 /**
  * Upload an image file via URL or base64-encoded contents
  *
  * @param {UploadImageDataUrl | UploadImageDataBase64} data - The data to upload (URL or base64-encoded)
- * @returns {Promise<Response>}
+ * @returns {Promise<UploadImageResponse>}
  *
  * @example
  * const dataUrl = { file_name: '1x1-ff00007f.png', url: 'http://png-pixel.com/1x1-ff00007f.png' };
@@ -38,7 +38,7 @@ export type UploadImageFunc = (data: UploadImageDataUrl | UploadImageDataBase64)
  */
 const uploadImage =
   (fetchData: FetchDataFunc): UploadImageFunc =>
-  async (data: UploadImageDataUrl | UploadImageDataBase64): Promise<Response> => {
+  async (data: UploadImageDataUrl | UploadImageDataBase64): Promise<UploadImageResponse> => {
     const response = await fetchData(`/v1/uploads/images.json`, {
       method: 'POST',
       headers: {

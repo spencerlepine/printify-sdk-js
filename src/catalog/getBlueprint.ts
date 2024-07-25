@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Response {
+interface GetBlueprintResponse {
   id: number;
   title: string;
   description: string;
@@ -9,13 +9,13 @@ interface Response {
   images: string[];
 }
 
-export type GetBlueprintFunc = (blueprintId: string) => Promise<Response>;
+export type GetBlueprintFunc = (blueprintId: string) => Promise<GetBlueprintResponse>;
 
 /**
  * Retrieve a specific blueprint
  *
  * @param {string} blueprintId - The ID of the blueprint to retrieve
- * @returns {Promise<Response>}
+ * @returns {Promise<GetBlueprintResponse>}
  *
  * @example
  * const blueprintId = "3";
@@ -32,7 +32,7 @@ export type GetBlueprintFunc = (blueprintId: string) => Promise<Response>;
  */
 const getBlueprint =
   (fetchData: FetchDataFunc) =>
-  async (blueprintId: string): Promise<Response> => {
+  async (blueprintId: string): Promise<GetBlueprintResponse> => {
     const response = await fetchData(`/v1/catalog/blueprints/${blueprintId}.json`, { method: 'GET' });
     return response;
   };

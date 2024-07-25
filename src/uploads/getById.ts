@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Response {
+interface GetUploadByIdResponse {
   id: string;
   file_name: string;
   height: number;
@@ -11,7 +11,7 @@ interface Response {
   upload_time: string;
 }
 
-export type GetByIdFunc = (imageId: string) => Promise<Response>;
+export type GetByIdFunc = (imageId: string) => Promise<GetUploadByIdResponse>;
 
 /**
  * Retrieve an uploaded image by id

@@ -7,23 +7,24 @@ The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST A
 
 ## Usage
 
-```js
-import Printify from 'spencerlepine-sdk-js';
+```sh
+$ curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: Bearer $PRINTIFY_API_TOKEN"`
+```
 
-// TODO-FINAL - add snippet code
-// Create a personal access token at https://developers.printify.com/#create-a-personal-access-token
+```js
+const Printify = require('spencerlepine-sdk-js');
+
 const printify = new Printify({
-  shopId: '123456', // global query by shop_id
-  auth: '<ACCESS_TOKEN>',
+  shopId: '16326523', // global query by shop_id
+  accessToken: API_TOKEN,
 });
 
-// TODO-FINAL, add something useful here
-// submit an order
-// send an order to production
-const {
-  data: { login },
-} = await printify.something.getSomething();
-console.log('Hello, %s', login);
+(async () => {
+  const result = await printify.orders.submit({
+    /* order details */
+  });
+  console.log(result.id);
+})();
 ```
 
 ## API
@@ -39,8 +40,7 @@ console.log('Hello, %s', login);
 
 #### `printify.shops.list()`
 
-- `GET /v1/shops.json`
-- Description: Retrieve a list of shops in a Printify account
+`GET /v1/shops.json` **Description:** Retrieve a list of shops in a Printify account
 
 ```js
 await printify.shops.list();
@@ -58,31 +58,33 @@ store", "sales_channel": "disconnected" } ]
 
 #### `printify.shops.deleteOne(printify.shopId)`
 
-- `DELETE /v1/shops/{shop_id}/connection.json`
-- Description: Disconnect a shop
+`DELETE /v1/shops/{shop_id}/connection.json` **Description:** Disconnect a shop
 
 ```js
 await printify.shops.deleteOne(printify.shopId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {}
 ```
 
+</details>
+
 ### Catalog
 
 #### `printify.catalog.listBlueprints()`
 
-- `GET /v1/catalog/blueprints.json`
-- Description: Retrieve a list of all available blueprints
+`GET /v1/catalog/blueprints.json` **Description:** Retrieve a list of all available blueprints
 
 ```js
 await printify.catalog.listBlueprints();
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 [
@@ -174,16 +176,18 @@ Response:
 ]
 ```
 
+</details>
+
 #### `printify.catalog.getBlueprint(blueprintId)`
 
-- `GET /v1/catalog/blueprints/{blueprint_id}.json`
-- Description: Retrieve a specific blueprint
+`GET /v1/catalog/blueprints/{blueprint_id}.json` **Description:** Retrieve a specific blueprint
 
 ```js
 await printify.catalog.getBlueprint(blueprintId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -196,16 +200,18 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.catalog.getBlueprintProviders(blueprintId)`
 
-- `GET /v1/catalog/blueprints/{blueprint_id}/print_providers.json`
-- Description: Retrieve a list of all print providers that fulfill orders for a specific blueprint
+`GET /v1/catalog/blueprints/{blueprint_id}/print_providers.json` **Description:** Retrieve a list of all print providers that fulfill orders for a specific blueprint
 
 ```js
 await printify.catalog.getBlueprintProviders(blueprintId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 [
@@ -216,16 +222,19 @@ Response:
 ]
 ```
 
+</details>
+
 #### `printify.catalog.getBlueprintVariants(blueprintId, printProviderId)`
 
-- `GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/variants.json`
-- Description: Retrieve a list of all variants of a blueprint from a specific print provider
+`GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/variants.json` **Description:** Retrieve a list of all variants of a blueprint from a specific print
+provider
 
 ```js
 await printify.catalog.getBlueprintVariants(blueprintId, printProviderId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -309,16 +318,19 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.catalog.getVariantShipping(blueprintId, printProviderId)`
 
-- `GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/shipping.json`
-- Description: Retrieve the shipping information for all variants of a blueprint from a specific print provider
+`GET /v1/catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/shipping.json` **Description:** Retrieve the shipping information for all variants of a blueprint
+from a specific print provider
 
 ```js
 await printify.catalog.getVariantShipping(blueprintId, printProviderId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -401,16 +413,18 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.catalog.listProviders()`
 
-- `GET /v1/catalog/print_providers.json`
-- Description: Retrieve a list of all available print-providers
+`GET /v1/catalog/print_providers.json` **Description:** Retrieve a list of all available print-providers
 
 ```js
 await printify.catalog.listProviders();
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 [
@@ -434,16 +448,18 @@ Response:
 ]
 ```
 
+</details>
+
 #### `printify.catalog.getProvider(printProviderId)`
 
-- `GET /v1/catalog/print_providers/{print_provider_id}.json`
-- Description: Retrieve a specific print-provider and a list of associated blueprint offerings
+`GET /v1/catalog/print_providers/{print_provider_id}.json` **Description:** Retrieve a specific print-provider and a list of associated blueprint offerings
 
 ```js
 await printify.catalog.getProvider(printProviderId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -472,15 +488,15 @@ Response:
 }
 ```
 
+</details>
+
 ### Products
 
 #### `printify.products.list()`
 
-- `GET /v1/shops/{shop_id}/products.json`
-- `GET /v1/shops/{shop_id}/products.json?limit=1`
-- `GET /v1/shops/{shop_id}/products.json?page=2`
+`GET /v1/shops/{shop_id}/products.json` `GET /v1/shops/{shop_id}/products.json?limit=1` `GET /v1/shops/{shop_id}/products.json?page=2`
 
-- Description: Retrieve a list of all products (results default: 10, maximum: 100)
+**Description:** Retrieve a list of all products (results default: 10, maximum: 100)
 
 ```js
 await printify.products.list();
@@ -488,7 +504,8 @@ await printify.products.list((page = 2));
 await printify.products.list(undefined, (limit = 2));
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -562,16 +579,18 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.products.getOne(productId)`
 
-- `GET /v1/shops/{shop_id}/products/{product_id}.json`
-- Description: Retrieve a product
+`GET /v1/shops/{shop_id}/products/{product_id}.json` **Description:** Retrieve a product
 
 ```js
 await printify.products.getOne(productId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -628,10 +647,11 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.products.create(data)`
 
-- `POST /v1/shops/{shop_id}/products.json`
-- Description: Create a new product
+`POST /v1/shops/{shop_id}/products.json` **Description:** Create a new product
 
 ```json
 const data = {
@@ -656,7 +676,8 @@ const data = {
 await printify.products.create(data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -766,17 +787,19 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.products.updateOne(productId, data)`
 
-- `PUT /v1/shops/{shop_id}/products/{product_id}.json`
-- Description: Update a product
+`PUT /v1/shops/{shop_id}/products/{product_id}.json` **Description:** Update a product
 
 ```js
 const data = { title: 'Product' };
 await printify.products.updateOne('productId', data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -887,25 +910,28 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.products.deleteOne(productId)`
 
-- `DELETE /v1/shops/{shop_id}/products/{product_id}.json`
-- Description: Delete a product
+`DELETE /v1/shops/{shop_id}/products/{product_id}.json` **Description:** Delete a product
 
 ```js
 await printify.products.deleteOne(productId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {}
 ```
 
+</details>
+
 #### `printify.products.publishOne(productId, data)`
 
-- `POST /v1/shops/{shop_id}/products/{product_id}/publish.json`
-- Description: Publish a product
+`POST /v1/shops/{shop_id}/products/{product_id}/publish.json` **Description:** Publish a product
 
 > **Note:** This does not implement any publishing action unless the Printify store is connected to one of our other supported sales channel integrations, if your store is custom
 > and is subscribed to the product::pubish::started event, that event will be triggered and the properties that are set in the request body will be set in the event payload for
@@ -918,17 +944,19 @@ const data = { title: true, description: true, images: true, variants: true, tag
 await printify.products.publishOne('productId', data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {}
 ```
 
+</details>
+
 #### `printify.products.setPublishSucceeded(productId, data)`
 
-- `POST /v1/shops/{shop_id}/products/{product_id}/publishing_succeeded.json`
-- Description: Set product publish status to succeeded. Removes the product from the locked status on the Printify app and sets it's external property with the handle you provide
-  in the request body.
+`POST /v1/shops/{shop_id}/products/{product_id}/publishing_succeeded.json` **Description:** Set product publish status to succeeded. Removes the product from the locked status on
+the Printify app and sets it's external property with the handle you provide in the request body.
 
 ```js
 const data = { external: { id: '5941187eb8e7e37b3f0e62e5', handle: 'https://example.com/path/to/product' } };
@@ -936,16 +964,19 @@ const data = { external: { id: '5941187eb8e7e37b3f0e62e5', handle: 'https://exam
 await printify.products.setPublishSucceeded('productId', data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {}
 ```
 
+</details>
+
 #### `printify.products.setPublishFailed(productId)`
 
-- `POST /v1/shops/{shop_id}/products/{product_id}/publishing_failed.json`
-- Description: Set product publish status to failed. Removes the product from the locked status on the Printify app.
+`POST /v1/shops/{shop_id}/products/{product_id}/publishing_failed.json` **Description:** Set product publish status to failed. Removes the product from the locked status on the
+Printify app.
 
 ```js
 const data = { reason: 'Request timed out' };
@@ -953,26 +984,31 @@ const data = { reason: 'Request timed out' };
 await printify.products.setPublishSucceeded('productId', data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {}
 ```
 
+</details>
+
 #### `printify.products.notifyUnpublished(productId)`
 
-- `POST /v1/shops/{shop_id}/products/{product_id}/unpublish.json`
-- Description: Notify that a product has been unpublished
+`POST /v1/shops/{shop_id}/products/{product_id}/unpublish.json` **Description:** Notify that a product has been unpublished
 
 ```js
 await printify.products.notifyUnpublished(productId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {}
 ```
+
+</details>
 
 ### Orders
 
@@ -980,14 +1016,14 @@ Response:
 
 <!-- TODO, combine the listOrders, w/ "page, limit, status, sku"? -->
 
-- `GET /v1/shops/{shop_id}/orders.json`
-- Description: Retrieve a list of orders
+`GET /v1/shops/{shop_id}/orders.json` **Description:** Retrieve a list of orders
 
 ```js
 await printify.orders.list();
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -1039,70 +1075,79 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.orders.list(page)`
 
-- `GET /v1/shops/{shop_id}/orders.json?page=2`
-- Description: Retrieve a list of orders
+`GET /v1/shops/{shop_id}/orders.json?page=2` **Description:** Retrieve a list of orders
 
 ```js
 await printify.orders.list(page);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "Jack", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
+</details>
+
 #### `printify.orders.list(status)`
 
-- `GET /v1/shops/{shop_id}/orders.json?status=fulfilled`
-- Description: Retrieve a list of orders
+`GET /v1/shops/{shop_id}/orders.json?status=fulfilled` **Description:** Retrieve a list of orders
 
 ```js
 await printify.orders.list(status);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
+</details>
+
 #### `printify.orders.list(sku)`
 
-- `GET /v1/shops/{shop_id}/orders.json?sku=168699843`
-- Description: Retrieve a list of orders
+`GET /v1/shops/{shop_id}/orders.json?sku=168699843` **Description:** Retrieve a list of orders
 
 ```js
 await printify.orders.list(sku);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "current_page": 2, "data": [ { "id": "5a6e03bd2f7d8055768923c8", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "A city", "zip": "4321", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "SW", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, } ] }
 ```
 
+</details>
+
 #### `printify.orders.get(orderId)`
 
-- `GET /v1/shops/{shop_id}/orders/{order_id}.json`
-- Description: Get order details by id
+`GET /v1/shops/{shop_id}/orders/{order_id}.json` **Description:** Get order details by id
 
 ```js
 await printify.orders.get(orderId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "id": "5a96f649b2439217d070f507", "address_to": { "first_name": "John", "last_name": "Smith", "region": "", "address1": "ExampleBaan 121", "city": "Retie", "zip": "2470", "email": "example@msn.com", "phone": "0574 69 21 90", "country": "BE", "company": "MSN" }, "line_items": [ { "product_id": "5b05842f3921c9547531758d", "quantity": 1, "variant_id": 17887, "print_provider_id": 5, "cost": 1050, "shipping_cost": 400, "status": "fulfilled", "metadata": { "title": "18K gold plated Necklace", "price": 2200, "variant_label": "Golden indigocoin", "sku": "168699843", "country": "United States" }, "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" } ], "metadata": { "order_type": "external", "shop_order_id": 1370762297, "shop_order_label": "1370762297", "shop_fulfilled_at": "2017-04-18 13:24:28+00:00" }, "total_price": 2200, "total_shipping": 400, "total_tax": 0, "status": "fulfilled", "shipping_method": 1, "is_printify_express": false, "is_economy_shipping": false, "shipments": [ { "carrier": "usps", "number": "94001116990045395649372", "url": "http://example.com/94001116990045395649372", "delivered_at": "2017-04-18 13:24:28+00:00" } ], "created_at": "2017-04-18 13:24:28+00:00", "sent_to_production_at": "2017-04-18 13:24:28+00:00", "fulfilled_at": "2017-04-18 13:24:28+00:00" "printify_connect": { "url": "https://example.com/printify_connect_hash", "id": "printify_connect_hash" }, }
 ```
 
+</details>
+
 #### `printify.orders.submit(data)`
 
-- `POST /v1/shops/{shop_id}/orders.json`
-- Description: Submit an order (this creates a draft, you will send to production separately)
+`POST /v1/shops/{shop_id}/orders.json` **Description:** Submit an order (this creates a draft, you will send to production separately)
 
 ```js
 // Example #1 - Submit order by productId
@@ -1275,10 +1320,11 @@ await printify.orders.submit(data);
 // response: { "id": "5a96f649b2439217d070f507" }
 ```
 
+</details>
+
 #### `printify.orders.submitExpress(data)`
 
-- `POST /v1/shops/{shop_id}/express.json`
-- Description: Submit a Printify Express order
+`POST /v1/shops/{shop_id}/express.json` **Description:** Submit a Printify Express order
 
 ```js
 const data = {
@@ -1307,7 +1353,8 @@ const data = {
 await printify.orders.submitExpress(data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -1358,16 +1405,18 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.orders.sendToProduction(orderId)`
 
-- `POST /v1/shops/{shop_id}/orders/{order_id}/send_to_production.json`
-- Description: Send an existing order to production
+`POST /v1/shops/{shop_id}/orders/{order_id}/send_to_production.json` **Description:** Send an existing order to production
 
 ```js
 await printify.orders.sendToProduction(orderId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -1406,10 +1455,11 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.orders.calculateShipping(data)`
 
-- `POST /v1/shops/{shop_id}/orders/shipping.json`
-- Description: Calculate the shipping cost of an order
+`POST /v1/shops/{shop_id}/orders/shipping.json` **Description:** Calculate the shipping cost of an order
 
 ```js
 const data = {
@@ -1435,7 +1485,8 @@ const data = {
 await printify.orders.calculateShipping(data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "standard": 1000, "express": 5000, "priority": 5000, "printify_express": 799, "economy": 399 }
@@ -1455,14 +1506,14 @@ Response contains the shipping options that are defined in the following table:
 
 #### `printify.orders.cancelUnpaid(orderId)`
 
-- `POST /v1/shops/{shop_id}/orders/{order_id}/cancel.json`
-- Description: Cancel an unpaid order. Status must be "on-hold" or "payment-not-received"
+`POST /v1/shops/{shop_id}/orders/{order_id}/cancel.json` **Description:** Cancel an unpaid order. Status must be "on-hold" or "payment-not-received"
 
 ```js
 await printify.orders.cancelUnpaid(orderId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -1506,15 +1557,15 @@ Response:
 }
 ```
 
+</details>
+
 ### Uploads
 
 #### `printify.uploads.list()`
 
-- `GET /v1/uploads.json`
-- `GET /v1/uploads.json?page=2`
-- `GET /v1/uploads.json?limit=1`
+`GET /v1/uploads.json` `GET /v1/uploads.json?page=2` `GET /v1/uploads.json?limit=1`
 
-- Description: Retrieve a list of all uploaded images (results default: 10, maximum: 100)
+**Description:** Retrieve a list of all uploaded images (results default: 10, maximum: 100)
 
 ```js
 await printify.uploads.list();
@@ -1522,7 +1573,8 @@ await printify.uploads.list((page = 2));
 await printify.uploads.list(undefined, (limit = 5));
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -1562,16 +1614,18 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.uploads.getById(imageId)`
 
-- `GET /v1/uploads/{image_id}.json`
-- Description: Retrieve an uploaded image by id
+`GET /v1/uploads/{image_id}.json` **Description:** Retrieve an uploaded image by id
 
 ```js
 await printify.uploads.getById(imageId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -1586,12 +1640,13 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.uploads.uploadImage(data)`
 
 > Upload image files either via image URL or image file base64-encoded contents. We highly recommend using upload via image URL for files larger than 5MB.
 
-- `POST /v1/uploads/images.json`
-- Description: Upload an image
+`POST /v1/uploads/images.json` **Description:** Upload an image
 
 ```js
 const data = { file_name: '1x1-ff00007f.png', url: 'http://png-pixel.com/1x1-ff00007f.png' };
@@ -1602,7 +1657,8 @@ const data = { file_name: '1x1-ff00007f.png', url: 'http://png-pixel.com/1x1-ff0
 await printify.uploads.uploadImage(data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {
@@ -1617,20 +1673,24 @@ Response:
 }
 ```
 
+</details>
+
 #### `printify.uploads.archive(imageId)`
 
-- `POST /v1/uploads/{image_id}/archive.json`
-- Description: Archive an uploaded image
+`POST /v1/uploads/{image_id}/archive.json` **Description:** Archive an uploaded image
 
 ```js
 await printify.uploads.archive(imageId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 {}
 ```
+
+</details>
 
 ### Webhooks
 
@@ -1639,14 +1699,14 @@ payloads
 
 #### `printify.webhooks.list()`
 
-- `GET /v1/shops/{shop_id}/webhooks.json`
-- Description: Retrieve a list of webhooks
+`GET /v1/shops/{shop_id}/webhooks.json` **Description:** Retrieve a list of webhooks
 
 ```js
 await printify.webhooks.list();
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 [
@@ -1655,48 +1715,54 @@ Response:
 ]
 ```
 
+</details>
+
 #### `printify.webhooks.create(data)`
 
-- `POST /v1/shops/{shop_id}/webhooks.json`
-- Description: Create a new webhook
+`POST /v1/shops/{shop_id}/webhooks.json` **Description:** Create a new webhook
 
 ```js
 const data = { topic: 'order:created', url: 'https://example.com/webhooks/order/created' };
 await printify.webhooks.create(data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 ```
 
+</details>
+
 #### `printify.webhooks.updateOne(webhookId, data)`
 
-- `PUT /v1/shops/{shop_id}/webhooks/{webhook_id}.json`
-- Description: Modify a webhook
+`PUT /v1/shops/{shop_id}/webhooks/{webhook_id}.json` **Description:** Modify a webhook
 
 ```js
 const data = { url: 'https://example.com/callback/order/created' };
 await printify.webhooks.updateOne('webhookId', data);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "topic": "order:created", "url": "https://example.com/callback/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 ```
 
+</details>
+
 #### `printify.webhooks.deleteOne(webhookId)`
 
-- `DELETE /v1/shops/{shop_id}/webhooks/{webhook_id}.json`
-- Description: Delete a webhook
+`DELETE /v1/shops/{shop_id}/webhooks/{webhook_id}.json` **Description:** Delete a webhook
 
 ```js
 await printify.webhooks.deleteOne(webhookId);
 ```
 
-Response:
+<details>
+  <summary>View Response</summary>
 
 ```json
 { "id": "5cb87a8cd490a2ccb256cec4" }

@@ -1,12 +1,4 @@
-# This is an example codeql-config.yml file.
-
-# Define the paths to include in the CodeQL analysis
-# Paths listed here will be analyzed by CodeQL
-include:
-  - src/*
-
-# Define the paths to exclude from CodeQL analysis
-# Paths listed here will be ignored by CodeQL
-exclude:
-  - docs/*
-  - tests/*
+name: "CodeQL config"
+paths-ignore:
+  - tests
+  - docs

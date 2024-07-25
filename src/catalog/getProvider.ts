@@ -17,20 +17,20 @@ interface Blueprint {
   images: string[];
 }
 
-export interface Response {
+export interface GetProviderResponse {
   id: number;
   title: string;
   location: Location;
   blueprints: Blueprint[];
 }
 
-export type GetProviderFunc = (printProviderId: string) => Promise<Response>;
+export type GetProviderFunc = (printProviderId: string) => Promise<GetProviderResponse>;
 
 /**
  * Retrieve a specific print-provider and a list of associated blueprint offerings
  *
  * @param {string} printProviderId - The ID of the print provider to retrieve
- * @returns {Promise<Response>}
+ * @returns {Promise<GetProviderResponse>}
  *
  * @example
  * const printProviderId = "123456";
@@ -48,7 +48,7 @@ export type GetProviderFunc = (printProviderId: string) => Promise<Response>;
  */
 const getProvider =
   (fetchData: FetchDataFunc) =>
-  async (printProviderId: string): Promise<Response> => {
+  async (printProviderId: string): Promise<GetProviderResponse> => {
     const response = await fetchData(`/v1/catalog/print_providers/${printProviderId}.json`, {
       method: 'GET',
     });

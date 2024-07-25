@@ -5,20 +5,20 @@ interface Data {
   url: string;
 }
 
-interface Response {
+interface CreateWebhookResponse {
   topic: string;
   url: string;
   shop_id: string;
   id: string;
 }
 
-export type CreateFunc = (data: Data) => Promise<Response>;
+export type CreateFunc = (data: Data) => Promise<CreateWebhookResponse>;
 
 /**
  * Create a new webhook
  *
  * @param {Data} data - The webhook data to be sent in the request body
- * @returns {Promise<Response>} The created webhook response
+ * @returns {Promise<CreateWebhookResponse>} The created webhook response
  *
  * @example
  * const data = { topic: "order:created", url: "https://example.com/webhooks/order/created" };
@@ -33,7 +33,7 @@ export type CreateFunc = (data: Data) => Promise<Response>;
  */
 const create =
   (fetchData: FetchDataFunc, shopId: string) =>
-  async (data: Data): Promise<Response> => {
+  async (data: Data): Promise<CreateWebhookResponse> => {
     const response = await fetchData(`/v1/shops/${shopId}/webhooks.json`, {
       method: 'POST',
       body: JSON.stringify(data),
