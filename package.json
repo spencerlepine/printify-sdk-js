@@ -1,16 +1,16 @@
 {
   "name": "spencerlepine-sdk-js",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Printify SDK for JavaScript. Client for Node.js",
   "author": "Spencer Lepine <60903378+spencerlepine@users.noreply.github.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/spencerlepine/spencerlepine-sdk-js/issues"
-  },
   "homepage": "https://github.com/spencerlepine/spencerlepine-sdk-js#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spencerlepine/spencerlepine-sdk-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spencerlepine/spencerlepine-sdk-js/issues"
   },
   "keywords": [
     "printify",
@@ -24,18 +24,20 @@
     "printify-api",
     "node-sdk"
   ],
-  "main": "dist/bundle.cjs.js",
-  "module": "dist/bundle.esm.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.mts",
   "files": [
-    "dist",
+    "dist/index.cjs.js",
+    "dist/index.esm.js",
+    "dist/index.d.mts",
     "docs/API.md"
   ],
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.mts"
     }
   },
   "scripts": {

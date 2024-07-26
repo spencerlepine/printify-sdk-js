@@ -1,9 +1,9 @@
-import Catalog from './catalog';
-import Orders from './orders';
-import Products from './products';
-import Shops from './shops';
-import Uploads from './uploads';
-import Webhooks from './webhooks';
+import Catalog, { CatalogMethods } from './catalog';
+import Orders, { OrdersMethods } from './orders';
+import Products, { ProductsMethods } from './products';
+import Shops, { ShopsMethods } from './shops';
+import Uploads, { UploadsMethods } from './uploads';
+import Webhooks, { WebhookMethods } from './webhooks';
 import { BASE_URL } from './constants';
 
 export type FetchDataFunc = (url: string, config?: RequestInit) => Promise<any>;
@@ -16,12 +16,12 @@ export interface PrintifyConfig {
 class Printify {
   shopId: string;
   #accessToken: string;
-  catalog: any;
-  orders: any;
-  products: any;
-  shops: any;
-  uploads: any;
-  webhooks: any;
+  catalog: CatalogMethods;
+  orders: OrdersMethods;
+  products: ProductsMethods;
+  shops: ShopsMethods;
+  uploads: UploadsMethods;
+  webhooks: WebhookMethods;
 
   constructor(config: PrintifyConfig) {
     this.shopId = config.shopId;

@@ -18,8 +18,6 @@ export interface CatalogMethods {
 }
 
 class Catalog implements CatalogMethods {
-  fetchData: FetchDataFunc;
-  shopId: string;
   listBlueprints: ListBlueprintsFunc;
   getBlueprint: GetBlueprintFunc;
   getBlueprintProviders: GetBlueprintProvidersFunc;
@@ -29,8 +27,6 @@ class Catalog implements CatalogMethods {
   getProvider: GetProviderFunc;
 
   constructor(fetchData: FetchDataFunc, shopId: string) {
-    this.fetchData = fetchData;
-    this.shopId = shopId;
     this.listBlueprints = listBlueprints(fetchData);
     this.getBlueprint = getBlueprint(fetchData);
     this.getBlueprintProviders = getBlueprintProviders(fetchData);
