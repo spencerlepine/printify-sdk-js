@@ -1,8 +1,5 @@
 # DEVELOPMENT
 
-- [BEFORE RELEASE] Replace all spencerlepine-sdk-js
-- [BEFORE RELEASE] any remaining TODOs
-
 ## EXAMPLES
 
 - https://github.com/Mainostoimisto-Seven-1/printify-nodejs/tree/main/src
