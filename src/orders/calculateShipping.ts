@@ -72,7 +72,6 @@ const calculateShipping =
     return await fetchData(`/v1/shops/${shopId}/orders/shipping.json`, {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' },
     });
   };
 

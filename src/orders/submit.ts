@@ -87,7 +87,6 @@ const submit =
     return await fetchData(`/v1/shops/${shopId}/orders.json`, {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' },
     });
   };
 

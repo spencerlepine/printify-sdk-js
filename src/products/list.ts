@@ -73,7 +73,7 @@ interface ListProductsResponse {
   total: number;
 }
 
-export type ListProductsFunc = (page?: number, limit?: number) => Promise<ListProductsResponse>;
+export type ListProductsFunc = (options?: { page?: number; limit?: number }) => Promise<ListProductsResponse>;
 
 /**
  * Retrieve a list of all products with optional pagination and limit.
@@ -84,8 +84,8 @@ export type ListProductsFunc = (page?: number, limit?: number) => Promise<ListPr
  *
  * @example
  * await printify.products.list();
- * await printify.products.list(page=2);
- * await printify.products.list(undefined, limit=2);
+ * await printify.products.list({ page: 2 });
+ * await printify.products.list({ limit: 5 });
  *
  * // Expected response:
  * // {
@@ -96,26 +96,12 @@ export type ListProductsFunc = (page?: number, limit?: number) => Promise<ListPr
  */
 const list =
   (fetchData: FetchDataFunc, shopId: string): ListProductsFunc =>
-  async (
-    page?: number,
-    limit?: number
-  ): Promise<{
-    current_page: number;
-    data: Product[];
-    first_page_url: string;
-    from: number;
-    last_page: number;
-    last_page_url: string;
-    next_page_url: string | null;
-    path: string;
-    per_page: number;
-    prev_page_url: string | null;
-    to: number;
-    total: number;
-  }> => {
-    const queryParams = new URLSearchParams();
-    if (page) queryParams.append('page', page.toString());
-    if (limit) queryParams.append('limit', limit.toString());
+  async (options = {}): Promise<ListProductsResponse> => {
+    const { page, limit } = options;
+    const queryParams = new URLSearchParams({
+      ...(page !== undefined && { page: page.toString() }),
+      ...(limit !== undefined && { limit: limit.toString() }),
+    }).toString();
 
     const query = queryParams.toString() ? `?${queryParams.toString()}` : '';
     const response = await fetchData(`/v1/shops/${shopId}/products.json${query}`, {

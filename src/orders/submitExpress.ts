@@ -105,9 +105,6 @@ const submitExpress =
     return await fetchData(`/v1/shops/${shopId}/express.json`, {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
   };
 

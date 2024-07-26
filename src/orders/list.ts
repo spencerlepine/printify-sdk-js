@@ -73,7 +73,7 @@ interface ListOrdersResponse {
   data: Order[];
 }
 
-export type ListOrdersFunc = (page: number) => Promise<ListOrdersResponse>;
+export type ListOrdersFunc = (options?: { page?: number; limit?: number; status?: string; sku?: string }) => Promise<ListOrdersResponse>;
 
 /**
  * Retrieve a list of orders
@@ -87,15 +87,23 @@ export type ListOrdersFunc = (page: number) => Promise<ListOrdersResponse>;
  *     current_page: 2,
  *     data: [ { id: "5a96f649b2439217 } ]
  * }
- * printify.orders.list((page = 2));
- * printify.orders.list(undefined, (limit = 2));
- * printify.orders.list(undefined, undefined, (status = "fulfilled"));
- * printify.orders.list(undefined, undefined, undefined, (sku = "168699843"));
+ * printify.orders.list({ page: 2 });
+ * printify.orders.list({ limit: 5 });
+ * printify.orders.list({ status: "fulfilled" });
+ * printify.orders.list({ sku: "168699843" });
  */
 const listOrders =
   (fetchData: FetchDataFunc, shopId: string): ListOrdersFunc =>
-  async (page: number): Promise<ListOrdersResponse> => {
-    return await fetchData(`/v1/shops/${shopId}/orders.json?page=${page}`, { method: 'GET' });
+  async (options = {}): Promise<ListOrdersResponse> => {
+    const { page, limit, status, sku } = options;
+    const queryParams = new URLSearchParams({
+      ...(page !== undefined && { page: page.toString() }),
+      ...(limit !== undefined && { limit: limit.toString() }),
+      ...(status !== undefined && { status }),
+      ...(sku !== undefined && { sku }),
+    }).toString();
+
+    return await fetchData(`/v1/shops/${shopId}/orders.json${queryParams ? `?${queryParams}` : ''}`, { method: 'GET' });
   };
 
 export default listOrders;

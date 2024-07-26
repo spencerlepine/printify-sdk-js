@@ -109,9 +109,6 @@ const updateOne =
     return fetchData(`/v1/shops/${shopId}/products/${productId}.json`, {
       method: 'PUT',
       body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
   };
 

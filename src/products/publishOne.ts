@@ -32,9 +32,6 @@ const publishOne =
     return fetchData(`/v1/shops/${shopId}/products/${productId}/publish.json`, {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
   };
 
