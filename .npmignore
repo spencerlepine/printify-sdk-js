@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# Except for the following files and directories:
+!dist/index.cjs.js
+!dist/index.esm.js
+!dist/types/index.d.mts
+!package.json
+!README.md
+!LICENSE
+!CHANGELOG.md
+!docs/API.md

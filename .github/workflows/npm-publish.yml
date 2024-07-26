@@ -25,7 +25,17 @@ jobs:
           node-version: ${{ env.RELEASE_NODE_VERSION }}
           registry-url: "https://registry.npmjs.org"
 
-      - run: yarn install
+      - name: Cache Yarn packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
       - run: yarn run build
 
       - name: Set NPM_TOKEN
@@ -44,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: release
-      url: https://www.npmjs.com/package/spencerlepine-sdk-js
+      url: https://www.npmjs.com/package/printify-sdk-js
 
     steps:
       - uses: actions/checkout@v4
@@ -53,7 +63,17 @@ jobs:
           node-version: ${{ env.RELEASE_NODE_VERSION }}
           registry-url: "https://registry.npmjs.org"
 
-      - run: yarn install
+      - name: Cache Yarn packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
       - run: yarn run build
 
       - name: Create .npmrc
