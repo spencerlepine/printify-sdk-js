@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface PrintProvider {
+export interface PrintProvider {
   id: number;
   title: string;
 }

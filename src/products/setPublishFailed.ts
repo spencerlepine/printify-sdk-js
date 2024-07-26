@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface PublishFailedData {
+export interface PublishFailedData {
   reason: string;
 }
 

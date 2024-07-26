@@ -1,8 +1,8 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 import json from '@rollup/plugin-json';
+import typescript from 'rollup-plugin-typescript2';
 import dts from 'rollup-plugin-dts';
 
 export default [
@@ -25,14 +25,16 @@ export default [
       resolve(), // Resolves node_modules imports
       commonjs(), // Converts CommonJS modules to ES6
       json(),
-      typescript(), // Compiles TypeScript
+      typescript({
+        rollupCommonJSResolveHack: false,
+        clean: true,
+      }),
       terser(), // Minifies the bundle
     ],
   },
-  // TODO - Fix typescript (generate index.d.mts)
-  // {
-  //   input: 'dist/index.d.ts',
-  //   output: [{ file: 'dist/index.d.mts', format: 'es' }],
-  //   plugins: [dts()],
-  // }
+  {
+    input: 'dist/index.d.ts',
+    output: [{ file: 'dist/index.d.mts', format: 'es' }],
+    plugins: [dts()],
+  },
 ];

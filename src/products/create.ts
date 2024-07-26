@@ -1,12 +1,12 @@
 import { FetchDataFunc } from '../printify';
 
-interface Variant {
+export interface Variant {
   id: number;
   price: number;
   is_enabled: boolean;
 }
 
-interface PrintArea {
+export interface PrintArea {
   variant_ids: number[];
   placeholders: {
     position: string;
@@ -20,7 +20,7 @@ interface PrintArea {
   }[];
 }
 
-interface CreateProductData {
+export interface CreateProductData {
   title: string;
   description: string;
   blueprint_id: number;
@@ -29,7 +29,7 @@ interface CreateProductData {
   print_areas: PrintArea[];
 }
 
-interface Product {
+export interface Product {
   id: string;
   title: string;
   description: string;

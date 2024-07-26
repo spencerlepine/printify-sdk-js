@@ -7,7 +7,17 @@ import getVariantShipping, { GetVariantShippingFunc } from './getVariantShipping
 import listProviders, { ListProvidersFunc } from './listProviders';
 import getProvider, { GetProviderFunc } from './getProvider';
 
-class Catalog {
+export interface CatalogMethods {
+  listBlueprints: ListBlueprintsFunc;
+  getBlueprint: GetBlueprintFunc;
+  getBlueprintProviders: GetBlueprintProvidersFunc;
+  getBlueprintVariants: GetBlueprintVariantsFunc;
+  getVariantShipping: GetVariantShippingFunc;
+  listProviders: ListProvidersFunc;
+  getProvider: GetProviderFunc;
+}
+
+class Catalog implements CatalogMethods {
   fetchData: FetchDataFunc;
   shopId: string;
   listBlueprints: ListBlueprintsFunc;

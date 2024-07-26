@@ -1,11 +1,11 @@
 import { FetchDataFunc } from '../printify';
 
-interface ExternalData {
+export interface ExternalData {
   id: string;
   handle: string;
 }
 
-interface PublishSucceededData {
+export interface PublishSucceededData {
   external: ExternalData;
 }
 

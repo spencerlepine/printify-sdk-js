@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface GetUploadByIdResponse {
+export interface GetUploadByIdResponse {
   id: string;
   file_name: string;
   height: number;

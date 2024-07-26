@@ -2,7 +2,12 @@ import { FetchDataFunc } from '../printify';
 import deleteOne, { DeleteShopFunc } from './deleteOne';
 import list, { ListShopsFunc } from './list';
 
-class Shops {
+export interface ShopsMethods {
+  deleteOne: DeleteShopFunc;
+  list: ListShopsFunc;
+}
+
+class Shops implements ShopsMethods {
   deleteOne: DeleteShopFunc;
   list: ListShopsFunc;
 

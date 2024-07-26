@@ -7,7 +7,17 @@ import sendToProduction, { SendToProductionFunc } from './sendToProduction';
 import calculateShipping, { CalculateShippingFunc } from './calculateShipping';
 import cancelUnpaid, { CancelUnpaidFunc } from './cancelUnpaid';
 
-class Orders {
+export interface OrdersMethods {
+  list: ListOrdersFunc;
+  getOne: GetOrderFunc;
+  submit: SubmitOrderFunc;
+  submitExpress: SubmitExpressFunc;
+  sendToProduction: SendToProductionFunc;
+  calculateShipping: CalculateShippingFunc;
+  cancelUnpaid: CancelUnpaidFunc;
+}
+
+class Orders implements OrdersMethods {
   list: ListOrdersFunc;
   getOne: GetOrderFunc;
   submit: SubmitOrderFunc;

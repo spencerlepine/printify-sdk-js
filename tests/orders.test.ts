@@ -258,7 +258,7 @@ describe('Orders', () => {
   it('should handle the list orders endpoint', async () => {
     // Act
     const mockPage = 2;
-    await printify.orders.list(mockPage);
+    await printify.orders.list({ page: mockPage });
 
     // Assert
     const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders.json?page=${mockPage}`;

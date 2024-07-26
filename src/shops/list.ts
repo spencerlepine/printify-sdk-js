@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Shop {
+export interface Shop {
   id: number;
   title: string;
   sales_channel: string;

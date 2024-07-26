@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Address {
+export interface Address {
   first_name: string;
   last_name: string;
   email: string;
@@ -11,7 +11,7 @@ interface Address {
   zip: string;
 }
 
-interface LineItem {
+export interface LineItem {
   quantity: number;
   product_id: string;
   variant_id: number;
@@ -27,14 +27,14 @@ interface LineItem {
   };
 }
 
-interface Metadata {
+export interface Metadata {
   order_type: string;
   shop_order_id: string;
   shop_order_label: string;
   shop_fulfilled_at: string;
 }
 
-interface CancelUnpaidResponse {
+export interface CancelUnpaidResponse {
   id: string;
   address_to: Address;
   line_items: LineItem[];

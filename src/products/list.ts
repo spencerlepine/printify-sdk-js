@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Product {
+export interface Product {
   id: string;
   title: string;
   description: string;
@@ -58,7 +58,7 @@ interface Product {
   sales_channel_properties: any[];
 }
 
-interface ListProductsResponse {
+export interface ListProductsResponse {
   current_page: number;
   data: Product[];
   first_page_url: string;

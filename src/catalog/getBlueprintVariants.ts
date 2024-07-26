@@ -1,12 +1,12 @@
 import { FetchDataFunc } from '../printify';
 
-interface Placeholder {
+export interface Placeholder {
   position: string;
   height: number;
   width: number;
 }
 
-interface Variant {
+export interface Variant {
   id: number;
   title: string;
   options: {
@@ -16,7 +16,7 @@ interface Variant {
   placeholders: Placeholder[];
 }
 
-interface BlueprintVariants {
+export interface BlueprintVariants {
   id: number;
   title: string;
   variants: Variant[];

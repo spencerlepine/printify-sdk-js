@@ -54,7 +54,7 @@ describe('Products', () => {
 
   it('should handle listing products with pagination and limit', async () => {
     // Act
-    await printify.products.list(2, 2);
+    await printify.products.list({ page: 2, limit: 2 });
 
     // Assert
     const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products.json?page=2&limit=2`;

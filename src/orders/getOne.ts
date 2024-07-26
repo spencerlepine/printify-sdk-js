@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Address {
+export interface Address {
   first_name: string;
   last_name: string;
   region: string;
@@ -13,7 +13,7 @@ interface Address {
   company: string;
 }
 
-interface LineItemMetadata {
+export interface LineItemMetadata {
   title: string;
   price: number;
   variant_label: string;
@@ -21,7 +21,7 @@ interface LineItemMetadata {
   country: string;
 }
 
-interface LineItem {
+export interface LineItem {
   product_id: string;
   quantity: number;
   variant_id: number;
@@ -34,26 +34,26 @@ interface LineItem {
   fulfilled_at: string;
 }
 
-interface Metadata {
+export interface Metadata {
   order_type: string;
   shop_order_id: number;
   shop_order_label: string;
   shop_fulfilled_at: string;
 }
 
-interface Shipment {
+export interface Shipment {
   carrier: string;
   number: string;
   url: string;
   delivered_at: string;
 }
 
-interface PrintifyConnect {
+export interface PrintifyConnect {
   url: string;
   id: string;
 }
 
-interface GetOneResponse {
+export interface GetOneResponse {
   id: string;
   address_to: Address;
   line_items: LineItem[];

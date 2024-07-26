@@ -1,13 +1,13 @@
 import { FetchDataFunc } from '../printify';
 
-interface ShippingProfile {
+export interface ShippingProfile {
   variant_ids: number[];
   first_item: { cost: number; currency: string };
   additional_items: { cost: number; currency: string };
   countries: string[];
 }
 
-interface VariantShipping {
+export interface VariantShipping {
   handling_time: { value: number; unit: string };
   profiles: ShippingProfile[];
 }

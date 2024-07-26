@@ -1,16 +1,16 @@
 import { FetchDataFunc } from '../printify';
 
-interface UploadImageDataUrl {
+export interface UploadImageDataUrl {
   file_name: string;
   url: string;
 }
 
-interface UploadImageDataBase64 {
+export interface UploadImageDataBase64 {
   file_name: string;
   contents: string;
 }
 
-interface UploadImageResponse {
+export interface UploadImageResponse {
   id: string;
   file_name: string;
   height: number;

@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface DeleteWebhookResponse {
+export interface DeleteWebhookResponse {
   id: string;
 }
 

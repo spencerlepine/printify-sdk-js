@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Address {
+export interface Address {
   first_name: string;
   last_name: string;
   email: string;
@@ -13,16 +13,16 @@ interface Address {
   zip: string;
 }
 
-interface PrintArea {
+export interface PrintArea {
   front?: string | { src: string; scale: number; x: number; y: number; angle: number }[];
   back?: string | { src: string; scale: number; x: number; y: number; angle: number }[];
 }
 
-interface PrintDetails {
+export interface PrintDetails {
   print_on_side?: string;
 }
 
-interface LineItem {
+export interface LineItem {
   product_id?: string;
   print_provider_id?: number;
   blueprint_id?: number;
@@ -33,7 +33,7 @@ interface LineItem {
   quantity: number;
 }
 
-interface SubmitOrderData {
+export interface SubmitOrderData {
   external_id: string;
   label: string;
   line_items: LineItem[];
@@ -44,7 +44,7 @@ interface SubmitOrderData {
   address_to: Address;
 }
 
-interface SubmitOrderResponse {
+export interface SubmitOrderResponse {
   id: string;
 }
 

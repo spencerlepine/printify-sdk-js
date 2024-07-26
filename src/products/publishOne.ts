@@ -2,7 +2,7 @@
 
 import { FetchDataFunc } from '../printify';
 
-interface PublishData {
+export interface PublishData {
   title: boolean;
   description: boolean;
   images: boolean;

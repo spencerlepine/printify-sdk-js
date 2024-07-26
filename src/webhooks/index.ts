@@ -4,7 +4,14 @@ import create, { CreateWebhookFunc } from './create';
 import updateOne, { UpdateWebhookFunc } from './updateOne';
 import deleteOne, { DeleteWebhookFunc } from './deleteOne';
 
-class Webhooks {
+export interface WebhookMethods {
+  list: ListWebhooksFunc;
+  create: CreateWebhookFunc;
+  updateOne: UpdateWebhookFunc;
+  deleteOne: DeleteWebhookFunc;
+}
+
+class Webhooks implements WebhookMethods {
   list: ListWebhooksFunc;
   create: CreateWebhookFunc;
   updateOne: UpdateWebhookFunc;

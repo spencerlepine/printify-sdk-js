@@ -8,7 +8,7 @@ import { BASE_URL } from './constants';
 
 export type FetchDataFunc = (url: string, config?: RequestInit) => Promise<any>;
 
-interface PrintifyConfig {
+export interface PrintifyConfig {
   shopId: string;
   accessToken: string;
 }

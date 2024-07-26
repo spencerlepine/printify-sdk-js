@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface GetBlueprintResponse {
+export interface GetBlueprintResponse {
   id: number;
   title: string;
   description: string;

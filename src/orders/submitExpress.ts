@@ -1,12 +1,12 @@
 import { FetchDataFunc } from '../printify';
 
-interface LineItem {
+export interface LineItem {
   product_id: string;
   variant_id: number;
   quantity: number;
 }
 
-interface Address {
+export interface Address {
   first_name: string;
   last_name: string;
   email: string;
@@ -19,7 +19,7 @@ interface Address {
   zip: string;
 }
 
-interface SubmitExpressData {
+export interface SubmitExpressData {
   external_id: string;
   label: string;
   line_items: LineItem[];
@@ -28,7 +28,7 @@ interface SubmitExpressData {
   address_to: Address;
 }
 
-interface LineItemResponse {
+export interface LineItemResponse {
   product_id: string;
   quantity: number;
   variant_id: number;
@@ -47,7 +47,7 @@ interface LineItemResponse {
   fulfilled_at: string | null;
 }
 
-interface OrderResponse {
+export interface OrderResponse {
   type: string;
   id: string;
   attributes: {
@@ -56,7 +56,7 @@ interface OrderResponse {
   };
 }
 
-interface SubmitExpressResponse {
+export interface SubmitExpressResponse {
   data: OrderResponse[];
 }
 

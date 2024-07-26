@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Blueprint {
+export interface Blueprint {
   id: number;
   title: string;
   description: string;

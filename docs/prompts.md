@@ -4,9 +4,9 @@ mockUrl, don't change it. Also, please generate just the it block in the unit te
 
 // upload/archive.ts import { FetchDataFunc } from '../printify';
 
-interface Data { imageId: string; }
+export interface Data { imageId: string; }
 
-interface Response {}
+export interface Response {}
 
 export type ArchiveFunc = (imageId: string) => Promise<Response>;
 

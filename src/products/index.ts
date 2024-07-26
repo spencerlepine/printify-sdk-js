@@ -9,7 +9,19 @@ import setPublishFailed, { SetPublishFailedFunc } from './setPublishFailed';
 import setPublishSucceeded, { SetPublishSucceededFunc } from './setPublishSucceeded';
 import updateOne, { UpdateProductFunc } from './updateOne';
 
-class Products {
+export interface ProductsMethods {
+  create: CreateProductFunc;
+  deleteOne: DeleteProductFunc;
+  getOne: GetProductFunc;
+  list: ListProductsFunc;
+  notifyUnpublished: NotifyUnpublishedFunc;
+  publishOne: PublishProductFunc;
+  setPublishFailed: SetPublishFailedFunc;
+  setPublishSucceeded: SetPublishSucceededFunc;
+  updateOne: UpdateProductFunc;
+}
+
+class Products implements ProductsMethods {
   create: CreateProductFunc;
   deleteOne: DeleteProductFunc;
   getOne: GetProductFunc;

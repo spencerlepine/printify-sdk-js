@@ -1,11 +1,11 @@
 import { FetchDataFunc } from '../printify';
 
-interface Data {
+export interface Data {
   topic: string;
   url: string;
 }
 
-interface CreateWebhookResponse {
+export interface CreateWebhookResponse {
   topic: string;
   url: string;
   shop_id: string;

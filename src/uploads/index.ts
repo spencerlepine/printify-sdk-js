@@ -4,7 +4,14 @@ import getById, { GetUploadByIdFunc } from './getById';
 import list, { ListUploadsFunc } from './list';
 import uploadImage, { UploadImageFunc } from './uploadImage';
 
-class Uploads {
+export interface UploadsMethods {
+  archive: ArchiveUploadFunc;
+  getById: GetUploadByIdFunc;
+  list: ListUploadsFunc;
+  uploadImage: UploadImageFunc;
+}
+
+class Uploads implements UploadsMethods {
   archive: ArchiveUploadFunc;
   getById: GetUploadByIdFunc;
   list: ListUploadsFunc;

@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Location {
+export interface Location {
   address1: string;
   address2: string | null;
   city: string;
@@ -9,7 +9,7 @@ interface Location {
   zip: string;
 }
 
-interface Provider {
+export interface Provider {
   id: number;
   title: string;
   location: Location;

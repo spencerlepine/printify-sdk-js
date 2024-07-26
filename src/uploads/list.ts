@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-interface Upload {
+export interface Upload {
   id: string;
   file_name: string;
   height: number;
@@ -11,7 +11,7 @@ interface Upload {
   upload_time: string;
 }
 
-interface ListUploadsResponse {
+export interface ListUploadsResponse {
   current_page: number;
   data: Upload[];
   first_page_url: string;
