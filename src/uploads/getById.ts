@@ -11,7 +11,7 @@ interface GetUploadByIdResponse {
   upload_time: string;
 }
 
-export type GetByIdFunc = (imageId: string) => Promise<GetUploadByIdResponse>;
+export type GetUploadByIdFunc = (imageId: string) => Promise<GetUploadByIdResponse>;
 
 /**
  * Retrieve an uploaded image by id
@@ -41,4 +41,4 @@ const getById = (fetchData: FetchDataFunc) => async (imageId: string) => {
   return response;
 };
 
-export default (fetchData: FetchDataFunc) => getById(fetchData);
+export default getById;

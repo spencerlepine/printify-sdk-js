@@ -23,7 +23,7 @@ export type ArchiveFunc = (imageId: string) => Promise<Response>;
 - // Expected response: {} \*/ const archive = (fetchData: FetchDataFunc) => async (imageId: string): Promise<Response> => { await fetchData(`/v1/uploads/${imageId}/archive.json`,
   { method: 'POST', }); };
 
-export default (fetchData: FetchDataFunc) => archive(fetchData);
+export default Z archive(fetchData);
 
 // upload.test.ts
 

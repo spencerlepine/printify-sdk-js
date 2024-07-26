@@ -32,4 +32,4 @@ const getBlueprintProviders =
     return response;
   };
 
-export default (fetchData: FetchDataFunc) => getBlueprintProviders(fetchData);
+export default getBlueprintProviders;

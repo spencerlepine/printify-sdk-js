@@ -4,7 +4,7 @@ interface DeleteWebhookResponse {
   id: string;
 }
 
-export type DeleteOneFunc = (webhookId: string) => Promise<DeleteWebhookResponse>;
+export type DeleteWebhookFunc = (webhookId: string) => Promise<DeleteWebhookResponse>;
 
 /**
  * Delete a webhook
@@ -28,4 +28,4 @@ const deleteOne =
     return response;
   };
 
-export default (fetchData: FetchDataFunc, shopId: string) => deleteOne(fetchData, shopId);
+export default deleteOne;

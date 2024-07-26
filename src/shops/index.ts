@@ -1,10 +1,10 @@
 import { FetchDataFunc } from '../printify';
-import deleteOne, { DeleteOneFunc } from './deleteOne';
-import list, { ListFunc } from './list';
+import deleteOne, { DeleteShopFunc } from './deleteOne';
+import list, { ListShopsFunc } from './list';
 
 class Shops {
-  deleteOne: DeleteOneFunc;
-  list: ListFunc;
+  deleteOne: DeleteShopFunc;
+  list: ListShopsFunc;
 
   constructor(fetchData: FetchDataFunc, shopId: string) {
     this.deleteOne = deleteOne(fetchData, shopId);

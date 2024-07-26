@@ -53,4 +53,4 @@ const getBlueprintVariants =
     return response;
   };
 
-export default (fetchData: FetchDataFunc) => getBlueprintVariants(fetchData);
+export default getBlueprintVariants;

@@ -1,13 +1,16 @@
 # Printify SDK for JavaScript (Node.js)
 
+![NPM Version](https://img.shields.io/npm/v/spencerlepine-sdk-js) ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)
+![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
+
 The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here:
-[developers.printify.com](https://developers.printify.com/).
+[developers.printify.com](https://developers.printify.com).
 
 ## Getting started
 
 ### Prerequisites
 
-1. Printify API Token ([documentation](https://developers.printify.com/))
+1. Printify API Token ([documentation](https://developers.printify.com))
 
 ### Installation
 
@@ -21,6 +24,7 @@ npm install spencerlepine-sdk-js
 
 ```js
 const Printify = require('spencerlepine-sdk-js');
+// import Printify from 'spencerlepine-sdk-js';
 
 const printify = new Printify({
   shopId: '16326523', // global query by shop_id
@@ -50,6 +54,11 @@ For the full documentation, please see [`API.md`](./docs/API.md)
 
 We welcome contributions from the community! If you're interested in contributing to this project, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) file to get started.
 
+## Disclaimer
+
+This SDK is a third-party library and is not officially endorsed or maintained by Printify. It is provided "as is" without warranty of any kind. For official information and
+guidelines on using the Printify API, please refer to the [Printify Developer Documentation](https://developers.printify.com/).
+
 ## License
 
-This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
+[MIT](./LICENSE)

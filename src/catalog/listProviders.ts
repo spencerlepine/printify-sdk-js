@@ -59,4 +59,4 @@ const listProviders =
     return response;
   };
 
-export default (fetchData: FetchDataFunc) => listProviders(fetchData);
+export default listProviders;

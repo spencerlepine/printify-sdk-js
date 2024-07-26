@@ -43,4 +43,4 @@ const getVariantShipping =
     return response;
   };
 
-export default (fetchData: FetchDataFunc) => getVariantShipping(fetchData);
+export default getVariantShipping;

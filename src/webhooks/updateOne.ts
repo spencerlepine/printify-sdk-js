@@ -11,7 +11,7 @@ interface UpdateWebhookResponse {
   id: string;
 }
 
-export type UpdateOneFunc = (webhookId: string, data: UpdateData) => Promise<UpdateWebhookResponse>;
+export type UpdateWebhookFunc = (webhookId: string, data: UpdateData) => Promise<UpdateWebhookResponse>;
 
 /**
  * Modify a webhook
@@ -41,4 +41,4 @@ const updateOne =
     return response;
   };
 
-export default (fetchData: FetchDataFunc, shopId: string) => updateOne(fetchData, shopId);
+export default updateOne;

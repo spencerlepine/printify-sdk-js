@@ -6,7 +6,7 @@ interface Shop {
   sales_channel: string;
 }
 
-export type ListFunc = () => Promise<Shop[]>;
+export type ListShopsFunc = () => Promise<Shop[]>;
 
 /**
  * Retrieve a list of shops in a Printify account
@@ -21,13 +21,11 @@ export type ListFunc = () => Promise<Shop[]>;
  * //   { id: 9876, title: "My other new store", sales_channel: "disconnected" }
  * // ]
  */
-const list =
-  (fetchData: FetchDataFunc): ListFunc =>
-  async (): Promise<Shop[]> => {
-    const response = await fetchData(`/v1/shops.json`, {
-      method: 'GET',
-    });
-    return response;
-  };
+const list = (fetchData: FetchDataFunc) => async (): Promise<Shop[]> => {
+  const response = await fetchData(`/v1/shops.json`, {
+    method: 'GET',
+  });
+  return response;
+};
 
 export default list;

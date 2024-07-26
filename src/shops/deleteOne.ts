@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-export type DeleteOneFunc = (shopId?: string) => Promise<void>;
+export type DeleteShopFunc = (shopId?: string) => Promise<void>;
 
 /**
  * Disconnect a shop
@@ -16,7 +16,7 @@ export type DeleteOneFunc = (shopId?: string) => Promise<void>;
  * await printify.shops.deleteOne(customShopId);
  */
 const deleteOne =
-  (fetchData: FetchDataFunc, defaultShopId: string): DeleteOneFunc =>
+  (fetchData: FetchDataFunc, defaultShopId: string) =>
   async (customShopId?: string): Promise<void> => {
     await fetchData(`/v1/shops/${customShopId || defaultShopId}/connection.json`, {
       method: 'DELETE',

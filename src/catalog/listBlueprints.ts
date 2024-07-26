@@ -50,4 +50,4 @@ const listBlueprints =
     return response;
   };
 
-export default (fetchData: FetchDataFunc) => listBlueprints(fetchData);
+export default listBlueprints;

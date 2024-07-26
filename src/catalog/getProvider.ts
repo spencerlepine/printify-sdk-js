@@ -55,4 +55,4 @@ const getProvider =
     return response;
   };
 
-export default (fetchData: FetchDataFunc) => getProvider(fetchData);
+export default getProvider;

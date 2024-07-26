@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "declarationDir": "./dist/types",
     "importHelpers": true
   },

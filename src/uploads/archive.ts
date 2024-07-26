@@ -1,6 +1,6 @@
 import { FetchDataFunc } from '../printify';
 
-export type ArchiveFunc = (imageId: string) => Promise<void>;
+export type ArchiveUploadFunc = (imageId: string) => Promise<void>;
 
 /**
  * Archive an uploaded image
@@ -21,4 +21,4 @@ const archive =
     });
   };
 
-export default (fetchData: FetchDataFunc) => archive(fetchData);
+export default archive;

@@ -26,7 +26,7 @@ interface ListUploadsResponse {
   total: number;
 }
 
-export type ListFunc = (page?: number, limit?: number) => Promise<ListUploadsResponse>;
+export type ListUploadsFunc = (page?: number, limit?: number) => Promise<ListUploadsResponse>;
 
 /**
  * Retrieve a list of uploaded images with optional pagination and limit.
@@ -58,4 +58,4 @@ const list =
     return fetchData(url, { method: 'GET' });
   };
 
-export default (fetchData: FetchDataFunc) => list(fetchData);
+export default list;

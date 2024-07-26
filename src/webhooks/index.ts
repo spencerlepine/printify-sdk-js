@@ -1,14 +1,14 @@
 import { FetchDataFunc } from '../printify';
-import list, { ListFunc } from './list';
-import create, { CreateFunc } from './create';
-import updateOne, { UpdateOneFunc } from './updateOne';
-import deleteOne, { DeleteOneFunc } from './deleteOne';
+import list, { ListWebhooksFunc } from './list';
+import create, { CreateWebhookFunc } from './create';
+import updateOne, { UpdateWebhookFunc } from './updateOne';
+import deleteOne, { DeleteWebhookFunc } from './deleteOne';
 
 class Webhooks {
-  list: ListFunc;
-  create: CreateFunc;
-  updateOne: UpdateOneFunc;
-  deleteOne: DeleteOneFunc;
+  list: ListWebhooksFunc;
+  create: CreateWebhookFunc;
+  updateOne: UpdateWebhookFunc;
+  deleteOne: DeleteWebhookFunc;
 
   constructor(fetchData: FetchDataFunc, shopId: string) {
     this.list = list(fetchData, shopId);

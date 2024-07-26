@@ -12,7 +12,7 @@ interface CreateWebhookResponse {
   id: string;
 }
 
-export type CreateFunc = (data: Data) => Promise<CreateWebhookResponse>;
+export type CreateWebhookFunc = (data: Data) => Promise<CreateWebhookResponse>;
 
 /**
  * Create a new webhook
@@ -41,4 +41,4 @@ const create =
     return response;
   };
 
-export default (fetchData: FetchDataFunc, shopId: string) => create(fetchData, shopId);
+export default create;

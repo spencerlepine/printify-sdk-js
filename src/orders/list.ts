@@ -1,4 +1,101 @@
-// TODO - printify.orders.list();
-// printify.orders.list(page);
-// printify.orders.list(status);
-// printify.orders.list(sku);
+import { FetchDataFunc } from '../printify';
+
+interface OrderAddress {
+  first_name: string;
+  last_name: string;
+  region: string;
+  address1: string;
+  city: string;
+  zip: string;
+  email: string;
+  phone: string;
+  country: string;
+  company: string;
+}
+
+interface OrderItemMetadata {
+  title: string;
+  price: number;
+  variant_label: string;
+  sku: string;
+  country: string;
+}
+
+interface OrderItem {
+  product_id: string;
+  quantity: number;
+  variant_id: number;
+  print_provider_id: number;
+  cost: number;
+  shipping_cost: number;
+  status: string;
+  metadata: OrderItemMetadata;
+  sent_to_production_at: string;
+  fulfilled_at: string;
+}
+
+interface OrderShipment {
+  carrier: string;
+  number: string;
+  url: string;
+  delivered_at: string;
+}
+
+interface Order {
+  id: string;
+  address_to: OrderAddress;
+  line_items: OrderItem[];
+  metadata: {
+    order_type: string;
+    shop_order_id: number;
+    shop_order_label: string;
+    shop_fulfilled_at: string;
+  };
+  total_price: number;
+  total_shipping: number;
+  total_tax: number;
+  status: string;
+  shipping_method: number;
+  is_printify_express: boolean;
+  is_economy_shipping: boolean;
+  shipments: OrderShipment[];
+  created_at: string;
+  sent_to_production_at: string;
+  fulfilled_at: string;
+  printify_connect: {
+    url: string;
+    id: string;
+  };
+}
+
+interface ListOrdersResponse {
+  current_page: number;
+  data: Order[];
+}
+
+export type ListOrdersFunc = (page: number) => Promise<ListOrdersResponse>;
+
+/**
+ * Retrieve a list of orders
+ *
+ * @param {number} page - The page number of orders to retrieve
+ * @returns {Promise<ListOrdersResponse>}
+ *
+ * @example
+ * await printify.orders.list();
+ * // Expected response: {
+ *     current_page: 2,
+ *     data: [ { id: "5a96f649b2439217 } ]
+ * }
+ * printify.orders.list((page = 2));
+ * printify.orders.list(undefined, (limit = 2));
+ * printify.orders.list(undefined, undefined, (status = "fulfilled"));
+ * printify.orders.list(undefined, undefined, undefined, (sku = "168699843"));
+ */
+const listOrders =
+  (fetchData: FetchDataFunc, shopId: string): ListOrdersFunc =>
+  async (page: number): Promise<ListOrdersResponse> => {
+    return await fetchData(`/v1/shops/${shopId}/orders.json?page=${page}`, { method: 'GET' });
+  };
+
+export default listOrders;

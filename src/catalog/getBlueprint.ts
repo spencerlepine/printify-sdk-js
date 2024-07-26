@@ -37,4 +37,4 @@ const getBlueprint =
     return response;
   };
 
-export default (fetchData: FetchDataFunc) => getBlueprint(fetchData);
+export default getBlueprint;

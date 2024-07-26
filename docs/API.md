@@ -13,6 +13,7 @@ $ curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: 
 
 ```js
 const Printify = require('spencerlepine-sdk-js');
+// import Printify from 'spencerlepine-sdk-js';
 
 const printify = new Printify({
   shopId: '16326523', // global query by shop_id
@@ -1014,12 +1015,14 @@ await printify.products.notifyUnpublished(productId);
 
 #### `printify.orders.list()`
 
-<!-- TODO, combine the listOrders, w/ "page, limit, status, sku"? -->
-
 `GET /v1/shops/{shop_id}/orders.json` **Description:** Retrieve a list of orders
 
 ```js
 await printify.orders.list();
+await printify.orders.list((page = 2));
+await printify.orders.list(undefined, (limit = 2));
+await printify.orders.list(undefined, undefined, (status = 'fulfilled'));
+await printify.orders.list(undefined, undefined, undefined, (sku = '168699843'));
 ```
 
 <details>
@@ -1128,12 +1131,12 @@ await printify.orders.list(sku);
 
 </details>
 
-#### `printify.orders.get(orderId)`
+#### `printify.orders.getOne(orderId)`
 
 `GET /v1/shops/{shop_id}/orders/{order_id}.json` **Description:** Get order details by id
 
 ```js
-await printify.orders.get(orderId);
+await printify.orders.getOne(orderId);
 ```
 
 <details>
@@ -1491,6 +1494,8 @@ await printify.orders.calculateShipping(data);
 ```json
 { "standard": 1000, "express": 5000, "priority": 5000, "printify_express": 799, "economy": 399 }
 ```
+
+</details>
 
 Response contains the shipping options that are defined in the following table:
 

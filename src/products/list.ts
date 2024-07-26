@@ -73,7 +73,7 @@ interface ListProductsResponse {
   total: number;
 }
 
-export type ListFunc = (page?: number, limit?: number) => Promise<ListProductsResponse>;
+export type ListProductsFunc = (page?: number, limit?: number) => Promise<ListProductsResponse>;
 
 /**
  * Retrieve a list of all products with optional pagination and limit.
@@ -95,7 +95,7 @@ export type ListFunc = (page?: number, limit?: number) => Promise<ListProductsRe
  * // }
  */
 const list =
-  (fetchData: FetchDataFunc, shopId: string): ListFunc =>
+  (fetchData: FetchDataFunc, shopId: string): ListProductsFunc =>
   async (
     page?: number,
     limit?: number

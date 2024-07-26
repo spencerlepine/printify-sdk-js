@@ -7,7 +7,7 @@ interface Webhook {
   id: string;
 }
 
-export type ListFunc = () => Promise<Webhook[]>;
+export type ListWebhooksFunc = () => Promise<Webhook[]>;
 
 /**
  * Retrieve a list of webhooks
@@ -29,4 +29,4 @@ const list = (fetchData: FetchDataFunc, shopId: string) => async (): Promise<Web
   return response;
 };
 
-export default (fetchData: FetchDataFunc, shopId: string) => list(fetchData, shopId);
+export default list;
