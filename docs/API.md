@@ -1,8 +1,8 @@
-# Printify SDK Documentation
+# Printify SDK Documentation (Node.js)
 
 ## Introduction
 
-The Printify SDK for Node.js. A basic JavaScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here:
+The Printify SDK for Node.js. A basic TypeScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here:
 [developers.printify.com](https://developers.printify.com/).
 
 ## Usage
@@ -12,19 +12,19 @@ $ curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: 
 ```
 
 ```js
-const Printify = require('printify-sdk-js');
-// import Printify from 'printify-sdk-js';
+import Printify from 'printify-sdk-js';
+// const Printify = require('printify-sdk-js'); // CommonJS
 
 const printify = new Printify({
-  shopId: '16326523', // global query by shop_id
-  accessToken: API_TOKEN,
+  shopId: '123456', // global query by shop_id
+  accessToken: process.env.API_TOKEN,
 });
 
 (async () => {
-  const result = await printify.orders.submit({
-    /* order details */
-  });
-  console.log(result.id);
+  const data = {/* ... */};
+  const result = await printify.orders.submit(data);
+
+  console.log(result); // { "id": "5a96f649b2439217d070f507" }
 })();
 ```
 

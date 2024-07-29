@@ -1,13 +1,13 @@
 {
   "name": "printify-sdk-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Printify SDK for JavaScript. Client for Node.js",
   "author": "Spencer Lepine <spencer.sayhello@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/spencerlepine/printify-sdk-js#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spencerlepine/printify-sdk-js.git"
+    "url": "https://github.com/spencerlepine/printify-sdk-js.git"
   },
   "bugs": {
     "url": "https://github.com/spencerlepine/printify-sdk-js/issues"
@@ -16,6 +16,7 @@
     "printify",
     "sdk",
     "javascript",
+    "typescript",
     "nodejs",
     "api",
     "print-on-demand",
