@@ -1,6 +1,6 @@
 # Printify SDK for TypeScript (Node.js)
 
-![NPM Version](https://img.shields.io/npm/v/printify-sdk-js) ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)
+[![NPM Version](https://img.shields.io/npm/v/printify-sdk-js)](https://www.npmjs.com/package/printify-sdk-js) ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 
 Printify SDK for Node.js. A basic TypeScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here:
@@ -10,12 +10,19 @@ Printify SDK for Node.js. A basic TypeScript wrapper for the Printify REST API (
 
 ### Prerequisites
 
-1. Printify API Token ([documentation](https://developers.printify.com))
+* Printify API Token ([documentation](https://developers.printify.com))
 
 ### Installation
 
 ```sh
+# Npm
 npm install printify-sdk-js
+
+# Yarn
+yarn add printify-sdk-js
+
+# Pnpm
+pnpm add printify-sdk-js
 ```
 
 ## Usage
@@ -33,9 +40,12 @@ const printify = new Printify({
 
 (async () => {
   const data = {/* ... */};
-  const result = await printify.orders.submit(data);
-
-  console.log(result); // { "id": "5a96f649b2439217d070f507" }
+  try {
+    const result = await printify.orders.submit(data);
+    console.log(result); // { "id": "5a96f649b2439217d070f507" }
+  } catch (error) {
+    console.error('Error submitting order:', error);
+  }
 })();
 ```
 
