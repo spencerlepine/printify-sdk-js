@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/" # Location of your package.json
+    schedule:
+      interval: "weekly" # Check for updates weekly; you can also use "daily" or "monthly"
+    ignore:
+      - dependency-name: "typescript"
+        versions: ["< 5.5.3"] # Ignore versions lower than the current version of TypeScript
