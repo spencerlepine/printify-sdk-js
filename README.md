@@ -29,13 +29,18 @@ pnpm add printify-sdk-js
 
 > ⚠️ For security purposes, this is intended only for server-side use, the API does not support CORS and will not process requests from a frontend application
 
+```sh
+$ curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: Bearer $PRINTIFY_API_TOKEN"`
+# ref: https://developers.printify.com/#create-a-personal-access-token
+```
+
 ```js
 import Printify from 'printify-sdk-js';
 // const Printify = require('printify-sdk-js'); // CommonJS
 
 const printify = new Printify({
   shopId: '123456', // global query by shop_id
-  accessToken: process.env.API_TOKEN,
+  accessToken: process.env.PRINTIFY_API_KEY,
 });
 
 (async () => {

@@ -36,7 +36,7 @@ class Printify {
   }
 
   // Printify REST API (v1) Specification:
-  // header: `Authorization: Bearer ${PRINTIFY_API_TOKEN}`
+  // header: `Authorization: Bearer ${PRINTIFY_API_KEY}`
   // ContentType: application/json;charset=utf-8
   // baseUrl: https://api.printify.com/v1/
   private async fetchData(url: string, config: RequestInit = {}): Promise<any> {
