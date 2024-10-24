@@ -1,6 +1,6 @@
 {
   "name": "printify-sdk-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Printify SDK for JavaScript. Client for Node.js",
   "author": "Spencer Lepine <spencer.sayhello@gmail.com>",
   "license": "MIT",

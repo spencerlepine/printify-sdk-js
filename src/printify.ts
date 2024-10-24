@@ -36,7 +36,7 @@ class Printify {
   }
 
   // Printify REST API (v1) Specification:
-  // header: `Authorization: Bearer ${PRINTIFY_API_KEY}`
+  // header: `Authorization: Bearer ${PRINTIFY_API_TOKEN}`
   // ContentType: application/json;charset=utf-8
   // baseUrl: https://api.printify.com/v1/
   private async fetchData(url: string, config: RequestInit = {}): Promise<any> {
@@ -56,6 +56,7 @@ class Printify {
     try {
       const response = await fetch(`${BASE_URL}${url}`, requestData);
       if (!response.ok) {
+        console.error(`Printify SDK Error: ${response.status} ${response.statusText} - Requested URL: ${BASE_URL}${url}`);
         throw new Error(`Printify SDK Error: ${response.status} ${response.statusText}`);
       }
       return await response.json();

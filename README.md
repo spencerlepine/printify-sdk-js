@@ -1,7 +1,8 @@
 # Printify SDK for TypeScript (Node.js)
 
-[![NPM Version](https://img.shields.io/npm/v/printify-sdk-js)](https://www.npmjs.com/package/printify-sdk-js) ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)
-![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
+[![NPM Version](https://img.shields.io/npm/v/printify-sdk-js)](https://www.npmjs.com/package/printify-sdk-js)
+![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
+![Project Status Badge](./.github/status-maintained-badge.svg)
 
 Printify SDK for Node.js. A basic TypeScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here:
 [developers.printify.com](https://developers.printify.com).
@@ -10,7 +11,7 @@ Printify SDK for Node.js. A basic TypeScript wrapper for the Printify REST API (
 
 ### Prerequisites
 
-* Printify API Token ([documentation](https://developers.printify.com))
+- Printify Personal Access Token (create one [here](https://printify.com/app/account/api))
 
 ### Installation
 
@@ -40,11 +41,13 @@ import Printify from 'printify-sdk-js';
 
 const printify = new Printify({
   shopId: '123456', // global query by shop_id
-  accessToken: process.env.PRINTIFY_API_KEY,
+  accessToken: process.env.PRINTIFY_API_TOKEN,
 });
 
 (async () => {
-  const data = {/* ... */};
+  const data = {
+    /* ... */
+  };
   try {
     const result = await printify.orders.submit(data);
     console.log(result); // { "id": "5a96f649b2439217d070f507" }

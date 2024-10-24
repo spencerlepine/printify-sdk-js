@@ -8,7 +8,7 @@ The Printify SDK for Node.js. A basic TypeScript wrapper for the Printify REST A
 ## Usage
 
 ```sh
-$ curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: Bearer $PRINTIFY_API_KEY"`
+$ curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: Bearer $PRINTIFY_API_TOKEN"`
 ```
 
 ```js
@@ -17,11 +17,13 @@ import Printify from 'printify-sdk-js';
 
 const printify = new Printify({
   shopId: '123456', // global query by shop_id
-  accessToken: process.env.PRINTIFY_API_KEY,
+  accessToken: process.env.PRINTIFY_API_TOKEN,
 });
 
 (async () => {
-  const data = {/* ... */};
+  const data = {
+    /* ... */
+  };
   const result = await printify.orders.submit(data);
 
   console.log(result); // { "id": "5a96f649b2439217d070f507" }
