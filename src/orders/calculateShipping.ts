@@ -71,7 +71,7 @@ const calculateShipping =
   async (data: ShippingData): Promise<ShippingResponse> => {
     return await fetchData(`/v1/shops/${shopId}/orders/shipping.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 

@@ -36,7 +36,7 @@ const updateOne =
   async (webhookId: string, data: UpdateData): Promise<UpdateWebhookResponse> => {
     const response = await fetchData(`/v1/shops/${shopId}/webhooks/${webhookId}.json`, {
       method: 'PUT',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
     return response;
   };

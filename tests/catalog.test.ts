@@ -1,4 +1,5 @@
 import printify from './printifyInstance';
+import { assertAxiosCall } from './testUtils';
 
 describe('Catalog', () => {
   it('should handle the get blueprint endpoint', async () => {
@@ -7,15 +8,7 @@ describe('Catalog', () => {
     await printify.catalog.getBlueprint(mockBlueprintId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/catalog/blueprints/${mockBlueprintId}.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/catalog/blueprints/${mockBlueprintId}.json`);
   });
 
   it('should handle the get blueprint providers endpoint', async () => {
@@ -24,15 +17,7 @@ describe('Catalog', () => {
     await printify.catalog.getBlueprintProviders(mockBlueprintId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/catalog/blueprints/${mockBlueprintId}/print_providers.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/catalog/blueprints/${mockBlueprintId}/print_providers.json`);
   });
 
   it('should handle the get blueprint variants endpoint', async () => {
@@ -42,15 +27,7 @@ describe('Catalog', () => {
     await printify.catalog.getBlueprintVariants(mockBlueprintId, mockPrintProviderId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/catalog/blueprints/${mockBlueprintId}/print_providers/${mockPrintProviderId}/variants.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/catalog/blueprints/${mockBlueprintId}/print_providers/${mockPrintProviderId}/variants.json`);
   });
 
   it('should handle the get variant shipping endpoint', async () => {
@@ -60,15 +37,7 @@ describe('Catalog', () => {
     await printify.catalog.getVariantShipping(mockBlueprintId, mockPrintProviderId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/catalog/blueprints/${mockBlueprintId}/print_providers/${mockPrintProviderId}/shipping.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/catalog/blueprints/${mockBlueprintId}/print_providers/${mockPrintProviderId}/shipping.json`);
   });
 
   it('should handle the get provider endpoint', async () => {
@@ -77,15 +46,7 @@ describe('Catalog', () => {
     await printify.catalog.getProvider(mockPrintProviderId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/catalog/print_providers/${mockPrintProviderId}.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/catalog/print_providers/${mockPrintProviderId}.json`);
   });
 
   it('should handle the list blueprints endpoint', async () => {
@@ -93,15 +54,7 @@ describe('Catalog', () => {
     await printify.catalog.listBlueprints();
 
     // Assert
-    const mockUrl = 'https://api.printify.com/v1/catalog/blueprints.json';
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', '/v1/catalog/blueprints.json');
   });
 
   it('should handle the list providers endpoint', async () => {
@@ -109,14 +62,6 @@ describe('Catalog', () => {
     await printify.catalog.listProviders();
 
     // Assert
-    const mockUrl = 'https://api.printify.com/v1/catalog/print_providers.json';
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', '/v1/catalog/print_providers.json');
   });
 });

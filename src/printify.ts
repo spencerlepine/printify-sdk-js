@@ -5,12 +5,17 @@ import Shops, { ShopsMethods } from './shops';
 import Uploads, { UploadsMethods } from './uploads';
 import Webhooks, { WebhookMethods } from './webhooks';
 import { BASE_URL } from './constants';
+import axios, { AxiosRequestConfig } from 'axios';
+import axiosRetry from 'axios-retry';
 
-export type FetchDataFunc = (url: string, config?: RequestInit) => Promise<any>;
+export type FetchDataFunc = <T = any>(url: string, config?: AxiosRequestConfig) => Promise<T>;
+
+axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
 
 export interface PrintifyConfig {
   shopId: string;
   accessToken: string;
+  enableLogging?: boolean;
 }
 
 class Printify {
@@ -22,10 +27,12 @@ class Printify {
   shops: ShopsMethods;
   uploads: UploadsMethods;
   webhooks: WebhookMethods;
+  enableLogging: boolean;
 
   constructor(config: PrintifyConfig) {
     this.shopId = config.shopId;
     this.#accessToken = config.accessToken;
+    this.enableLogging = config.enableLogging ?? true;
 
     this.catalog = new Catalog(this.fetchData.bind(this), this.shopId);
     this.orders = new Orders(this.fetchData.bind(this), this.shopId);
@@ -35,34 +42,67 @@ class Printify {
     this.webhooks = new Webhooks(this.fetchData.bind(this), this.shopId);
   }
 
-  // Printify REST API (v1) Specification:
-  // header: `Authorization: Bearer ${PRINTIFY_API_TOKEN}`
-  // ContentType: application/json;charset=utf-8
-  // baseUrl: https://api.printify.com/v1/
-  private async fetchData(url: string, config: RequestInit = {}): Promise<any> {
+  private logError(message: string) {
+    if (this.enableLogging) {
+      console.error(message);
+    }
+  }
+
+  private logRequest(method: string, url: string) {
+    if (this.enableLogging) {
+      console.log(`Requesting ${method.toUpperCase()} ${BASE_URL}${url}`);
+    }
+  }
+
+  private async fetchData<T = any>(url: string, config: AxiosRequestConfig = {}): Promise<T> {
     const defaultHeaders = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.#accessToken}`,
     };
 
-    const requestData = {
-      ...config,
+    const requestConfig: AxiosRequestConfig = {
+      ...(config.method ? config : { ...config, method: 'GET' }),
+      baseURL: BASE_URL,
       headers: {
         ...defaultHeaders,
         ...(config.headers || {}),
       },
     };
 
+    const method = config.method?.toLowerCase() || 'get';
+    this.logRequest(method, url);
+
     try {
-      const response = await fetch(`${BASE_URL}${url}`, requestData);
-      if (!response.ok) {
-        console.error(`Printify SDK Error: ${response.status} ${response.statusText} - Requested URL: ${BASE_URL}${url}`);
-        throw new Error(`Printify SDK Error: ${response.status} ${response.statusText}`);
+      let response;
+      switch (method) {
+        case 'post':
+          response = await axios.post<T>(url, config.data, requestConfig);
+          break;
+        case 'put':
+          response = await axios.put<T>(url, config.data, requestConfig);
+          break;
+        case 'delete':
+          response = await axios.delete<T>(url, requestConfig);
+          break;
+        case 'patch':
+          response = await axios.patch<T>(url, config.data, requestConfig);
+          break;
+        case 'get':
+        default:
+          response = await axios.get<T>(url, requestConfig);
+          break;
       }
-      return await response.json();
+      return response.data;
     } catch (error) {
-      // Rethrow the error for upstream code to handle
-      throw error;
+      if (axios.isAxiosError(error)) {
+        const message = `Printify SDK Error: ${error.response?.status} ${error.response?.statusText} - Requested URL: ${BASE_URL}${url}`;
+        this.logError(message);
+        throw new Error(message);
+      } else {
+        const message = 'Printify SDK Unknown Error';
+        this.logError(message);
+        throw new Error(message);
+      }
     }
   }
 }

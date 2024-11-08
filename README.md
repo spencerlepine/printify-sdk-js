@@ -31,8 +31,15 @@ pnpm add printify-sdk-js
 > ⚠️ For security purposes, this is intended only for server-side use, the API does not support CORS and will not process requests from a frontend application
 
 ```sh
-$ curl -X GET <https://api.printify.com/v1/shops.json> --header "Authorization: Bearer $PRINTIFY_API_TOKEN"`
-# ref: https://developers.printify.com/#create-a-personal-access-token
+# generate a token: https://printify.com/app/account/api
+export PRINTIFY_API_TOKEN="asdfASDFasdfASDFasdfASDF"
+
+# fetch your shopId
+curl -X GET https://api.printify.com/v1/shops.json --header "Authorization: Bearer $PRINTIFY_API_TOKEN"
+# Expected response: [{"id":1234567,"title":"My Store Name","sales_channel":"custom_integration"}]
+
+# store for process.env.PRINTIFY_API_TOKEN
+echo "PRINTIFY_API_TOKEN=\"$PRINTIFY_API_TOKEN\"" >> .env
 ```
 
 ```js
@@ -42,19 +49,47 @@ import Printify from 'printify-sdk-js';
 const printify = new Printify({
   shopId: '123456', // global query by shop_id
   accessToken: process.env.PRINTIFY_API_TOKEN,
+  enableLogging: true, // on by default
 });
 
-(async () => {
-  const data = {
-    /* ... */
-  };
-  try {
-    const result = await printify.orders.submit(data);
-    console.log(result); // { "id": "5a96f649b2439217d070f507" }
-  } catch (error) {
-    console.error('Error submitting order:', error);
-  }
-})();
+const orderData = {
+  label: order_123456,
+  line_items: [
+    {
+      print_provider_id: '12345',
+      blueprint_id: '67890',
+      variant_id: '112233',
+      print_areas: {
+        front: 'https://example.com/path/to/sticker.png', // **must be public
+      },
+      quantity: 1,
+    },
+    // ...
+  ],
+  shipping_method: 1,
+  is_printify_express: false,
+  is_economy_shipping: false,
+  send_shipping_notification: true, // send email
+  address_to: {
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'johndoe@gmail.com',
+    phone: '0574 69 21 90',
+    country: 'US',
+    region: 'NY',
+    address1: '123 Main Street',
+    address2: '',
+    city: 'New York',
+    zip: '10001',
+  },
+};
+
+try {
+  const result = await printify.orders.submit(orderData);
+  console.log(result); // { "id": "5a96f649b2439217d070f507" }
+} catch (error) {
+  console.error('Error submitting order:', error);
+}
 ```
 
 ## API

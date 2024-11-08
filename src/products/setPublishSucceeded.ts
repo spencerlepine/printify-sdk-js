@@ -28,7 +28,7 @@ const setPublishSucceeded =
   async (productId: string, data: PublishSucceededData): Promise<void> => {
     await fetchData(`/v1/shops/${shopId}/products/${productId}/publishing_succeeded.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 

@@ -1,9 +1,10 @@
 name: NPM Publish
 
-# Workflow to automate NPM publishing,
-#  - Uses the NPM_TOKEN GitHub secret
-#  - Triggered when a repository 'release' is created
-#  - Runs a dry-run publish, then production publish once the admin approves
+# Workflow: Automated NPM release on GitHub release creation
+# 
+# Prerequisites:
+# - `NPM_TOKEN` with `automation` permissions (generate at [npmjs.org](https://docs.npmjs.com/creating-and-viewing-access-tokens))
+# - `NPM_TOKEN` added to GitHub Repository Secrets
 
 on:
   workflow_dispatch:

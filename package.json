@@ -1,6 +1,6 @@
 {
   "name": "printify-sdk-js",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Printify SDK for JavaScript. Client for Node.js",
   "author": "Spencer Lepine <spencer.sayhello@gmail.com>",
   "license": "MIT",
@@ -43,14 +43,15 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "test": "jest --passWithNoTests",
+    "release": "npm run test && npm run build",
+    "test": "jest",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run release"
     }
   },
   "lint-staged": {
@@ -58,11 +59,19 @@
       "prettier --write"
     ]
   },
+  "dependencies": {
+    "@types/jest": "^29.5.14",
+    "axios": "^1.7.7",
+    "axios-retry": "^4.5.0"
+  },
+  "peerDependencies": {
+    "axios": "^1.7.7"
+  },
   "devDependencies": {
+    "@jest/types": "^29.6.3",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@types/jest": "^29.5.12",
     "@types/node": "^20.14.10",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",

@@ -36,7 +36,7 @@ const create =
   async (data: Data): Promise<CreateWebhookResponse> => {
     const response = await fetchData(`/v1/shops/${shopId}/webhooks.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
     return response;
   };

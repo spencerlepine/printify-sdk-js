@@ -143,7 +143,7 @@ const create =
   async (data: CreateProductData): Promise<Product> => {
     return await fetchData(`/v1/shops/${shopId}/products.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 

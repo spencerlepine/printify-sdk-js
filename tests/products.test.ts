@@ -1,4 +1,5 @@
 import printify from './printifyInstance';
+import { assertAxiosCall } from './testUtils';
 
 describe('Products', () => {
   it('should handle the create product endpoint', async () => {
@@ -24,16 +25,7 @@ describe('Products', () => {
     await printify.products.create(mockData);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(mockData),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer mockAccessToken',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products.json`, mockData);
   });
 
   it('should handle listing products with default parameters', async () => {
@@ -41,15 +33,7 @@ describe('Products', () => {
     await printify.products.list();
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/shops/${printify.shopId}/products.json`);
   });
 
   it('should handle listing products with pagination and limit', async () => {
@@ -57,15 +41,7 @@ describe('Products', () => {
     await printify.products.list({ page: 2, limit: 2 });
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products.json?page=2&limit=2`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/shops/${printify.shopId}/products.json?page=${2}&limit=${2}`);
   });
 
   it('should handle the delete product endpoint', async () => {
@@ -74,15 +50,7 @@ describe('Products', () => {
     await printify.products.deleteOne(mockProductId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products/${mockProductId}.json`;
-    const mockOptions = {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('delete', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`);
   });
 
   it('should handle the get one product endpoint', async () => {
@@ -91,15 +59,7 @@ describe('Products', () => {
     await printify.products.getOne(mockProductId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products/${mockProductId}.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`);
   });
 
   it('should handle the notify unpublished product endpoint', async () => {
@@ -108,15 +68,7 @@ describe('Products', () => {
     await printify.products.notifyUnpublished(mockProductId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products/${mockProductId}/unpublish.json`;
-    const mockOptions = {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/unpublish.json`);
   });
 
   it('should handle the publishOne product endpoint', async () => {
@@ -134,16 +86,7 @@ describe('Products', () => {
     await printify.products.publishOne(mockProductId, mockData);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products/${mockProductId}/publish.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(mockData),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publish.json`, mockData);
   });
 
   it('should handle the update product endpoint', async () => {
@@ -153,15 +96,6 @@ describe('Products', () => {
     await printify.products.updateOne(mockProductId, mockData);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/products/${mockProductId}.json`;
-    const mockOptions = {
-      method: 'PUT',
-      body: JSON.stringify(mockData),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('put', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`, mockData);
   });
 });

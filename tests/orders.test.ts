@@ -1,4 +1,5 @@
 import printify from './printifyInstance';
+import { assertAxiosCall } from './testUtils';
 
 describe('Orders', () => {
   it('should handle the calculate shipping endpoint', async () => {
@@ -25,16 +26,7 @@ describe('Orders', () => {
     await printify.orders.calculateShipping(mockData);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders/shipping.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(mockData),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders/shipping.json`, mockData);
   });
 
   it('should handle the cancel unpaid order endpoint', async () => {
@@ -43,9 +35,7 @@ describe('Orders', () => {
     await printify.orders.cancelUnpaid(mockOrderId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders/${mockOrderId}/cancel.json`;
-    const mockOptions = { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` } };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders/${mockOrderId}/cancel.json`);
   });
 
   it('should handle the get order details endpoint', async () => {
@@ -54,13 +44,11 @@ describe('Orders', () => {
     await printify.orders.getOne(mockOrderId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders/${mockOrderId}.json`;
-    const mockOptions = { method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` } };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/shops/${printify.shopId}/orders/${mockOrderId}.json`);
   });
 
   it('should handle submitting an order by productId', async () => {
-    const data = {
+    const mockData = {
       external_id: '2750e210-39bb-11e9-a503-452618153e4a',
       label: '00012',
       line_items: [{ product_id: '5bfd0b66a342bcc9b5563216', variant_id: 17887, quantity: 1 }],
@@ -81,19 +69,13 @@ describe('Orders', () => {
         zip: '2470',
       },
     };
-    await printify.orders.submit(data);
+    await printify.orders.submit(mockData);
 
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order by external image URL (simple image positioning)', async () => {
-    const data = {
+    const mockData = {
       external_id: '2750e210-39bb-11e9-a503-452618153e5a',
       label: '00012',
       line_items: [{ print_provider_id: 5, blueprint_id: 9, variant_id: 17887, print_areas: { front: 'https://images.example.com/image.png' }, quantity: 1 }],
@@ -114,19 +96,13 @@ describe('Orders', () => {
         zip: '2470',
       },
     };
-    await printify.orders.submit(data);
+    await printify.orders.submit(mockData);
 
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order by external image URL (advanced image positioning)', async () => {
-    const data = {
+    const mockData = {
       external_id: '2750e210-39bb-11e9-a503-452618153e5a',
       label: '00012',
       line_items: [
@@ -160,19 +136,13 @@ describe('Orders', () => {
         zip: '2470',
       },
     };
-    await printify.orders.submit(data);
+    await printify.orders.submit(mockData);
 
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order with specifying print details for printing on sides', async () => {
-    const data = {
+    const mockData = {
       external_id: '2750e210-39bb-11e9-a503-452618153e5a',
       label: '00012',
       line_items: [
@@ -206,19 +176,13 @@ describe('Orders', () => {
         zip: '2470',
       },
     };
-    await printify.orders.submit(data);
+    await printify.orders.submit(mockData);
 
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order by only an existing SKU', async () => {
-    const data = {
+    const mockData = {
       external_id: '2750e210-39bb-11e9-a503-452618153e6a',
       label: '00012',
       line_items: [
@@ -244,15 +208,9 @@ describe('Orders', () => {
         zip: '2470',
       },
     };
-    await printify.orders.submit(data);
+    await printify.orders.submit(mockData);
 
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle the list orders endpoint', async () => {
@@ -261,9 +219,7 @@ describe('Orders', () => {
     await printify.orders.list({ page: mockPage });
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders.json?page=${mockPage}`;
-    const mockOptions = { method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer mockAccessToken` } };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/shops/${printify.shopId}/orders.json?page=${mockPage}`);
   });
 
   it('should handle the send order to production endpoint', async () => {
@@ -272,15 +228,7 @@ describe('Orders', () => {
     await printify.orders.sendToProduction(mockOrderId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/orders/${mockOrderId}/send_to_production.json`;
-    const mockOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders/${mockOrderId}/send_to_production.json`);
   });
 
   it('should handle the submit express order endpoint', async () => {
@@ -310,15 +258,6 @@ describe('Orders', () => {
     await printify.orders.submitExpress(mockData);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/express.json`;
-    const mockOptions = {
-      method: 'POST',
-      body: JSON.stringify(mockData),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/express.json`, mockData);
   });
 });

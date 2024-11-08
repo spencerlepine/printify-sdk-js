@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security Issues
+    url: https://github.com/spencerlepine/printify-sdk-js/discussions
+    about: |
+      If you identify a security issue in the SDK itself, please contact us immediately at [spencer.sayhello@gmail.com](mailto:spencer.sayhello@gmail.com).
+      We encourage responsible disclosure and appreciate your assistance in maintaining the security of this project.
+
+  - name: Printify Issues
+    url: https://printify.com/contacts/
+    about: |
+      If your concern involves more serious issues or is directly related to the Printify platform, please reach out to the Printify team via their contact page: [Printify Contacts](https://printify.com/contacts/).
