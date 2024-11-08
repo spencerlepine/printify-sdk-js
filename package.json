@@ -60,7 +60,6 @@
     ]
   },
   "dependencies": {
-    "@types/jest": "^29.5.14",
     "axios": "^1.7.7",
     "axios-retry": "^4.5.0"
   },
@@ -68,6 +67,7 @@
     "axios": "^1.7.7"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@jest/types": "^29.6.3",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-json": "^6.1.0",
