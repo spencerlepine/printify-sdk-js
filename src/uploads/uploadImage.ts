@@ -41,7 +41,7 @@ const uploadImage =
   async (data: UploadImageDataUrl | UploadImageDataBase64): Promise<UploadImageResponse> => {
     const response = await fetchData(`/v1/uploads/images.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
     return response;
   };

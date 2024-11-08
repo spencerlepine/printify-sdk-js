@@ -104,7 +104,7 @@ const submitExpress =
   async (data: SubmitExpressData): Promise<SubmitExpressResponse> => {
     return await fetchData(`/v1/shops/${shopId}/express.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 

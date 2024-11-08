@@ -1,4 +1,5 @@
 import printify from './printifyInstance';
+import { assertAxiosCall } from './testUtils';
 
 describe('Uploads', () => {
   it('should handle the archive upload endpoint', async () => {
@@ -7,15 +8,7 @@ describe('Uploads', () => {
     await printify.uploads.archive(mockImageId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/uploads/${mockImageId}/archive.json`;
-    const mockOptions = {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/uploads/${mockImageId}/archive.json`);
   });
 
   it('should handle the getById upload endpoint', async () => {
@@ -24,15 +17,7 @@ describe('Uploads', () => {
     await printify.uploads.getById(mockImageId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/uploads/${mockImageId}.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/uploads/${mockImageId}.json`);
   });
 
   it('should handle the list uploads endpoint with page and limit parameters', async () => {
@@ -42,54 +27,28 @@ describe('Uploads', () => {
     await printify.uploads.list(mockPage, mockLimit);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/uploads.json?page=${mockPage}&limit=${mockLimit}`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer mockAccessToken`,
-        'Content-Type': 'application/json',
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/uploads.json?page=${mockPage}&limit=${mockLimit}`);
   });
 
   it('should handle uploading an image via URL', async () => {
     // Arrange
-    const data = { file_name: '1x1-ff00007f.png', url: 'http://png-pixel.com/1x1-ff00007f.png' };
+    const mockData = { file_name: '1x1-ff00007f.png', url: 'http://png-pixel.com/1x1-ff00007f.png' };
 
     // Act
-    await printify.uploads.uploadImage(data);
+    await printify.uploads.uploadImage(mockData);
 
     // Assert
-    const mockUrl = 'https://api.printify.com/v1/uploads/images.json';
-    const mockOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-      body: JSON.stringify(data),
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', '/v1/uploads/images.json', mockData);
   });
 
   it('should handle uploading an image via base64 content', async () => {
     // Arrange
-    const data = { file_name: 'image.png', contents: '<base-64-encoded-content>' };
+    const mockData = { file_name: 'image.png', contents: '<base-64-encoded-content>' };
 
     // Act
-    await printify.uploads.uploadImage(data);
+    await printify.uploads.uploadImage(mockData);
 
     // Assert
-    const mockUrl = 'https://api.printify.com/v1/uploads/images.json';
-    const mockOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-      body: JSON.stringify(data),
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', '/v1/uploads/images.json', mockData);
   });
 });

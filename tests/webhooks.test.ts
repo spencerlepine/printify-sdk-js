@@ -1,4 +1,5 @@
 import printify from './printifyInstance';
+import { assertAxiosCall } from './testUtils';
 
 describe('Webhooks', () => {
   it('should handle the create webhook endpoint', async () => {
@@ -7,16 +8,7 @@ describe('Webhooks', () => {
     await printify.webhooks.create(mockData);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/webhooks.json`;
-    const mockOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-      body: JSON.stringify(mockData),
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/webhooks.json`, mockData);
   });
 
   it('should handle the delete webhook endpoint', async () => {
@@ -25,15 +17,7 @@ describe('Webhooks', () => {
     await printify.webhooks.deleteOne(webhookId);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`;
-    const mockOptions = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('delete', `/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`);
   });
 
   it('should handle the list webhooks endpoint', async () => {
@@ -41,33 +25,16 @@ describe('Webhooks', () => {
     await printify.webhooks.list();
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/webhooks.json`;
-    const mockOptions = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('get', `/v1/shops/${printify.shopId}/webhooks.json`);
   });
 
   it('should handle the update webhook endpoint', async () => {
     // Act
     const webhookId = '5cb87a8cd490a2ccb256cec4';
-    const data = { url: 'https://example.com/callback/order/created' };
-    await printify.webhooks.updateOne(webhookId, data);
+    const mockData = { url: 'https://example.com/callback/order/created' };
+    await printify.webhooks.updateOne(webhookId, mockData);
 
     // Assert
-    const mockUrl = `https://api.printify.com/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`;
-    const mockOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer mockAccessToken`,
-      },
-      body: JSON.stringify(data),
-    };
-    expect(global.fetch).toHaveBeenCalledWith(mockUrl, mockOptions);
+    assertAxiosCall('put', `/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`, mockData);
   });
 });

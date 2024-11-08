@@ -108,7 +108,7 @@ const updateOne =
   async (productId: string, data: UpdateData): Promise<Product> => {
     return fetchData(`/v1/shops/${shopId}/products/${productId}.json`, {
       method: 'PUT',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 

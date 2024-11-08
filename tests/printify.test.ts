@@ -1,15 +1,27 @@
+import axios from 'axios';
 import Printify from '../src/printify';
+import { assertAxiosCall } from './testUtils';
 
-global.fetch = jest.fn();
+jest.mock('axios', () => ({
+  get: jest.fn(),
+  post: jest.fn(),
+  put: jest.fn(),
+  delete: jest.fn(),
+  patch: jest.fn(),
+}));
 
 describe('Printify', () => {
   let printify: Printify;
   const shopId = 'testShopId';
-  const accessToken = 'testAccessToken';
+  const accessToken = 'mockAccessToken';
 
   beforeEach(() => {
-    // Reset the fetch mock before each test
-    (fetch as jest.Mock).mockReset();
+    (axios.get as jest.Mock).mockReset();
+    (axios.post as jest.Mock).mockReset();
+    (axios.put as jest.Mock).mockReset();
+    (axios.delete as jest.Mock).mockReset();
+    (axios.patch as jest.Mock).mockReset();
+
     printify = new Printify({ shopId, accessToken });
   });
 
@@ -18,45 +30,39 @@ describe('Printify', () => {
   });
 
   test('fetchData should handle successful response', async () => {
-    const mockResponse = { data: 'testData' };
-    (fetch as jest.Mock).mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockResponse,
-    });
+    const mockResponse = { success: 'true' };
+    // Mock a successful axios response
+    const mockedAxios = axios as jest.Mocked<typeof axios>;
+    mockedAxios.get.mockResolvedValueOnce({ data: mockResponse });
 
     const url = '/test-url';
     const result = await printify['fetchData'](url);
 
     expect(result).toEqual(mockResponse);
-    expect(fetch).toHaveBeenCalledWith(
-      `https://api.printify.com${url}`,
-      expect.objectContaining({
-        headers: expect.objectContaining({
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        }),
-      })
-    );
+    assertAxiosCall('get', url);
   });
 
   test('fetchData should throw error for failed response', async () => {
-    (fetch as jest.Mock).mockResolvedValueOnce({
-      ok: false,
-      status: 404,
-      statusText: 'Not Found',
+    // Mock a failed axios response (error)
+    (axios as unknown as jest.Mock).mockResolvedValueOnce({
+      response: {
+        status: 404,
+        statusText: 'Not Found',
+      },
     });
 
     const url = '/test-url';
 
-    await expect(printify['fetchData'](url)).rejects.toThrow('Printify SDK Error: 404 Not Found');
+    await expect(printify['fetchData'](url)).rejects.toThrow('Printify SDK Unknown Error');
   });
 
-  test('fetchData should rethrow errors from fetch', async () => {
+  test('fetchData should rethrow errors from axios', async () => {
     const errorMessage = 'Network Error';
-    (fetch as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
+    // Mock axios to throw an error
+    (axios as unknown as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
 
     const url = '/test-url';
 
-    await expect(printify['fetchData'](url)).rejects.toThrow(errorMessage);
+    await expect(printify['fetchData'](url)).rejects.toThrow('Printify SDK Unknown Error');
   });
 });

@@ -23,7 +23,7 @@ const setPublishFailed =
   async (productId: string, data: PublishFailedData): Promise<void> => {
     await fetchData(`/v1/shops/${shopId}/products/${productId}/publishing_failed.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 

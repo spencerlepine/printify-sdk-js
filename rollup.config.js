@@ -21,15 +21,16 @@ export default [
         sourcemap: true,
       },
     ],
+    external: ['axios'],
     plugins: [
-      resolve(), // Resolves node_modules imports
-      commonjs(), // Converts CommonJS modules to ES6
+      resolve(),
+      commonjs(),
       json(),
       typescript({
         rollupCommonJSResolveHack: false,
         clean: true,
       }),
-      terser(), // Minifies the bundle
+      terser(),
     ],
   },
   {

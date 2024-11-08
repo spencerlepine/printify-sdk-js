@@ -86,7 +86,7 @@ const submit =
   async (data: SubmitOrderData): Promise<SubmitOrderResponse> => {
     return await fetchData(`/v1/shops/${shopId}/orders.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 

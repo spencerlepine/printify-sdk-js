@@ -31,7 +31,7 @@ const publishOne =
   async (productId: string, data: PublishData): Promise<Response> => {
     return fetchData(`/v1/shops/${shopId}/products/${productId}/publish.json`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      data: JSON.stringify(data),
     });
   };
 
