@@ -1,0 +1,12 @@
+{
+  "name": "printify-typescript-examples",
+  "scripts": {
+    "start": "tsc && node app.js"
+  },
+  "dependencies": {
+    "printify-sdk-js": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}

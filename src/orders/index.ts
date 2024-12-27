@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../printify';
+import { FetchDataFunc } from '../client';
 import list, { ListOrdersFunc } from './list';
 import getOne, { GetOrderFunc } from './getOne';
 import submit, { SubmitOrderFunc } from './submit';

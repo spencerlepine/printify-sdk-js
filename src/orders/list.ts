@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../printify';
+import { FetchDataFunc } from '../client';
 
 export interface OrderAddress {
   first_name: string;

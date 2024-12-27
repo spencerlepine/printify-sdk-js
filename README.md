@@ -4,97 +4,15 @@
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Project Status Badge](./.github/status-maintained-badge.svg)
 
-Printify SDK for Node.js. A basic TypeScript wrapper for the Printify REST API (v1). Guidelines and source endpoints can be found here:
-[developers.printify.com](https://developers.printify.com).
+The Printify Node SDK provides convenient access to the Printify API from applications written in server-side JavaScript.
 
-## Getting started
+Guidelines and source endpoints can be found here: [developers.printify.com](https://developers.printify.com).
 
-### Prerequisites
+> 📢 Note: This SDK currently supports V1 API endpoints only. A 2.0.0 release is planned once the majority of V2 endpoints have been migrated.
 
-- Printify Personal Access Token (create one [here](https://printify.com/app/account/api))
+## Documentation
 
-### Installation
-
-```sh
-# Npm
-npm install printify-sdk-js
-
-# Yarn
-yarn add printify-sdk-js
-
-# Pnpm
-pnpm add printify-sdk-js
-```
-
-## Usage
-
-> ⚠️ For security purposes, this is intended only for server-side use, the API does not support CORS and will not process requests from a frontend application
-
-```sh
-# generate a token: https://printify.com/app/account/api
-export PRINTIFY_API_TOKEN="asdfASDFasdfASDFasdfASDF"
-
-# fetch your shopId
-curl -X GET https://api.printify.com/v1/shops.json --header "Authorization: Bearer $PRINTIFY_API_TOKEN"
-# Expected response: [{"id":1234567,"title":"My Store Name","sales_channel":"custom_integration"}]
-
-# store for process.env.PRINTIFY_API_TOKEN
-echo "PRINTIFY_API_TOKEN=\"$PRINTIFY_API_TOKEN\"" >> .env
-```
-
-```js
-import Printify from 'printify-sdk-js';
-// const Printify = require('printify-sdk-js'); // CommonJS
-
-const printify = new Printify({
-  shopId: '123456', // global query by shop_id
-  accessToken: process.env.PRINTIFY_API_TOKEN,
-  enableLogging: true, // on by default
-});
-
-const orderData = {
-  label: order_123456,
-  line_items: [
-    {
-      print_provider_id: '12345',
-      blueprint_id: '67890',
-      variant_id: '112233',
-      print_areas: {
-        front: 'https://example.com/path/to/sticker.png', // **must be public
-      },
-      quantity: 1,
-    },
-    // ...
-  ],
-  shipping_method: 1,
-  is_printify_express: false,
-  is_economy_shipping: false,
-  send_shipping_notification: true, // send email
-  address_to: {
-    first_name: 'John',
-    last_name: 'Doe',
-    email: 'johndoe@gmail.com',
-    phone: '0574 69 21 90',
-    country: 'US',
-    region: 'NY',
-    address1: '123 Main Street',
-    address2: '',
-    city: 'New York',
-    zip: '10001',
-  },
-};
-
-try {
-  const result = await printify.orders.submit(orderData);
-  console.log(result); // { "id": "5a96f649b2439217d070f507" }
-} catch (error) {
-  console.error('Error submitting order:', error);
-}
-```
-
-## API
-
-For the full documentation, please see [`API.md`](./docs/API.md)
+See the [`printify-sdk-js` API docs](./docs/API.md) for Node.js
 
 - [Shops](./docs/API.md#shops) - `printify.shops.*`
 - [Catalog](./docs/API.md#catalog) - `printify.catalog.*`
@@ -102,6 +20,59 @@ For the full documentation, please see [`API.md`](./docs/API.md)
 - [Orders](./docs/API.md#orders) - `printify.orders.*`
 - [Uploads](./docs/API.md#uploads) - `printify.uploads.*`
 - [Webhooks](./docs/API.md#webhooks) - `printify.webhooks.*`
+
+## Installation
+
+```sh
+npm install printify-sdk-js
+# or
+yarn add printify-sdk-js
+# or
+pnpm add printify-sdk-js
+```
+
+## Usage
+
+The package needs to be configured with your account's Personal Access Token (create one [here](https://printify.com/app/account/api)).
+
+```js
+import Printify from 'printify-sdk-js';
+
+const printify = new Printify({
+  shopId: '123456', // (optional) find using printify.shops.list()
+  accessToken: 'asdf0123asdf0123asdf0123', // generate a token: https://printify.com/app/account/api
+  enableLogging: true, //  (optional) enabled by default
+});
+
+const orders = await printify.orders.list({ limit: 5, status: 'fulfilled' });
+console.log(orders); // { current_page: 1, data: [{ id: "5a9", address_to: {}, line_items: [], total_price: 2200, status: "fulfilled"  } ]
+```
+
+### Usage with CommonJS
+
+```js
+const Printify = require('printify-sdk-js');
+
+const printify = new Printify({
+  shopId: '123456',
+  accessToken: 'asdf0123asdf0123asdf0123',
+  enableLogging: true,
+});
+
+printify.orders
+  .list({ limit: 5, status: 'fulfilled' })
+  .then(orders => console.log(orders))
+  .catch(error => console.error(error));
+```
+
+## Development
+
+```sh
+yarn install
+yarn test
+```
+
+> If you do not have yarn installed, you can get it with `npm install --global yarn`.
 
 ## Contributing
 

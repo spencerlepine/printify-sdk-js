@@ -1,4 +1,4 @@
-import Printify from '../src/printify';
+import Printify from '../src/client';
 
 export const config = {
   shopId: '123456',

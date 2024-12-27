@@ -1,4 +1,4 @@
-import printify from './printifyInstance';
+import printify from './mockClient';
 import { assertAxiosCall } from './testUtils';
 
 describe('Shops', () => {

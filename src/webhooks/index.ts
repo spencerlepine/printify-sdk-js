@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../printify';
+import { FetchDataFunc } from '../client';
 import list, { ListWebhooksFunc } from './list';
 import create, { CreateWebhookFunc } from './create';
 import updateOne, { UpdateWebhookFunc } from './updateOne';

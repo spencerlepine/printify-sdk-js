@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../printify';
+import { FetchDataFunc } from '../client';
 import create, { CreateProductFunc } from './create';
 import deleteOne, { DeleteProductFunc } from './deleteOne';
 import getOne, { GetProductFunc } from './getOne';

@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../printify';
+import { FetchDataFunc } from '../client';
 import listBlueprints, { ListBlueprintsFunc } from './listBlueprints';
 import getBlueprint, { GetBlueprintFunc } from './getBlueprint';
 import getBlueprintProviders, { GetBlueprintProvidersFunc } from './getBlueprintProviders';

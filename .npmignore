@@ -2,9 +2,7 @@
 *
 
 # Except for the following files and directories:
-!dist/index.cjs.js
-!dist/index.esm.js
-!dist/types/index.d.mts
+!dist
 !package.json
 !README.md
 !LICENSE

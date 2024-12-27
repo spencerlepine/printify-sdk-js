@@ -2,30 +2,6 @@
 
 Welcome! We're thrilled that you are interested in contributing to our project. By participating in this project, you agree to abide by the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
-## Local Development
-
-### Prerequisites
-
-1. Git
-1. Node: any 18.x version starting with v16.0.0 or greater
-1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/) (`npm install yarn -g`)
-
-### Installation
-
-```sh
-git clone https://github.com/spencerlepine/printify-sdk-js.git
-cd printify-sdk-js
-yarn install
-```
-
-### Testing
-
-Add/update tests in the `tests/` directory, ensuring to follow unit test coding conventions
-
-```sh
-yarn test
-```
-
 ## How Can I Contribute?
 
 ### Reporting Bugs

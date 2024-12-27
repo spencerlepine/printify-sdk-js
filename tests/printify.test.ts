@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Printify from '../src/printify';
+import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
 jest.mock('axios', () => ({

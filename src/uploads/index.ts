@@ -1,4 +1,4 @@
-import { FetchDataFunc } from '../printify';
+import { FetchDataFunc } from '../client';
 import archive, { ArchiveUploadFunc } from './archive';
 import getById, { GetUploadByIdFunc } from './getById';
 import list, { ListUploadsFunc } from './list';

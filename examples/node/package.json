@@ -1,0 +1,9 @@
+{
+  "name": "printify-node-examples",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "printify-sdk-js": "*"
+  }
+}
