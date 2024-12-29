@@ -2,7 +2,7 @@ import Printify from 'printify-sdk-js';
 
 const printify = new Printify({
   shopId: '123456',
-  accessToken: 'asdfasdf',
+  accessToken: process.env.PRINTIFY_API_TOKEN, // UPDATE ME
   enableLogging: true,
 });
 

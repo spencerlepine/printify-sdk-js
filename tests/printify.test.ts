@@ -25,11 +25,11 @@ describe('Printify', () => {
     printify = new Printify({ shopId, accessToken });
   });
 
-  test('should initialize with provided config', () => {
+  it('should initialize with provided config', () => {
     expect(printify.shopId).toBe(shopId);
   });
 
-  test('fetchData should handle successful response', async () => {
+  it('fetchData should handle successful response', async () => {
     const mockResponse = { success: 'true' };
     // Mock a successful axios response
     const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -42,7 +42,7 @@ describe('Printify', () => {
     assertAxiosCall('get', url);
   });
 
-  test('fetchData should throw error for failed response', async () => {
+  it('fetchData should throw error for failed response', async () => {
     // Mock a failed axios response (error)
     (axios as unknown as jest.Mock).mockResolvedValueOnce({
       response: {
@@ -56,7 +56,7 @@ describe('Printify', () => {
     await expect(printify['fetchData'](url)).rejects.toThrow('Printify SDK Unknown Error');
   });
 
-  test('fetchData should rethrow errors from axios', async () => {
+  it('fetchData should rethrow errors from axios', async () => {
     const errorMessage = 'Network Error';
     // Mock axios to throw an error
     (axios as unknown as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));

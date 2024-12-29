@@ -1,7 +1,13 @@
-import printify from './mockClient';
+import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
 describe('Shops', () => {
+  let printify: Printify;
+
+  beforeAll(() => {
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+  });
+
   it('should handle deleting a shop by default shopId', async () => {
     // Act
     await printify.shops.deleteOne();

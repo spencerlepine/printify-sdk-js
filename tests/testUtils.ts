@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { BASE_URL } from '../src/constants';
 
 export const assertAxiosCall = (method: 'get' | 'post' | 'put' | 'delete' | 'patch', endpoint: string, data?: any, headers: Record<string, string> = {}) => {
   const mockOptions = {
@@ -8,7 +7,8 @@ export const assertAxiosCall = (method: 'get' | 'post' | 'put' | 'delete' | 'pat
       Authorization: `Bearer mockAccessToken`,
       ...headers,
     },
-    baseURL: BASE_URL,
+    baseURL: 'https://api.printify.com',
+    timeout: 5000,
     method: method.toUpperCase(),
   };
 

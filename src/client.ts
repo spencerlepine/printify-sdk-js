@@ -1,39 +1,50 @@
-import Catalog, { CatalogMethods } from './catalog';
-import Orders, { OrdersMethods } from './orders';
-import Products, { ProductsMethods } from './products';
-import Shops, { ShopsMethods } from './shops';
-import Uploads, { UploadsMethods } from './uploads';
-import Webhooks, { WebhookMethods } from './webhooks';
-import { BASE_URL } from './constants';
+import Catalog, { ICatalog } from './v1/catalog';
+import Orders, { IOrders } from './v1/orders';
+import Products, { IProducts } from './v1/products';
+import Shops, { IShops } from './v1/shops';
+import Uploads, { IUploads } from './v1/uploads';
+import Webhooks, { IWebhooks } from './v1/webhooks';
 import axios, { AxiosRequestConfig } from 'axios';
 import axiosRetry from 'axios-retry';
 
-export type FetchDataFunc = <T = any>(url: string, config?: AxiosRequestConfig) => Promise<T>;
+export type FetchDataFn = <T = any>(url: string, config?: AxiosRequestConfig) => Promise<T>;
 
 axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
 
 export interface PrintifyConfig {
   shopId: string;
   accessToken: string;
+  apiVersion?: string;
   enableLogging?: boolean;
+  host?: 'api.printify.com';
+  timeout?: number;
 }
 
 class Printify {
   shopId: string;
   #accessToken: string;
-  catalog: CatalogMethods;
-  orders: OrdersMethods;
-  products: ProductsMethods;
-  shops: ShopsMethods;
-  uploads: UploadsMethods;
-  webhooks: WebhookMethods;
+  apiVersion?: string;
   enableLogging: boolean;
+  host: string;
+  timeout: number;
+  baseUrl: string;
+  // methods
+  catalog!: ICatalog;
+  orders: IOrders;
+  products: IProducts;
+  shops: IShops;
+  uploads: IUploads;
+  webhooks: IWebhooks;
 
   constructor(config: PrintifyConfig) {
     this.shopId = config.shopId;
     this.#accessToken = config.accessToken;
+    this.apiVersion = config.apiVersion || 'v1';
     this.enableLogging = config.enableLogging ?? true;
-
+    this.host = config.host || 'api.printify.com';
+    this.timeout = config.timeout || 5000;
+    this.baseUrl = `https://${this.host}`;
+    // methods
     this.catalog = new Catalog(this.fetchData.bind(this), this.shopId);
     this.orders = new Orders(this.fetchData.bind(this), this.shopId);
     this.products = new Products(this.fetchData.bind(this), this.shopId);
@@ -50,7 +61,7 @@ class Printify {
 
   private logRequest(method: string, url: string) {
     if (this.enableLogging) {
-      console.log(`Requesting ${method.toUpperCase()} ${BASE_URL}${url}`);
+      console.log(`Requesting ${method.toUpperCase()} ${this.baseUrl}${url}`);
     }
   }
 
@@ -62,7 +73,8 @@ class Printify {
 
     const requestConfig: AxiosRequestConfig = {
       ...(config.method ? config : { ...config, method: 'GET' }),
-      baseURL: BASE_URL,
+      baseURL: this.baseUrl,
+      timeout: this.timeout,
       headers: {
         ...defaultHeaders,
         ...(config.headers || {}),
@@ -84,9 +96,9 @@ class Printify {
         case 'delete':
           response = await axios.delete<T>(url, requestConfig);
           break;
-        case 'patch':
-          response = await axios.patch<T>(url, config.data, requestConfig);
-          break;
+        // case 'patch':
+        //   response = await axios.patch<T>(url, config.data, requestConfig);
+        //   break;
         case 'get':
         default:
           response = await axios.get<T>(url, requestConfig);
@@ -95,7 +107,7 @@ class Printify {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const message = `Printify SDK Error: ${error.response?.status} ${error.response?.statusText} - Requested URL: ${BASE_URL}${url}`;
+        const message = `Printify SDK Error: ${error.response?.status} ${error.response?.statusText} - Requested URL: ${this.baseUrl}${url}`;
         this.logError(message);
         throw new Error(message);
       } else {

@@ -1,7 +1,13 @@
-import printify from './mockClient';
+import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
 describe('Products', () => {
+  let printify: Printify;
+
+  beforeAll(() => {
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+  });
+
   it('should handle the create product endpoint', async () => {
     // Act
     const mockData = {
@@ -87,6 +93,26 @@ describe('Products', () => {
 
     // Assert
     assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publish.json`, mockData);
+  });
+
+  it('should handle the setPublishFailed product endpoint', async () => {
+    // Act
+    const mockProductId = '5d39b159e7c48c000728c89f';
+    const mockData = { reason: 'Item out of stock' };
+    await printify.products.setPublishFailed(mockProductId, mockData);
+
+    // Assert
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publishing_failed.json`, mockData);
+  });
+
+  it('should handle the setPublishSucceeded product endpoint', async () => {
+    // Act
+    const mockProductId = '5d39b159e7c48c000728c89f';
+    const mockData = { external: { id: 'itemId123', handle: 'mockHandle' } };
+    await printify.products.setPublishSucceeded(mockProductId, mockData);
+
+    // Assert
+    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publishing_succeeded.json`, mockData);
   });
 
   it('should handle the update product endpoint', async () => {

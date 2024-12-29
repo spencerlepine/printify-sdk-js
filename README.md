@@ -39,13 +39,29 @@ The package needs to be configured with your account's Personal Access Token (cr
 import Printify from 'printify-sdk-js';
 
 const printify = new Printify({
-  shopId: '123456', // (optional) find using printify.shops.list()
-  accessToken: 'asdf0123asdf0123asdf0123', // generate a token: https://printify.com/app/account/api
-  enableLogging: true, //  (optional) enabled by default
+  accessToken: process.env.PRINTIFY_API_TOKEN, // generate a token: https://printify.com/app/account/api
+  shopId: '123456', // (optional) find using `printify.shops.list()`
+  enableLogging: true,
 });
 
 const orders = await printify.orders.list({ limit: 5, status: 'fulfilled' });
 console.log(orders); // { current_page: 1, data: [{ id: "5a9", address_to: {}, line_items: [], total_price: 2200, status: "fulfilled"  } ]
+```
+
+### Usage with TypeScript
+
+```typescript
+import Printify from 'printify-sdk-js';
+import type { ListWebhooksResponse, Webhook } from 'printify-sdk-js';
+
+const printify = new Printify({
+  accessToken: process.env.PRINTIFY_API_TOKEN,
+  shopId: '123456',
+});
+
+const result: ListWebhooksResponse = await printify.webhooks.list();
+const webhook: Webhook = result[0];
+console.log(webhook); // { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 ```
 
 ### Usage with CommonJS
@@ -54,9 +70,8 @@ console.log(orders); // { current_page: 1, data: [{ id: "5a9", address_to: {}, l
 const Printify = require('printify-sdk-js');
 
 const printify = new Printify({
+  accessToken: process.env.PRINTIFY_API_TOKEN,
   shopId: '123456',
-  accessToken: 'asdf0123asdf0123asdf0123',
-  enableLogging: true,
 });
 
 printify.orders
@@ -64,6 +79,30 @@ printify.orders
   .then(orders => console.log(orders))
   .catch(error => console.error(error));
 ```
+
+## Configuration
+
+```js
+import Printify from 'printify-sdk-js';
+
+const printify = new Printify({
+  accessToken: process.env.PRINTIFY_API_TOKEN,
+  shopId: '123456',
+  enableLogging: true,
+  apiVersion: 'v1',
+  host: 'api.printify.com',
+  timeout: 5000, // in ms
+});
+```
+
+| Option          | Default              | Description                                                                                                             |
+| --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- | --- |
+| `accessToken`   | `null`               | The API access token for authenticating requests. Generate one at [Printify API](https://printify.com/app/account/api). |
+| `shopId`        | `null`               | (optional) The ID of the shop to use for API requests. Can be found using `printify.shops.list()`.                      |
+| `enableLogging` | `true`               | (optional) Enables logging of API requests and responses. Enabled by default.                                           |
+| `apiVersion`    | `'v1'`               | (optional) The API version                                                                                              |
+| `host`          | `'api.printify.com'` | The host for API requests.                                                                                              |     |
+| `timeout`       | `5000`               | (optional) Reqeust timeout in ms                                                                                        |
 
 ## Development
 
@@ -73,6 +112,14 @@ yarn test
 ```
 
 > If you do not have yarn installed, you can get it with `npm install --global yarn`.
+
+```sh
+# (optional) test the bundle locally
+yarn build
+mv dist examples/development
+cd examples/development
+yarn start
+```
 
 ## Contributing
 
