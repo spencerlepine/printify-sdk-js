@@ -65,3 +65,7 @@ describe('Catalog', () => {
     assertAxiosCall('get', '/v1/catalog/print_providers.json');
   });
 });
+
+describe('Catalog V2', () => {
+  // TODO v1.3.0
+});
