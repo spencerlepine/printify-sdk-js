@@ -6,6 +6,7 @@ import typescript from 'rollup-plugin-typescript2';
 import dts from 'rollup-plugin-dts';
 
 export default [
+  // Generate bundles for ESM/CommonJS
   {
     input: 'src/index.ts',
     output: [
@@ -33,6 +34,7 @@ export default [
       terser(),
     ],
   },
+  // Generate a .d.ts file to group all types
   {
     input: 'dist/index.d.ts',
     output: [{ file: 'dist/index.d.mts', format: 'es' }],

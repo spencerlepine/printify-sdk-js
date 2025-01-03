@@ -1,7 +1,13 @@
-import printify from './mockClient';
+import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
 describe('Webhooks', () => {
+  let printify: Printify;
+
+  beforeAll(() => {
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+  });
+
   it('should handle the create webhook endpoint', async () => {
     // Act
     const mockData = { topic: 'order:created', url: 'https://example.com/webhooks/order/created' };

@@ -1,7 +1,13 @@
-import printify from './mockClient';
+import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
 describe('Catalog', () => {
+  let printify: Printify;
+
+  beforeAll(() => {
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+  });
+
   it('should handle the get blueprint endpoint', async () => {
     // Act
     const mockBlueprintId = '3';

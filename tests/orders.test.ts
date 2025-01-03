@@ -1,7 +1,13 @@
-import printify from './mockClient';
+import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
 describe('Orders', () => {
+  let printify: Printify;
+
+  beforeAll(() => {
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+  });
+
   it('should handle the calculate shipping endpoint', async () => {
     // Act
     const mockData = {

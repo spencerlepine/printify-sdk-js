@@ -5,4 +5,11 @@ module.exports = {
   transform: {
     '^.+.tsx?$': ['ts-jest', {}],
   },
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
+  coverageThreshold: {
+    global: {
+      functions: 100,
+    },
+  },
 };
