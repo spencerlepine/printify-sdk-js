@@ -89,20 +89,18 @@ const printify = new Printify({
   accessToken: process.env.PRINTIFY_API_TOKEN,
   shopId: '123456',
   enableLogging: true,
-  apiVersion: 'v1',
   host: 'api.printify.com',
   timeout: 5000, // in ms
 });
 ```
 
 | Option          | Default              | Description                                                                                                             |
-| --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- | --- |
+| --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `accessToken`   | `null`               | The API access token for authenticating requests. Generate one at [Printify API](https://printify.com/app/account/api). |
-| `shopId`        | `null`               | (optional) The ID of the shop to use for API requests. Can be found using `printify.shops.list()`.                      |
+| `shopId`        | `null`               | (optional) Your personal shop ID. Can be found using `printify.shops.list()`.                      |
 | `enableLogging` | `true`               | (optional) Enables logging of API requests and responses. Enabled by default.                                           |
-| `apiVersion`    | `'v1'`               | (optional) The API version                                                                                              |
-| `host`          | `'api.printify.com'` | The host for API requests.                                                                                              |     |
-| `timeout`       | `5000`               | (optional) Reqeust timeout in ms                                                                                        |
+| `host`          | `'api.printify.com'` | (optional) The host for API requests.                                                                                              |
+| `timeout`       | `5000`               | (optional) Request timeout in ms.                                                                                       |
 
 ## Development
 
