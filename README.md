@@ -8,8 +8,6 @@ The Printify Node SDK provides convenient access to the Printify API from applic
 
 Guidelines and source endpoints can be found here: [developers.printify.com](https://developers.printify.com).
 
-> 📢 Note: This SDK currently supports V1 API endpoints only. A 2.0.0 release is planned once the majority of V2 endpoints have been migrated.
-
 ## Documentation
 
 See the [`printify-sdk-js` API docs](./docs/API.md) for Node.js
