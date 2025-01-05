@@ -5,7 +5,7 @@ describe('Catalog', () => {
   let printify: Printify;
 
   beforeAll(() => {
-    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
   });
 
   it('should handle the get blueprint endpoint', async () => {
@@ -70,4 +70,8 @@ describe('Catalog', () => {
     // Assert
     assertAxiosCall('get', '/v1/catalog/print_providers.json');
   });
+});
+
+describe('Catalog V2', () => {
+  // TODO v1.3.0
 });

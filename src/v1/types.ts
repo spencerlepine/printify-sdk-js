@@ -1,3 +1,9 @@
+// Global
+declare global {
+  type RequestFn = (url: string, config: Record<string, any>) => Promise<any>;
+  type method = { request: RequestFn; shopId?: string };
+}
+
 // Catalog
 export interface PrintProvider {
   id: number;

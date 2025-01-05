@@ -1,4 +1,5 @@
-import { FetchDataFn } from '../../client';
+import { PrintifyConfig } from '../../client';
+import HttpClient from '../../http';
 import listBlueprints from './listBlueprints';
 import getBlueprint from './getBlueprint';
 import getBlueprintProviders from './getBlueprintProviders';
@@ -7,33 +8,25 @@ import getVariantShipping from './getVariantShipping';
 import listProviders from './listProviders';
 import getProvider from './getProvider';
 
-export interface ICatalog {
-  listBlueprints: ReturnType<typeof listBlueprints>;
-  getBlueprint: ReturnType<typeof getBlueprint>;
-  getBlueprintProviders: ReturnType<typeof getBlueprintProviders>;
-  getBlueprintVariants: ReturnType<typeof getBlueprintVariants>;
-  getVariantShipping: ReturnType<typeof getVariantShipping>;
-  listProviders: ReturnType<typeof listProviders>;
-  getProvider: ReturnType<typeof getProvider>;
-}
+class Catalog extends HttpClient {
+  listBlueprints: typeof listBlueprints;
+  getBlueprint: typeof getBlueprint;
+  getBlueprintProviders: typeof getBlueprintProviders;
+  getBlueprintVariants: typeof getBlueprintVariants;
+  getVariantShipping: typeof getVariantShipping;
+  listProviders: typeof listProviders;
+  getProvider: typeof getProvider;
 
-class Catalog implements ICatalog {
-  listBlueprints: ReturnType<typeof listBlueprints>;
-  getBlueprint: ReturnType<typeof getBlueprint>;
-  getBlueprintProviders: ReturnType<typeof getBlueprintProviders>;
-  getBlueprintVariants: ReturnType<typeof getBlueprintVariants>;
-  getVariantShipping: ReturnType<typeof getVariantShipping>;
-  listProviders: ReturnType<typeof listProviders>;
-  getProvider: ReturnType<typeof getProvider>;
+  constructor(config: PrintifyConfig) {
+    super(config);
 
-  constructor(fetchData: FetchDataFn, shopId: string) {
-    this.listBlueprints = listBlueprints(fetchData);
-    this.getBlueprint = getBlueprint(fetchData);
-    this.getBlueprintProviders = getBlueprintProviders(fetchData);
-    this.getBlueprintVariants = getBlueprintVariants(fetchData);
-    this.getVariantShipping = getVariantShipping(fetchData);
-    this.listProviders = listProviders(fetchData);
-    this.getProvider = getProvider(fetchData);
+    this.listBlueprints = listBlueprints.bind(this);
+    this.getBlueprint = getBlueprint.bind(this);
+    this.getBlueprintProviders = getBlueprintProviders.bind(this);
+    this.getBlueprintVariants = getBlueprintVariants.bind(this);
+    this.getVariantShipping = getVariantShipping.bind(this);
+    this.listProviders = listProviders.bind(this);
+    this.getProvider = getProvider.bind(this);
   }
 }
 

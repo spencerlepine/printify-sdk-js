@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Shop } from '../types';
 
 export type ListShopsResponse = Shop[];
@@ -16,8 +15,8 @@ export type ListShopsResponse = Shop[];
  * //   { id: 9876, title: "My other new store", sales_channel: "disconnected" }
  * // ]
  */
-const list = (fetchData: FetchDataFn) => (): Promise<ListShopsResponse> => {
-  return fetchData(`/v1/shops.json`, { method: 'GET' });
+const list = function (this: method): Promise<ListShopsResponse> {
+  return this.request(`/v1/shops.json`, { method: 'GET' });
 };
 
 export default list;

@@ -97,9 +97,9 @@ const printify = new Printify({
 | Option          | Default              | Description                                                                                                             |
 | --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `accessToken`   | `null`               | The API access token for authenticating requests. Generate one at [Printify API](https://printify.com/app/account/api). |
-| `shopId`        | `null`               | (optional) Your personal shop ID. Can be found using `printify.shops.list()`.                      |
+| `shopId`        | `null`               | (optional) Your personal shop ID. Can be found using `printify.shops.list()`.                                           |
 | `enableLogging` | `true`               | (optional) Enables logging of API requests and responses. Enabled by default.                                           |
-| `host`          | `'api.printify.com'` | (optional) The host for API requests.                                                                                              |
+| `host`          | `'api.printify.com'` | (optional) The host for API requests.                                                                                   |
 | `timeout`       | `5000`               | (optional) Request timeout in ms.                                                                                       |
 
 ## Development
@@ -116,7 +116,7 @@ yarn test
 yarn build
 mv dist examples/development
 cd examples/development
-yarn start
+yarn && yarn start
 ```
 
 ## Contributing
