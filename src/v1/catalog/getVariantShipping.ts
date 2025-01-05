@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { ShippingProfile } from '../types';
 
 export type GetVariantShippingResponse = {
@@ -28,10 +27,8 @@ export type GetVariantShippingResponse = {
  * //   ]
  * // }
  */
-const getVariantShipping =
-  (fetchData: FetchDataFn) =>
-  (blueprintId: string, printProviderId: string): Promise<GetVariantShippingResponse> => {
-    return fetchData(`/v1/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping.json`, { method: 'GET' });
-  };
+const getVariantShipping = function (this: method, blueprintId: string, printProviderId: string): Promise<GetVariantShippingResponse> {
+  return this.request(`/v1/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping.json`, { method: 'GET' });
+};
 
 export default getVariantShipping;

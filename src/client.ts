@@ -1,13 +1,10 @@
 import Catalog from './v1/catalog';
-import Orders, { IOrders } from './v1/orders';
-import Products, { IProducts } from './v1/products';
+import CatalogV2 from './v2/catalog';
+import Orders from './v1/orders';
+import Products from './v1/products';
 import Shops from './v1/shops';
-import Uploads, { IUploads } from './v1/uploads';
-import Webhooks, { IWebhooks } from './v1/webhooks';
-import { AxiosRequestConfig } from 'axios';
-
-// TODO - delete me
-export type FetchDataFn = <T = any>(url: string, config?: AxiosRequestConfig) => Promise<T>;
+import Uploads from './v1/uploads';
+import Webhooks from './v1/webhooks';
 
 export interface PrintifyConfig {
   accessToken: string;
@@ -20,23 +17,24 @@ export interface PrintifyConfig {
 class PrintifyClient {
   shopId?: string;
   catalog: Catalog;
-  // v2: { catalog: ICatalogV2 }; // Define v2.catalog structure
-  // orders: IOrders;
-  // products: IProducts;
+  orders: Orders;
+  products: Products;
   shops: Shops;
-  // uploads: IUploads;
-  // webhooks: IWebhooks;
+  uploads: Uploads;
+  webhooks: Webhooks;
+  v2: { catalog: CatalogV2 };
 
   constructor(config: PrintifyConfig) {
+    if (!config.accessToken) throw new Error('accessToken is required');
+
     this.shopId = config.shopId;
     this.catalog = new Catalog(config);
-    // this.v2 = { catalog: new ICatalogV2(this) };
-    // this.orders = new Orders(this.fetchData.bind(this), this.shopId);
-    // this.products = new Products(this.fetchData.bind(this), this.shopId);
-    // this.shops = new Shops(this.fetchData.bind(this), this.shopId);
+    this.v2 = { catalog: new CatalogV2(config) };
+    this.orders = new Orders(config);
+    this.products = new Products(config);
     this.shops = new Shops(config);
-    // this.uploads = new Uploads(this.fetchData.bind(this), this.shopId);
-    // this.webhooks = new Webhooks(this.fetchData.bind(this), this.shopId);
+    this.uploads = new Uploads(config);
+    this.webhooks = new Webhooks(config);
   }
 }
 

@@ -1,16 +1,13 @@
-// import { FetchDataFn } from '../../client';
-// import getSomething from './getSomething';
+import { PrintifyConfig } from '../../client';
+import HttpClient from '../../http';
+import getShippingListInfo from './getShippingListInfo';
 
-// TODO v1.3.0
-export interface ICatalogV2 {
-  // getSomething: ReturnType<typeof getSomething>;
-}
+class CatalogV2 extends HttpClient {
+  getShippingListInfo: typeof getShippingListInfo;
 
-class CatalogV2 implements ICatalogV2 {
-  //   getSomething: ReturnType<typeof getSomething>;
-
-  constructor() {
-    // this.getSomething = getSomething(fetchData);
+  constructor(config: PrintifyConfig) {
+    super(config);
+    this.getShippingListInfo = getShippingListInfo.bind(this);
   }
 }
 

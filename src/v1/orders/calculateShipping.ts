@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { CalculateShippingData } from '../types';
 
 export type CalculateShippingResponse = {
@@ -38,13 +37,11 @@ export type CalculateShippingResponse = {
  * const shippingCosts = await printify.orders.calculateShipping(data);
  * // Expected response: { standard: 1000, express: 5000, priority: 5000, printify_express: 799, economy: 399 }
  */
-const calculateShipping =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (data: CalculateShippingData): Promise<CalculateShippingResponse> => {
-    return fetchData(`/v1/shops/${shopId}/orders/shipping.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const calculateShipping = function (this: method, data: CalculateShippingData): Promise<CalculateShippingResponse> {
+  return this.request(`/v1/shops/${this.shopId}/orders/shipping.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default calculateShipping;

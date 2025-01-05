@@ -1,5 +1,3 @@
-import { FetchDataFn } from '../../client';
-
 /**
  * Archive an uploaded image
  *
@@ -11,10 +9,8 @@ import { FetchDataFn } from '../../client';
  * await printify.uploads.archive(imageId);
  * // Expected response: {}
  */
-const archive =
-  (fetchData: FetchDataFn) =>
-  (imageId: string): Promise<void> => {
-    return fetchData(`/v1/uploads/${imageId}/archive.json`, { method: 'POST' });
-  };
+const archive = function (this: method, imageId: string): Promise<void> {
+  return this.request(`/v1/uploads/${imageId}/archive.json`, { method: 'POST' });
+};
 
 export default archive;

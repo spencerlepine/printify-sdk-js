@@ -1,7 +1,7 @@
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
-describe('Catalog', () => {
+describe('Catalog V1', () => {
   let printify: Printify;
 
   beforeAll(() => {
@@ -74,4 +74,19 @@ describe('Catalog', () => {
 
 describe('Catalog V2', () => {
   // TODO v1.3.0
+  let printify: Printify;
+
+  beforeAll(() => {
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
+  });
+
+  it('should handle the getShippingListInfo endpoint', async () => {
+    // Act
+    const blueprintId = '3';
+    const printProviderId = '8';
+    await printify.v2.catalog.getShippingListInfo(blueprintId, printProviderId);
+
+    // Assert
+    assertAxiosCall('get', `/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping.json`);
+  });
 });

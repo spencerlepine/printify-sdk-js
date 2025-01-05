@@ -1,5 +1,3 @@
-import { FetchDataFn } from '../../client';
-
 /**
 - Notify that a product has been unpublished
 -
@@ -11,12 +9,10 @@ import { FetchDataFn } from '../../client';
 - await printify.products.notifyUnpublished(productId);
 - // Expected response: {} 
 */
-const notifyUnpublished =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (productId: string): Promise<void> => {
-    return fetchData(`/v1/shops/${shopId}/products/${productId}/unpublish.json`, {
-      method: 'POST',
-    });
-  };
+const notifyUnpublished = function (this: method, productId: string): Promise<void> {
+  return this.request(`/v1/shops/${this.shopId}/products/${productId}/unpublish.json`, {
+    method: 'POST',
+  });
+};
 
 export default notifyUnpublished;

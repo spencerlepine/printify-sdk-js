@@ -1,5 +1,3 @@
-import { FetchDataFn } from '../../client';
-
 export type UpdateWebhookResponse = {
   topic: string;
   url: string;
@@ -25,13 +23,11 @@ export type UpdateWebhookResponse = {
  * //   "id": "5cb87a8cd490a2ccb256cec4"
  * // }
  */
-const updateOne =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (webhookId: string, data: { url: string }): Promise<UpdateWebhookResponse> => {
-    return fetchData(`/v1/shops/${shopId}/webhooks/${webhookId}.json`, {
-      method: 'PUT',
-      data: JSON.stringify(data),
-    });
-  };
+const updateOne = function (this: method, webhookId: string, data: { url: string }): Promise<UpdateWebhookResponse> {
+  return this.request(`/v1/shops/${this.shopId}/webhooks/${webhookId}.json`, {
+    method: 'PUT',
+    data: JSON.stringify(data),
+  });
+};
 
 export default updateOne;

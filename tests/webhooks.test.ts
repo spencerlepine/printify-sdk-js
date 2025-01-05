@@ -1,7 +1,7 @@
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
-describe('Webhooks', () => {
+describe('Webhooks V1', () => {
   let printify: Printify;
 
   beforeAll(() => {

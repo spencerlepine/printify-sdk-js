@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Blueprint } from '../types';
 
 export type ListBlueprintsResponse = Blueprint[];
@@ -35,8 +34,8 @@ export type ListBlueprintsResponse = Blueprint[];
  * //   }
  * // ]
  */
-const listBlueprints = (fetchData: FetchDataFn) => (): Promise<ListBlueprintsResponse> => {
-  return fetchData('/v1/catalog/blueprints.json', { method: 'GET' });
+const listBlueprints = function (this: method): Promise<ListBlueprintsResponse> {
+  return this.request('/v1/catalog/blueprints.json', { method: 'GET' });
 };
 
 export default listBlueprints;

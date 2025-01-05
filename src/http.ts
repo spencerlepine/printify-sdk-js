@@ -1,10 +1,11 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import axiosRetry from 'axios-retry';
 
 axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
 
 interface HttpConfig {
   accessToken: string;
+  shopId?: string;
   enableLogging?: boolean;
   host?: string;
   timeout?: number;
@@ -12,6 +13,7 @@ interface HttpConfig {
 
 class HttpClient {
   private accessToken: string;
+  shopId?: string;
   private host: string;
   private timeout: number;
   private enableLogging?: boolean;
@@ -19,8 +21,10 @@ class HttpClient {
 
   constructor(config: HttpConfig) {
     this.accessToken = config.accessToken;
+    this.shopId = config.shopId;
     this.host = config.host || 'api.printify.com';
     this.timeout = config.timeout || 5000;
+    this.enableLogging = config.enableLogging ?? true;
     this.baseUrl = `https://${this.host}`;
   }
 
@@ -74,9 +78,9 @@ class HttpClient {
           break;
       }
       return response.data;
-    } catch (error) {
-      let message = 'Printify SDK Unknown Error';
-      if (axios.isAxiosError(error)) {
+    } catch (error: any) {
+      let message = 'Printify SDK Error';
+      if ((error as AxiosError).isAxiosError) {
         message = `Printify SDK Error: ${error.response?.status} ${error.response?.statusText} - Requested URL: ${this.baseUrl}${url}`;
       }
       this.logError(message);

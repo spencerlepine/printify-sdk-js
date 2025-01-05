@@ -10,7 +10,7 @@
  * // Expected response: {}
  */
 const deleteOne = function (this: method, customShopId?: string): Promise<void> {
-  return this.request(`/v1/shops/${customShopId || this.shopId}/connection.json`, {
+  return this.request(`/v1/shops/${customShopId ?? this.shopId}/connection.json`, {
     method: 'DELETE',
   });
 };

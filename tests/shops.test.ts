@@ -1,7 +1,7 @@
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
-describe('Shops', () => {
+describe('Shops V1', () => {
   let printify: Printify;
 
   beforeAll(() => {

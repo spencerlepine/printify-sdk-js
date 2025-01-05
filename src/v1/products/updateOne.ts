@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Product, UpdateProductData } from '../types';
 
 export type UpdateProductResponse = Product;
@@ -30,13 +29,11 @@ export type UpdateProductResponse = Product;
  * // }
  */
 
-const updateOne =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (productId: string, data: UpdateProductData): Promise<UpdateProductResponse> => {
-    return fetchData(`/v1/shops/${shopId}/products/${productId}.json`, {
-      method: 'PUT',
-      data: JSON.stringify(data),
-    });
-  };
+const updateOne = function (this: method, productId: string, data: UpdateProductData): Promise<UpdateProductResponse> {
+  return this.request(`/v1/shops/${this.shopId}/products/${productId}.json`, {
+    method: 'PUT',
+    data: JSON.stringify(data),
+  });
+};
 
 export default updateOne;

@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Address, LineItem } from '../types';
 
 export type CancelUnpaidOrderResponse = {
@@ -75,10 +74,8 @@ export type CancelUnpaidOrderResponse = {
  * //   created_at: "2019-12-09 10:46:53+00:00"
  * // }
  */
-const cancelUnpaid =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (orderId: string): Promise<CancelUnpaidOrderResponse> => {
-    return fetchData(`/v1/shops/${shopId}/orders/${orderId}/cancel.json`, { method: 'POST' });
-  };
+const cancelUnpaid = function (this: method, orderId: string): Promise<CancelUnpaidOrderResponse> {
+  return this.request(`/v1/shops/${this.shopId}/orders/${orderId}/cancel.json`, { method: 'POST' });
+};
 
 export default cancelUnpaid;

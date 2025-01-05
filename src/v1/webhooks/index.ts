@@ -1,27 +1,23 @@
-import { FetchDataFn } from '../../client';
+import { PrintifyConfig } from '../../client';
+import HttpClient from '../../http';
 import list from './list';
 import create from './create';
 import updateOne from './updateOne';
 import deleteOne from './deleteOne';
 
-export interface IWebhooks {
-  list: ReturnType<typeof list>;
-  create: ReturnType<typeof create>;
-  updateOne: ReturnType<typeof updateOne>;
-  deleteOne: ReturnType<typeof deleteOne>;
-}
+class Webhooks extends HttpClient {
+  list: typeof list;
+  create: typeof create;
+  updateOne: typeof updateOne;
+  deleteOne: typeof deleteOne;
 
-class Webhooks implements IWebhooks {
-  list: ReturnType<typeof list>;
-  create: ReturnType<typeof create>;
-  updateOne: ReturnType<typeof updateOne>;
-  deleteOne: ReturnType<typeof deleteOne>;
+  constructor(config: PrintifyConfig) {
+    super(config);
 
-  constructor(fetchData: FetchDataFn, shopId: string) {
-    this.list = list(fetchData, shopId);
-    this.create = create(fetchData, shopId);
-    this.updateOne = updateOne(fetchData, shopId);
-    this.deleteOne = deleteOne(fetchData, shopId);
+    this.list = list.bind(this);
+    this.create = create.bind(this);
+    this.updateOne = updateOne.bind(this);
+    this.deleteOne = deleteOne.bind(this);
   }
 }
 

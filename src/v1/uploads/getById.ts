@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { ImageUpload } from '../types';
 
 export type GetUploadByIdResponse = ImageUpload;
@@ -24,10 +23,8 @@ export type GetUploadByIdResponse = ImageUpload;
  * //   upload_time: "2020-01-09 07:29:43"
  * // }
  */
-const getById =
-  (fetchData: FetchDataFn) =>
-  (imageId: string): Promise<GetUploadByIdResponse> => {
-    return fetchData(`/v1/uploads/${imageId}.json`, { method: 'GET' });
-  };
+const getById = function (this: method, imageId: string): Promise<GetUploadByIdResponse> {
+  return this.request(`/v1/uploads/${imageId}.json`, { method: 'GET' });
+};
 
 export default getById;

@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Order } from '../types';
 
 export type GetOrderResponse = Order;
@@ -76,10 +75,8 @@ export type GetOrderResponse = Order;
  * //   }
  * // }
  */
-const getOne =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (orderId: string): Promise<GetOrderResponse> => {
-    return fetchData(`/v1/shops/${shopId}/orders/${orderId}.json`, { method: 'GET' });
-  };
+const getOne = function (this: method, orderId: string): Promise<GetOrderResponse> {
+  return this.request(`/v1/shops/${this.shopId}/orders/${orderId}.json`, { method: 'GET' });
+};
 
 export default getOne;

@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { ExternalProductData } from '../types';
 
 export type PublishSucceededData = {
@@ -17,13 +16,11 @@ export type PublishSucceededData = {
 - await printify.products.setPublishSucceeded('productId', data);
 - // Expected response: {} 
 */
-const setPublishSucceeded =
-  (fetchData: FetchDataFn, shopId: string) =>
-  async (productId: string, data: PublishSucceededData): Promise<void> => {
-    return fetchData(`/v1/shops/${shopId}/products/${productId}/publishing_succeeded.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const setPublishSucceeded = function (this: method, productId: string, data: PublishSucceededData): Promise<void> {
+  return this.request(`/v1/shops/${this.shopId}/products/${productId}/publishing_succeeded.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default setPublishSucceeded;
