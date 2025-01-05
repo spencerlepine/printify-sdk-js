@@ -18,7 +18,6 @@ export type GetShippingListInfoResponse = ShippingInfo[];
  * @example
  * await printify.v2.catalog.getShippingListInfo('3', '8');
  * // Expected response: [
- * // [
  * //     {
  * //         "type": "shipping_method",
  * //         "id": "1",

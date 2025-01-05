@@ -2,6 +2,7 @@
 
 - [Shops](#shops)
 - [Catalog](#catalog)
+- [Catalog V2](#catalog-v2)
 - [Products](#products)
 - [Orders](#orders)
 - [Uploads](#uploads)
@@ -464,6 +465,127 @@ await printify.catalog.getProvider(printProviderId);
     // ...
   ]
 }
+```
+
+</details>
+
+### Catalog V2
+
+#### `printify.v2.catalog.getShippingListInfo()`
+
+- `GET /v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping.json`
+- **Description:** Retrieve available shipping list information
+
+```js
+await printify.v2.catalog.getShippingListInfo('3', '8');
+```
+
+<details>
+  <summary>View Response</summary>
+
+```json
+[
+  {
+    "type": "shipping_method",
+    "id": "1",
+    "attributes": {
+      "name": "standard"
+    }
+  },
+  {
+    "type": "shipping_method",
+    "id": "2",
+    "attributes": {
+      "name": "priority"
+    }
+  },
+  {
+    "type": "shipping_method",
+    "id": "3",
+    "attributes": {
+      "name": "express"
+    }
+  },
+  {
+    "type": "shipping_method",
+    "id": "4",
+    "attributes": {
+      "name": "economy"
+    }
+  }
+]
+```
+
+</details>
+
+#### `printify.v2.catalog.getStandardShippingInfo(blueprintId, printProviderId)`
+
+- `GET /v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/standard.json`
+- **Description:** Retrieve standard shipping method information
+
+```js
+await printify.v2.catalog.getStandardShippingInfo('3', '8');
+```
+
+<details>
+  <summary>View Response</summary>
+
+```json
+// TODO v1.3.0
+```
+
+</details>
+
+#### `printify.v2.catalog.getPriorityShippingInfo(blueprintId, printProviderId)`
+
+- `GET /v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/priority.json`
+- **Description:** Retrieve priority shipping method information
+
+```js
+await printify.v2.catalog.getPriorityShippingInfo('3', '8');
+```
+
+<details>
+  <summary>View Response</summary>
+
+```json
+// TODO v1.3.0
+```
+
+</details>
+
+#### `printify.v2.catalog.getExpressShippingInfo(blueprintId, printProviderId)`
+
+- `GET /v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/express.json`
+- **Description:** Retrieve express shipping method information
+
+```js
+await printify.v2.catalog.getExpressShippingInfo('3', '8');
+```
+
+<details>
+  <summary>View Response</summary>
+
+```json
+// TODO v1.3.0
+```
+
+</details>
+
+#### `printify.v2.catalog.getEconomyShippingInfo(blueprintId, printProviderId)`
+
+- `GET /v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/economy.json`
+- **Description:** Retrieve economy shipping method information
+
+```js
+await printify.v2.catalog.getEconomyShippingInfo('3', '8');
+```
+
+<details>
+  <summary>View Response</summary>
+
+```json
+// TODO v1.3.0
 ```
 
 </details>

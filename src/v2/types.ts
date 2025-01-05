@@ -1,5 +1,27 @@
 // Catalog
-// TODO v1.3.0
-export interface ReplaceMe {
-  example: any;
+export interface ShippingInfoSpecific {
+  type: string;
+  id: string;
+  attributes: {
+    shippingType: string;
+    country: {
+      code: string;
+    };
+    variantId: number;
+    shippingPlanId: string;
+    handlingTime: {
+      from: number;
+      to: number;
+    };
+    shippingCost: {
+      firstItem: {
+        amount: number;
+        currency: string;
+      };
+      additionalItems: {
+        amount: number;
+        currency: string;
+      };
+    };
+  };
 }

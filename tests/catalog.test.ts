@@ -73,7 +73,6 @@ describe('Catalog V1', () => {
 });
 
 describe('Catalog V2', () => {
-  // TODO v1.3.0
   let printify: Printify;
 
   beforeAll(() => {
@@ -88,5 +87,45 @@ describe('Catalog V2', () => {
 
     // Assert
     assertAxiosCall('get', `/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping.json`);
+  });
+
+  it('should handle the getStandardShippingInfo endpoint', async () => {
+    // Act
+    const blueprintId = '3';
+    const printProviderId = '8';
+    await printify.v2.catalog.getStandardShippingInfo(blueprintId, printProviderId);
+
+    // Assert
+    assertAxiosCall('get', `/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/standard.json`);
+  });
+
+  it('should handle the getPriorityShippingInfo endpoint', async () => {
+    // Act
+    const blueprintId = '3';
+    const printProviderId = '8';
+    await printify.v2.catalog.getPriorityShippingInfo(blueprintId, printProviderId);
+
+    // Assert
+    assertAxiosCall('get', `/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/priority.json`);
+  });
+
+  it('should handle the getExpressShippingInfo endpoint', async () => {
+    // Act
+    const blueprintId = '3';
+    const printProviderId = '8';
+    await printify.v2.catalog.getExpressShippingInfo(blueprintId, printProviderId);
+
+    // Assert
+    assertAxiosCall('get', `/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/express.json`);
+  });
+
+  it('should handle the getEconomyShippingInfo endpoint', async () => {
+    // Act
+    const blueprintId = '3';
+    const printProviderId = '8';
+    await printify.v2.catalog.getEconomyShippingInfo(blueprintId, printProviderId);
+
+    // Assert
+    assertAxiosCall('get', `/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/economy.json`);
   });
 });
