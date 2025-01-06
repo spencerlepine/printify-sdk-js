@@ -1,4 +1,4 @@
-# Printify SDK for TypeScript (Node.js)
+# Printify SDK for Node.js (TypeScript)
 
 [![NPM Version](https://img.shields.io/npm/v/printify-sdk-js)](https://www.npmjs.com/package/printify-sdk-js)
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)

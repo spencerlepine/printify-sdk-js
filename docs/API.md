@@ -531,7 +531,34 @@ await printify.v2.catalog.getStandardShippingInfo('3', '8');
   <summary>View Response</summary>
 
 ```json
-// TODO v1.3.0
+[
+  {
+    "type": "variant_shipping_standard_us",
+    "id": "23494",
+    "attributes": {
+      "shippingType": "standard",
+      "country": {
+        "code": "US"
+      },
+      "variantId": 23494,
+      "shippingPlanId": "65a7c0825b50fcd56a018e02",
+      "handlingTime": {
+        "from": 4,
+        "to": 8
+      },
+      "shippingCost": {
+        "firstItem": {
+          "amount": 399,
+          "currency": "USD"
+        },
+        "additionalItems": {
+          "amount": 219,
+          "currency": "USD"
+        }
+      }
+    }
+  }
+]
 ```
 
 </details>
@@ -549,7 +576,34 @@ await printify.v2.catalog.getPriorityShippingInfo('3', '8');
   <summary>View Response</summary>
 
 ```json
-// TODO v1.3.0
+[
+  {
+    "type": "variant_shipping_priority_us",
+    "id": "23494",
+    "attributes": {
+      "shippingType": "priority",
+      "country": {
+        "code": "US"
+      },
+      "variantId": 23494,
+      "shippingPlanId": "65a7c0825b50fcd56a018e02",
+      "handlingTime": {
+        "from": 4,
+        "to": 8
+      },
+      "shippingCost": {
+        "firstItem": {
+          "amount": 399,
+          "currency": "USD"
+        },
+        "additionalItems": {
+          "amount": 219,
+          "currency": "USD"
+        }
+      }
+    }
+  }
+]
 ```
 
 </details>
@@ -567,7 +621,34 @@ await printify.v2.catalog.getExpressShippingInfo('3', '8');
   <summary>View Response</summary>
 
 ```json
-// TODO v1.3.0
+[
+  {
+    "type": "variant_shipping_express_us",
+    "id": "23494",
+    "attributes": {
+      "shippingType": "express",
+      "country": {
+        "code": "US"
+      },
+      "variantId": 23494,
+      "shippingPlanId": "65a7c0825b50fcd56a018e02",
+      "handlingTime": {
+        "from": 4,
+        "to": 8
+      },
+      "shippingCost": {
+        "firstItem": {
+          "amount": 399,
+          "currency": "USD"
+        },
+        "additionalItems": {
+          "amount": 219,
+          "currency": "USD"
+        }
+      }
+    }
+  }
+]
 ```
 
 </details>
@@ -585,7 +666,34 @@ await printify.v2.catalog.getEconomyShippingInfo('3', '8');
   <summary>View Response</summary>
 
 ```json
-// TODO v1.3.0
+[
+  {
+    "type": "variant_shipping_economy_us",
+    "id": "23494",
+    "attributes": {
+      "shippingType": "economy",
+      "country": {
+        "code": "US"
+      },
+      "variantId": 23494,
+      "shippingPlanId": "65a7c0825b50fcd56a018e02",
+      "handlingTime": {
+        "from": 4,
+        "to": 8
+      },
+      "shippingCost": {
+        "firstItem": {
+          "amount": 399,
+          "currency": "USD"
+        },
+        "additionalItems": {
+          "amount": 219,
+          "currency": "USD"
+        }
+      }
+    }
+  }
+]
 ```
 
 </details>
@@ -1474,52 +1582,50 @@ await printify.orders.submitExpress(data);
   <summary>View Response</summary>
 
 ```json
-{
-  "data": [
-    {
-      "type": "order",
-      "id": "5a96f649b2439217d070f508",
-      "attributes": {
-        "fulfilment_type": "express",
-        "line_items": [
-          {
-            "product_id": "5b05842f3921c9547531758d",
-            "quantity": 1,
-            "variant_id": 12359,
-            "print_provider_id": 5,
-            "cost": 2200,
-            "shipping_cost": 799,
-            "status": "pending",
-            "metadata": { "title": "T-shirt", "price": 2200, "variant_label": "Blue / S", "sku": "168699843", "country": "United States" },
-            "sent_to_production_at": "2023-10-18 13:24:28+00:00",
-            "fulfilled_at": null
-          }
-        ]
-      }
-    },
-    {
-      "type": "order",
-      "id": "5a96f649b2439597d020a9b4",
-      "attributes": {
-        "fulfilment_type": "ordinary",
-        "line_items": [
-          {
-            "product_id": "5b05842f3921c34764fa478bc",
-            "quantity": 1,
-            "variant_id": 17887,
-            "print_provider_id": 5,
-            "cost": 1050,
-            "shipping_cost": 400,
-            "status": "pending",
-            "metadata": { "title": "Mug 11oz", "price": 1050, "variant_label": "11oz", "sku": "168699843", "country": "United States" },
-            "sent_to_production_at": "2023-10-18 13:24:28+00:00",
-            "fulfilled_at": null
-          }
-        ]
-      }
+[
+  {
+    "type": "order",
+    "id": "5a96f649b2439217d070f508",
+    "attributes": {
+      "fulfilment_type": "express",
+      "line_items": [
+        {
+          "product_id": "5b05842f3921c9547531758d",
+          "quantity": 1,
+          "variant_id": 12359,
+          "print_provider_id": 5,
+          "cost": 2200,
+          "shipping_cost": 799,
+          "status": "pending",
+          "metadata": { "title": "T-shirt", "price": 2200, "variant_label": "Blue / S", "sku": "168699843", "country": "United States" },
+          "sent_to_production_at": "2023-10-18 13:24:28+00:00",
+          "fulfilled_at": null
+        }
+      ]
     }
-  ]
-}
+  },
+  {
+    "type": "order",
+    "id": "5a96f649b2439597d020a9b4",
+    "attributes": {
+      "fulfilment_type": "ordinary",
+      "line_items": [
+        {
+          "product_id": "5b05842f3921c34764fa478bc",
+          "quantity": 1,
+          "variant_id": 17887,
+          "print_provider_id": 5,
+          "cost": 1050,
+          "shipping_cost": 400,
+          "status": "pending",
+          "metadata": { "title": "Mug 11oz", "price": 1050, "variant_label": "11oz", "sku": "168699843", "country": "United States" },
+          "sent_to_production_at": "2023-10-18 13:24:28+00:00",
+          "fulfilled_at": null
+        }
+      ]
+    }
+  }
+]
 ```
 
 </details>

@@ -12,7 +12,34 @@ export type GetEconomyShippingInfoResponse = ShippingInfoSpecific;
  * @example
  * await printify.v2.catalog.getEconomyShippingInfo('3', '8');
  * // Expected response: [
- * // TODO v1.3.0
+ * // [
+ * //   {
+ * //       "type": "variant_shipping_economy_us",
+ * //       "id": "23494",
+ * //       "attributes": {
+ * //           "shippingType": "economy",
+ * //           "country": {
+ * //               "code": "US"
+ * //           },
+ * //           "variantId": 23494,
+ * //           "shippingPlanId": "65a7c0825b50fcd56a018e02",
+ * //           "handlingTime": {
+ * //               "from": 4,
+ * //               "to": 8
+ * //           },
+ * //           "shippingCost": {
+ * //               "firstItem": {
+ * //                   "amount": 399,
+ * //                   "currency": "USD"
+ * //               },
+ * //               "additionalItems": {
+ * //                   "amount": 219,
+ * //                   "currency": "USD"
+ * //               }
+ * //           }
+ * //       }
+ * //   }
+ * // ]
  */
 const getEconomyShippingInfo = function (this: method, blueprintId: string, printProviderId: string): Promise<GetEconomyShippingInfoResponse> {
   return this.request(`/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/economy.json`, {

@@ -12,7 +12,34 @@ export type GetPriorityShippingInfoResponse = ShippingInfoSpecific;
  * @example
  * await printify.v2.catalog.getPriorityShippingInfo('3', '8');
  * // Expected response: [
- * // TODO v1.3.0
+ * // [
+ * //     {
+ * //         "type": "variant_shipping_priority_us",
+ * //         "id": "23494",
+ * //         "attributes": {
+ * //             "shippingType": "priority",
+ * //             "country": {
+ * //               "code": "US"
+ * //             },
+ * //             "variantId": 23494,
+ * //             "shippingPlanId": "65a7c0825b50fcd56a018e02",
+ * //             "handlingTime": {
+ * //                 "from": 4,
+ * //                 "to": 8
+ * //             },
+ * //             "shippingCost": {
+ * //                 "firstItem": {
+ * //                     "amount": 399,
+ * //                     "currency": "USD"
+ * //                 },
+ * //                 "additionalItems": {
+ * //                     "amount": 219,
+ * //                     "currency": "USD"
+ * //                 }
+ * //             }
+ * //         }
+ * //     }
+ * // ]
  */
 const getPriorityShippingInfo = function (this: method, blueprintId: string, printProviderId: string): Promise<GetPriorityShippingInfoResponse> {
   return this.request(`/v2/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/shipping/priority.json`, {
