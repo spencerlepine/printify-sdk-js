@@ -10,10 +10,11 @@ Guidelines and source endpoints can be found here: [developers.printify.com](htt
 
 ## Documentation
 
-See the [`printify-sdk-js` API docs](./docs/API.md) for Node.js
+See the [`API.md](./docs/API.md) docs
 
 - [Shops](./docs/API.md#shops) - `printify.shops.*`
 - [Catalog](./docs/API.md#catalog) - `printify.catalog.*`
+- [Catalog V2](./docs/API.md#catalog-v2) - `printify.v2.catalog.*`
 - [Products](./docs/API.md#products) - `printify.products.*`
 - [Orders](./docs/API.md#orders) - `printify.orders.*`
 - [Uploads](./docs/API.md#uploads) - `printify.uploads.*`
@@ -49,17 +50,15 @@ console.log(orders); // { current_page: 1, data: [{ id: "5a9", address_to: {}, l
 ### Usage with TypeScript
 
 ```typescript
-import Printify from 'printify-sdk-js';
-import type { ListWebhooksResponse, Webhook } from 'printify-sdk-js';
+import Printify, { Webhook } from 'printify-sdk-js';
 
 const printify = new Printify({
   accessToken: process.env.PRINTIFY_API_TOKEN,
   shopId: '123456',
 });
 
-const result: ListWebhooksResponse = await printify.webhooks.list();
-const webhook: Webhook = result[0];
-console.log(webhook); // { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
+const webhooks: Webhook[] = await printify.webhooks.list();
+console.log(webhooks[0]); // { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 ```
 
 ### Usage with CommonJS
@@ -96,7 +95,7 @@ const printify = new Printify({
 | --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `accessToken`   | `null`               | The API access token for authenticating requests. Generate one at [Printify API](https://printify.com/app/account/api). |
 | `shopId`        | `null`               | (optional) Your personal shop ID. Can be found using `printify.shops.list()`.                                           |
-| `enableLogging` | `true`               | (optional) Enables logging of API requests and responses. Enabled by default.                                           |
+| `enableLogging` | `true`               | (optional) Enables logging of API requests and errors. Enabled by default.                                              |
 | `host`          | `'api.printify.com'` | (optional) The host for API requests.                                                                                   |
 | `timeout`       | `5000`               | (optional) Request timeout in ms.                                                                                       |
 
@@ -111,10 +110,11 @@ yarn test
 
 ```sh
 # (optional) test the bundle locally
+cd examples/typescript && yarn && cd ../../
 yarn build
-mv dist examples/development
-cd examples/development
-yarn && yarn start
+rm -rf examples/typescript/node_modules/printify-sdk-js/dist && mv dist examples/typescript/node_modules/printify-sdk-js
+cd examples/typescript
+yarn start
 ```
 
 ## Contributing

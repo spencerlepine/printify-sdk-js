@@ -1,4 +1,12 @@
 // Catalog
+export interface ShippingInfo {
+  type: string;
+  id: string;
+  attributes: {
+    name: string;
+  };
+}
+
 export interface ShippingInfoSpecific {
   type: string;
   id: string;

@@ -1,5 +1,4 @@
-import Printify from 'printify-sdk-js';
-import type { ListWebhooksResponse, Webhook } from 'printify-sdk-js';
+import Printify, { Webhook, ShippingInfo } from 'printify-sdk-js';
 
 const printify = new Printify({
   shopId: '123456',
@@ -9,14 +8,12 @@ const printify = new Printify({
 
 // v1 endpoint
 (async () => {
-  const result: ListWebhooksResponse = await printify.webhooks.list();
-  const webhook: Webhook = result[0];
-  console.log(webhook); // { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
+  const webhooks: Webhook[] = await printify.webhooks.list();
+  console.log(webhooks[0]); // { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 })();
 
-// TODO v1.3.0
 // v2 endpoint
 (async () => {
-  const shippingInfo = await printify.v2.catalog.getShippingListInfo('1', '2');
-  console.log(shippingInfo);
+  const shippingInfo: ShippingInfo[] = await printify.v2.catalog.getShippingListInfo('1', '2');
+  console.log(shippingInfo); // [ { type: 'shipping_method', id: '2', attributes: [Object] } ]
 })();

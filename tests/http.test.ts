@@ -85,7 +85,7 @@ describe('HttpClient', () => {
     (axios.get as jest.Mock).mockResolvedValueOnce({ response: { status: 200, statusText: 'Hello, world!' } });
     await http.request(url);
 
-    expect(console.log).toHaveBeenCalledWith(`Requesting ${method.toUpperCase()} https://${http['host']}${url}`);
+    expect(console.log).toHaveBeenCalledWith(`Request: ${method.toUpperCase()} https://${http['host']}${url}`);
   });
 
   it('should log the request when enableLogging is true', async () => {
@@ -97,7 +97,7 @@ describe('HttpClient', () => {
     (axios.get as jest.Mock).mockResolvedValueOnce({ response: { status: 200, statusText: 'Hello, world!' } });
     await http.request(url);
 
-    expect(console.log).toHaveBeenCalledWith(`Requesting ${method.toUpperCase()} https://${http['host']}${url}`);
+    expect(console.log).toHaveBeenCalledWith(`Request: ${method.toUpperCase()} https://${http['host']}${url}`);
   });
 
   it('should not log the request when enableLogging is false', async () => {
@@ -162,8 +162,8 @@ describe('HttpClient', () => {
 
     const url = '/test-url';
 
-    await expect(http.request(url)).rejects.toThrow('Printify SDK Error: 404 Not Found - Requested URL: https://' + http['host'] + url);
+    await expect(http.request(url)).rejects.toThrow('Printify SDK: 404 Not Found - Requested URL: https://' + http['host'] + url);
 
-    expect(console.error).toHaveBeenCalledWith(`Printify SDK Error: 404 Not Found - Requested URL: https://${http['host']}${url}`);
+    expect(console.error).toHaveBeenCalledWith(`Printify SDK: 404 Not Found - Requested URL: https://${http['host']}${url}`);
   });
 });

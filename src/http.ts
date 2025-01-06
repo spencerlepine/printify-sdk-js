@@ -36,7 +36,7 @@ class HttpClient {
 
   private logRequest(method: string, url: string) {
     if (this.enableLogging) {
-      console.log(`Requesting ${method.toUpperCase()} ${this.baseUrl}${url}`);
+      console.log(`Request: ${method.toUpperCase()} ${this.baseUrl}${url}`);
     }
   }
 
@@ -81,10 +81,12 @@ class HttpClient {
     } catch (error: any) {
       let message = 'Printify SDK Error';
       if ((error as AxiosError).isAxiosError) {
-        message = `Printify SDK Error: ${error.response?.status} ${error.response?.statusText} - Requested URL: ${this.baseUrl}${url}`;
+        message = `Printify SDK: ${error.response?.status} ${error.response?.statusText} - Requested URL: ${this.baseUrl}${url}`;
       }
       this.logError(message);
-      throw new Error(message);
+      const printifyError = new Error(message);
+      printifyError.stack = undefined;
+      throw printifyError;
     }
   }
 }

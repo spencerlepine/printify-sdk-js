@@ -1,10 +1,4 @@
-export interface ShippingInfo {
-  type: string;
-  id: string;
-  attributes: {
-    name: string;
-  };
-}
+import { ShippingInfo } from '../types';
 
 export type GetShippingListInfoResponse = ShippingInfo[];
 
