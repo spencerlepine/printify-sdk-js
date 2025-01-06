@@ -1,11 +1,11 @@
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
-describe('Webhooks', () => {
+describe('Webhooks V1', () => {
   let printify: Printify;
 
   beforeAll(() => {
-    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
   });
 
   it('should handle the create webhook endpoint', async () => {

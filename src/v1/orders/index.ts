@@ -1,4 +1,5 @@
-import { FetchDataFn } from '../../client';
+import { PrintifyConfig } from '../../client';
+import HttpClient from '../../http';
 import list from './list';
 import getOne from './getOne';
 import submit from './submit';
@@ -7,33 +8,25 @@ import sendToProduction from './sendToProduction';
 import calculateShipping from './calculateShipping';
 import cancelUnpaid from './cancelUnpaid';
 
-export interface IOrders {
-  list: ReturnType<typeof list>;
-  getOne: ReturnType<typeof getOne>;
-  submit: ReturnType<typeof submit>;
-  submitExpress: ReturnType<typeof submitExpress>;
-  sendToProduction: ReturnType<typeof sendToProduction>;
-  calculateShipping: ReturnType<typeof calculateShipping>;
-  cancelUnpaid: ReturnType<typeof cancelUnpaid>;
-}
+class Orders extends HttpClient {
+  list: typeof list;
+  getOne: typeof getOne;
+  submit: typeof submit;
+  submitExpress: typeof submitExpress;
+  sendToProduction: typeof sendToProduction;
+  calculateShipping: typeof calculateShipping;
+  cancelUnpaid: typeof cancelUnpaid;
 
-class Orders implements IOrders {
-  list: ReturnType<typeof list>;
-  getOne: ReturnType<typeof getOne>;
-  submit: ReturnType<typeof submit>;
-  submitExpress: ReturnType<typeof submitExpress>;
-  sendToProduction: ReturnType<typeof sendToProduction>;
-  calculateShipping: ReturnType<typeof calculateShipping>;
-  cancelUnpaid: ReturnType<typeof cancelUnpaid>;
+  constructor(config: PrintifyConfig) {
+    super(config);
 
-  constructor(fetchData: FetchDataFn, shopId: string) {
-    this.list = list(fetchData, shopId);
-    this.getOne = getOne(fetchData, shopId);
-    this.submit = submit(fetchData, shopId);
-    this.submitExpress = submitExpress(fetchData, shopId);
-    this.sendToProduction = sendToProduction(fetchData, shopId);
-    this.calculateShipping = calculateShipping(fetchData, shopId);
-    this.cancelUnpaid = cancelUnpaid(fetchData, shopId);
+    this.list = list.bind(this);
+    this.getOne = getOne.bind(this);
+    this.submit = submit.bind(this);
+    this.submitExpress = submitExpress.bind(this);
+    this.sendToProduction = sendToProduction.bind(this);
+    this.calculateShipping = calculateShipping.bind(this);
+    this.cancelUnpaid = cancelUnpaid.bind(this);
   }
 }
 

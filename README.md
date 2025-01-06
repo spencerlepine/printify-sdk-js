@@ -1,4 +1,4 @@
-# Printify SDK for TypeScript (Node.js)
+# Printify SDK for Node.js (TypeScript)
 
 [![NPM Version](https://img.shields.io/npm/v/printify-sdk-js)](https://www.npmjs.com/package/printify-sdk-js)
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
@@ -8,14 +8,13 @@ The Printify Node SDK provides convenient access to the Printify API from applic
 
 Guidelines and source endpoints can be found here: [developers.printify.com](https://developers.printify.com).
 
-> 📢 Note: This SDK currently supports V1 API endpoints only. A 2.0.0 release is planned once the majority of V2 endpoints have been migrated.
-
 ## Documentation
 
-See the [`printify-sdk-js` API docs](./docs/API.md) for Node.js
+See the [`API.md`](./docs/API.md) docs
 
 - [Shops](./docs/API.md#shops) - `printify.shops.*`
 - [Catalog](./docs/API.md#catalog) - `printify.catalog.*`
+- [Catalog V2](./docs/API.md#catalog-v2) - `printify.v2.catalog.*`
 - [Products](./docs/API.md#products) - `printify.products.*`
 - [Orders](./docs/API.md#orders) - `printify.orders.*`
 - [Uploads](./docs/API.md#uploads) - `printify.uploads.*`
@@ -51,17 +50,15 @@ console.log(orders); // { current_page: 1, data: [{ id: "5a9", address_to: {}, l
 ### Usage with TypeScript
 
 ```typescript
-import Printify from 'printify-sdk-js';
-import type { ListWebhooksResponse, Webhook } from 'printify-sdk-js';
+import Printify, { Webhook } from 'printify-sdk-js';
 
 const printify = new Printify({
   accessToken: process.env.PRINTIFY_API_TOKEN,
   shopId: '123456',
 });
 
-const result: ListWebhooksResponse = await printify.webhooks.list();
-const webhook: Webhook = result[0];
-console.log(webhook); // { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
+const webhooks: Webhook[] = await printify.webhooks.list();
+console.log(webhooks[0]); // { "topic": "order:created", "url": "https://example.com/webhooks/order/created", "shop_id": "1", "id": "5cb87a8cd490a2ccb256cec4" }
 ```
 
 ### Usage with CommonJS
@@ -89,20 +86,18 @@ const printify = new Printify({
   accessToken: process.env.PRINTIFY_API_TOKEN,
   shopId: '123456',
   enableLogging: true,
-  apiVersion: 'v1',
   host: 'api.printify.com',
   timeout: 5000, // in ms
 });
 ```
 
 | Option          | Default              | Description                                                                                                             |
-| --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- | --- |
+| --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `accessToken`   | `null`               | The API access token for authenticating requests. Generate one at [Printify API](https://printify.com/app/account/api). |
-| `shopId`        | `null`               | (optional) The ID of the shop to use for API requests. Can be found using `printify.shops.list()`.                      |
-| `enableLogging` | `true`               | (optional) Enables logging of API requests and responses. Enabled by default.                                           |
-| `apiVersion`    | `'v1'`               | (optional) The API version                                                                                              |
-| `host`          | `'api.printify.com'` | The host for API requests.                                                                                              |     |
-| `timeout`       | `5000`               | (optional) Reqeust timeout in ms                                                                                        |
+| `shopId`        | `null`               | (optional) Your personal shop ID. Can be found using `printify.shops.list()`.                                           |
+| `enableLogging` | `true`               | (optional) Enables logging of API requests and errors. Enabled by default.                                              |
+| `host`          | `'api.printify.com'` | (optional) The host for API requests.                                                                                   |
+| `timeout`       | `5000`               | (optional) Request timeout in ms.                                                                                       |
 
 ## Development
 
@@ -115,9 +110,10 @@ yarn test
 
 ```sh
 # (optional) test the bundle locally
+cd examples/typescript && yarn && cd ../../
 yarn build
-mv dist examples/development
-cd examples/development
+rm -rf examples/typescript/node_modules/printify-sdk-js/dist && mv dist examples/typescript/node_modules/printify-sdk-js
+cd examples/typescript
 yarn start
 ```
 

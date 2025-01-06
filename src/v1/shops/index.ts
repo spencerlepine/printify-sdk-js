@@ -1,19 +1,17 @@
-import { FetchDataFn } from '../../client';
+import { PrintifyConfig } from '../../client';
+import HttpClient from '../../http';
 import deleteOne from './deleteOne';
 import list from './list';
 
-export interface IShops {
-  deleteOne: ReturnType<typeof deleteOne>;
-  list: ReturnType<typeof list>;
-}
+class Shops extends HttpClient {
+  deleteOne: typeof deleteOne;
+  list: typeof list;
 
-class Shops implements IShops {
-  deleteOne: ReturnType<typeof deleteOne>;
-  list: ReturnType<typeof list>;
+  constructor(config: PrintifyConfig) {
+    super(config);
 
-  constructor(fetchData: FetchDataFn, shopId: string) {
-    this.deleteOne = deleteOne(fetchData, shopId);
-    this.list = list(fetchData);
+    this.deleteOne = deleteOne.bind(this);
+    this.list = list.bind(this);
   }
 }
 

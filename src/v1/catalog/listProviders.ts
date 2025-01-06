@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { PrintProvider } from '../types';
 
 export type ListProvidersResponse = PrintProvider[];
@@ -38,8 +37,8 @@ export type ListProvidersResponse = PrintProvider[];
  * //   // ...
  * // ]
  */
-const listProviders = (fetchData: FetchDataFn) => (): Promise<ListProvidersResponse> => {
-  return fetchData('/v1/catalog/print_providers.json', { method: 'GET' });
+const listProviders = function (this: method): Promise<ListProvidersResponse> {
+  return this.request('/v1/catalog/print_providers.json', { method: 'GET' });
 };
 
 export default listProviders;

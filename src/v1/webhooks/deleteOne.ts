@@ -1,5 +1,3 @@
-import { FetchDataFn } from '../../client';
-
 export type DeleteWebhookResponse = {
   id: string;
 };
@@ -17,12 +15,10 @@ export type DeleteWebhookResponse = {
  * //   "id": "5cb87a8cd490a2ccb256cec4"
  * // }
  */
-const deleteOne =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (webhookId: string): Promise<DeleteWebhookResponse> => {
-    return fetchData(`/v1/shops/${shopId}/webhooks/${webhookId}.json`, {
-      method: 'DELETE',
-    });
-  };
+const deleteOne = function (this: method, webhookId: string): Promise<DeleteWebhookResponse> {
+  return this.request(`/v1/shops/${this.shopId}/webhooks/${webhookId}.json`, {
+    method: 'DELETE',
+  });
+};
 
 export default deleteOne;

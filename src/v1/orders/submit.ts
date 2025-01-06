@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Address, NewLineItem } from '../types';
 
 export interface SubmitOrderData {
@@ -47,13 +46,11 @@ export type SubmitOrderResponse = {
  * const response = await printify.orders.submit(data);
  * // Expected response: { id: "5a96f649b2439217d070f507" }
  */
-const submit =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (data: SubmitOrderData): Promise<SubmitOrderResponse> => {
-    return fetchData(`/v1/shops/${shopId}/orders.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const submit = function (this: method, data: SubmitOrderData): Promise<SubmitOrderResponse> {
+  return this.request(`/v1/shops/${this.shopId}/orders.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default submit;

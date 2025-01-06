@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Product } from '../types';
 
 export type ListProductsResponse = {
@@ -34,19 +33,17 @@ export type ListProductsResponse = {
  * //   "total": 22
  * // }
  */
-const list =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (options: { page?: number; limit?: number } = {}): Promise<ListProductsResponse> => {
-    const { page, limit } = options;
-    const queryParams = new URLSearchParams({
-      ...(page !== undefined && { page: page.toString() }),
-      ...(limit !== undefined && { limit: limit.toString() }),
-    }).toString();
+const list = function (this: method, options: { page?: number; limit?: number } = {}): Promise<ListProductsResponse> {
+  const { page, limit } = options;
+  const queryParams = new URLSearchParams({
+    ...(page !== undefined && { page: page.toString() }),
+    ...(limit !== undefined && { limit: limit.toString() }),
+  }).toString();
 
-    const query = queryParams.toString() ? `?${queryParams.toString()}` : '';
-    return fetchData(`/v1/shops/${shopId}/products.json${query}`, {
-      method: 'GET',
-    });
-  };
+  const query = queryParams.toString() ? `?${queryParams.toString()}` : '';
+  return this.request(`/v1/shops/${this.shopId}/products.json${query}`, {
+    method: 'GET',
+  });
+};
 
 export default list;

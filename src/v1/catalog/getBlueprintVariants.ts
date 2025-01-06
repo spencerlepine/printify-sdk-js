@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Variant } from '../types';
 
 export type GetBlueprintVariantsResponse = {
@@ -29,10 +28,8 @@ export type GetBlueprintVariantsResponse = {
  * //   ]
  * // }
  */
-const getBlueprintVariants =
-  (fetchData: FetchDataFn) =>
-  (blueprintId: string, printProviderId: string): Promise<GetBlueprintVariantsResponse> => {
-    return fetchData(`/v1/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/variants.json`, { method: 'GET' });
-  };
+const getBlueprintVariants = function (this: method, blueprintId: string, printProviderId: string): Promise<GetBlueprintVariantsResponse> {
+  return this.request(`/v1/catalog/blueprints/${blueprintId}/print_providers/${printProviderId}/variants.json`, { method: 'GET' });
+};
 
 export default getBlueprintVariants;

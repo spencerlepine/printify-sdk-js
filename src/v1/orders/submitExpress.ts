@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Address, ExpressLineItem, LineItem } from '../types';
 
 export interface SubmitExpressData {
@@ -60,13 +59,11 @@ export type SubmitExpressOrderResponse = {
  *     ]
  *  }
  */
-const submitExpress =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (data: SubmitExpressData): Promise<SubmitExpressOrderResponse> => {
-    return fetchData(`/v1/shops/${shopId}/express.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const submitExpress = function (this: method, data: SubmitExpressData): Promise<SubmitExpressOrderResponse> {
+  return this.request(`/v1/shops/${this.shopId}/express.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default submitExpress;

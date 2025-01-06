@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Order } from '../types';
 
 export interface ListOrdersResponse {
@@ -23,18 +22,16 @@ export interface ListOrdersResponse {
  * printify.orders.list({ status: "fulfilled" });
  * printify.orders.list({ sku: "168699843" });
  */
-const list =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (options: { page?: number; limit?: number; status?: string; sku?: string } = {}): Promise<ListOrdersResponse> => {
-    const { page, limit, status, sku } = options;
-    const queryParams = new URLSearchParams({
-      ...(page !== undefined && { page: page.toString() }),
-      ...(limit !== undefined && { limit: limit.toString() }),
-      ...(status !== undefined && { status }),
-      ...(sku !== undefined && { sku }),
-    }).toString();
+const list = function (this: method, options: { page?: number; limit?: number; status?: string; sku?: string } = {}): Promise<ListOrdersResponse> {
+  const { page, limit, status, sku } = options;
+  const queryParams = new URLSearchParams({
+    ...(page !== undefined && { page: page.toString() }),
+    ...(limit !== undefined && { limit: limit.toString() }),
+    ...(status !== undefined && { status }),
+    ...(sku !== undefined && { sku }),
+  }).toString();
 
-    return fetchData(`/v1/shops/${shopId}/orders.json${queryParams ? `?${queryParams}` : ''}`, { method: 'GET' });
-  };
+  return this.request(`/v1/shops/${this.shopId}/orders.json${queryParams ? `?${queryParams}` : ''}`, { method: 'GET' });
+};
 
 export default list;

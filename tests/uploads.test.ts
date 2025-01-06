@@ -1,11 +1,11 @@
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
-describe('Uploads', () => {
+describe('Uploads V1', () => {
   let printify: Printify;
 
   beforeAll(() => {
-    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken', apiVersion: 'v1' });
+    printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
   });
 
   it('should handle the archive upload endpoint', async () => {

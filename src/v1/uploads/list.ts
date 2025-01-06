@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { ImageUpload } from '../types';
 
 export type ListUploadsResponse = {
@@ -35,15 +34,13 @@ export type ListUploadsResponse = {
  * //   "total": 2
  * // }
  */
-const list =
-  (fetchData: FetchDataFn) =>
-  (page?: number, limit?: number): Promise<ListUploadsResponse> => {
-    const queryParams = new URLSearchParams();
-    if (page !== undefined) queryParams.append('page', page.toString());
-    if (limit !== undefined) queryParams.append('limit', limit.toString());
+const list = function (this: method, page?: number, limit?: number): Promise<ListUploadsResponse> {
+  const queryParams = new URLSearchParams();
+  if (page !== undefined) queryParams.append('page', page.toString());
+  if (limit !== undefined) queryParams.append('limit', limit.toString());
 
-    const url = `/v1/uploads.json${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
-    return fetchData(url, { method: 'GET' });
-  };
+  const url = `/v1/uploads.json${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+  return this.request(url, { method: 'GET' });
+};
 
 export default list;

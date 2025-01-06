@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { NewProduct, Product } from '../types';
 
 export type CreateProductResponse = Product;
@@ -45,13 +44,11 @@ export type CreateProductResponse = Product;
  * //   "print_areas": [],
  * // }
  */
-const create =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (data: NewProduct): Promise<CreateProductResponse> => {
-    return fetchData(`/v1/shops/${shopId}/products.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const create = function (this: method, data: NewProduct): Promise<CreateProductResponse> {
+  return this.request(`/v1/shops/${this.shopId}/products.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default create;

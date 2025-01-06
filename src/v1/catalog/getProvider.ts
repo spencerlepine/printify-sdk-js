@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Blueprint, Location } from '../types';
 
 export type GetProviderResponse = {
@@ -28,10 +27,8 @@ export type GetProviderResponse = {
  *   ]
  * }
  */
-const getProvider =
-  (fetchData: FetchDataFn) =>
-  (printProviderId: string): Promise<GetProviderResponse> => {
-    return fetchData(`/v1/catalog/print_providers/${printProviderId}.json`, { method: 'GET' });
-  };
+const getProvider = function (this: method, printProviderId: string): Promise<GetProviderResponse> {
+  return this.request(`/v1/catalog/print_providers/${printProviderId}.json`, { method: 'GET' });
+};
 
 export default getProvider;

@@ -1,5 +1,3 @@
-import { FetchDataFn } from '../../client';
-
 /**
  * Delete a product
  *
@@ -11,12 +9,10 @@ import { FetchDataFn } from '../../client';
  * await printify.products.deleteOne(productId);
  * // Expected response: {}
  */
-const deleteOne =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (productId: string): Promise<void> => {
-    return fetchData(`/v1/shops/${shopId}/products/${productId}.json`, {
-      method: 'DELETE',
-    });
-  };
+const deleteOne = function (this: method, productId: string): Promise<void> {
+  return this.request(`/v1/shops/${this.shopId}/products/${productId}.json`, {
+    method: 'DELETE',
+  });
+};
 
 export default deleteOne;

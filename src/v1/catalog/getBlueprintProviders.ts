@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { PrintProvider } from '../types';
 
 export type GetBlueprintProviderResponse = PrintProvider[];
@@ -21,10 +20,8 @@ export type GetBlueprintProviderResponse = PrintProvider[];
  * //   { "id": 24, "title": "Inklocker" }
  * // ]
  */
-const getBlueprintProviders =
-  (fetchData: FetchDataFn) =>
-  (blueprintId: string): Promise<GetBlueprintProviderResponse> => {
-    return fetchData(`/v1/catalog/blueprints/${blueprintId}/print_providers.json`, { method: 'GET' });
-  };
+const getBlueprintProviders = function (this: method, blueprintId: string): Promise<GetBlueprintProviderResponse> {
+  return this.request(`/v1/catalog/blueprints/${blueprintId}/print_providers.json`, { method: 'GET' });
+};
 
 export default getBlueprintProviders;

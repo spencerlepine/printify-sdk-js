@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { ImageUpload } from '../types';
 
 export interface UploadImageDataUrl {
@@ -26,13 +25,11 @@ export type UploadImageResponse = ImageUpload;
  * const dataBase64 = { file_name: 'image.png', contents: '<base-64-encoded-content>' };
  * const response = await printify.uploads.uploadImage(dataBase64);
  */
-const uploadImage =
-  (fetchData: FetchDataFn) =>
-  (data: UploadImageDataUrl | UploadImageDataBase64): Promise<UploadImageResponse> => {
-    return fetchData(`/v1/uploads/images.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const uploadImage = function (this: method, data: UploadImageDataUrl | UploadImageDataBase64): Promise<UploadImageResponse> {
+  return this.request(`/v1/uploads/images.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default uploadImage;

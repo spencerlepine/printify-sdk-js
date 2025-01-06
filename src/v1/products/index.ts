@@ -1,4 +1,5 @@
-import { FetchDataFn } from '../../client';
+import { PrintifyConfig } from '../../client';
+import HttpClient from '../../http';
 import create from './create';
 import deleteOne from './deleteOne';
 import getOne from './getOne';
@@ -9,39 +10,29 @@ import setPublishFailed from './setPublishFailed';
 import setPublishSucceeded from './setPublishSucceeded';
 import updateOne from './updateOne';
 
-export interface IProducts {
-  create: ReturnType<typeof create>;
-  deleteOne: ReturnType<typeof deleteOne>;
-  getOne: ReturnType<typeof getOne>;
-  list: ReturnType<typeof list>;
-  notifyUnpublished: ReturnType<typeof notifyUnpublished>;
-  publishOne: ReturnType<typeof publishOne>;
-  setPublishFailed: ReturnType<typeof setPublishFailed>;
-  setPublishSucceeded: ReturnType<typeof setPublishSucceeded>;
-  updateOne: ReturnType<typeof updateOne>;
-}
+class Products extends HttpClient {
+  create: typeof create;
+  deleteOne: typeof deleteOne;
+  getOne: typeof getOne;
+  list: typeof list;
+  notifyUnpublished: typeof notifyUnpublished;
+  publishOne: typeof publishOne;
+  setPublishFailed: typeof setPublishFailed;
+  setPublishSucceeded: typeof setPublishSucceeded;
+  updateOne: typeof updateOne;
 
-class Products implements IProducts {
-  create: ReturnType<typeof create>;
-  deleteOne: ReturnType<typeof deleteOne>;
-  getOne: ReturnType<typeof getOne>;
-  list: ReturnType<typeof list>;
-  notifyUnpublished: ReturnType<typeof notifyUnpublished>;
-  publishOne: ReturnType<typeof publishOne>;
-  setPublishFailed: ReturnType<typeof setPublishFailed>;
-  setPublishSucceeded: ReturnType<typeof setPublishSucceeded>;
-  updateOne: ReturnType<typeof updateOne>;
+  constructor(config: PrintifyConfig) {
+    super(config);
 
-  constructor(fetchData: FetchDataFn, shopId: string) {
-    this.create = create(fetchData, shopId);
-    this.deleteOne = deleteOne(fetchData, shopId);
-    this.getOne = getOne(fetchData, shopId);
-    this.list = list(fetchData, shopId);
-    this.notifyUnpublished = notifyUnpublished(fetchData, shopId);
-    this.publishOne = publishOne(fetchData, shopId);
-    this.setPublishFailed = setPublishFailed(fetchData, shopId);
-    this.setPublishSucceeded = setPublishSucceeded(fetchData, shopId);
-    this.updateOne = updateOne(fetchData, shopId);
+    this.create = create.bind(this);
+    this.deleteOne = deleteOne.bind(this);
+    this.getOne = getOne.bind(this);
+    this.list = list.bind(this);
+    this.notifyUnpublished = notifyUnpublished.bind(this);
+    this.publishOne = publishOne.bind(this);
+    this.setPublishFailed = setPublishFailed.bind(this);
+    this.setPublishSucceeded = setPublishSucceeded.bind(this);
+    this.updateOne = updateOne.bind(this);
   }
 }
 

@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Product } from '../types';
 
 export type GetProductResponse = Product;
@@ -28,12 +27,10 @@ export type GetProductResponse = Product;
  *   "print_areas": [],
  * }
  */
-const getOne =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (productId: string): Promise<GetProductResponse> => {
-    return fetchData(`/v1/shops/${shopId}/products/${productId}.json`, {
-      method: 'GET',
-    });
-  };
+const getOne = function (this: method, productId: string): Promise<GetProductResponse> {
+  return this.request(`/v1/shops/${this.shopId}/products/${productId}.json`, {
+    method: 'GET',
+  });
+};
 
 export default getOne;

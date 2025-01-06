@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { NewWebhook } from '../types';
 
 export type CreateWebhookResponse = {
@@ -25,13 +24,11 @@ export type CreateWebhookResponse = {
  * //   "id": "5cb87a8cd490a2ccb256cec4"
  * // }
  */
-const create =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (data: NewWebhook): Promise<CreateWebhookResponse> => {
-    return fetchData(`/v1/shops/${shopId}/webhooks.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const create = function (this: method, data: NewWebhook): Promise<CreateWebhookResponse> {
+  return this.request(`/v1/shops/${this.shopId}/webhooks.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default create;

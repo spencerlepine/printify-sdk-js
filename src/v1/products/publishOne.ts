@@ -1,5 +1,3 @@
-import { FetchDataFn } from '../../client';
-
 export interface ProductPublishData {
   title: boolean;
   description: boolean;
@@ -22,13 +20,11 @@ export interface ProductPublishData {
  * await printify.products.publishOne('productId', data);
  * // Expected response: {}
  */
-const publishOne =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (productId: string, data: ProductPublishData): Promise<void> => {
-    return fetchData(`/v1/shops/${shopId}/products/${productId}/publish.json`, {
-      method: 'POST',
-      data: JSON.stringify(data),
-    });
-  };
+const publishOne = function (this: method, productId: string, data: ProductPublishData): Promise<void> {
+  return this.request(`/v1/shops/${this.shopId}/products/${productId}/publish.json`, {
+    method: 'POST',
+    data: JSON.stringify(data),
+  });
+};
 
 export default publishOne;

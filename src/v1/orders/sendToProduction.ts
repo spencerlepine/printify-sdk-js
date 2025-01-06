@@ -1,4 +1,3 @@
-import { FetchDataFn } from '../../client';
 import { Address, LineItem } from '../types';
 
 export type SendOrderToProductionResponse = {
@@ -30,12 +29,10 @@ export type SendOrderToProductionResponse = {
  * await printify.orders.sendToProduction(orderId);
  * // Expected response: { id: "5d65c6ac01b403000a5d24d3", ... }
  */
-const sendToProduction =
-  (fetchData: FetchDataFn, shopId: string) =>
-  (orderId: string): Promise<SendOrderToProductionResponse> => {
-    return fetchData(`/v1/shops/${shopId}/orders/${orderId}/send_to_production.json`, {
-      method: 'POST',
-    });
-  };
+const sendToProduction = function (this: method, orderId: string): Promise<SendOrderToProductionResponse> {
+  return this.request(`/v1/shops/${this.shopId}/orders/${orderId}/send_to_production.json`, {
+    method: 'POST',
+  });
+};
 
 export default sendToProduction;

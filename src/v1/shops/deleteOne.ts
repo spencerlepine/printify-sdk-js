@@ -1,5 +1,3 @@
-import { FetchDataFn } from '../../client';
-
 /**
  * Disconnect a shop
  *
@@ -7,18 +5,14 @@ import { FetchDataFn } from '../../client';
  * @returns {Promise<void>}
  *
  * @example
- * await printify.shops.deleteOne(); // defaults to "printify.shopId"
- * // Expected response: {}
- *
  * const customShopId = "67890";
  * await printify.shops.deleteOne(customShopId);
+ * // Expected response: {}
  */
-const deleteOne =
-  (fetchData: FetchDataFn, defaultShopId: string) =>
-  (customShopId?: string): Promise<void> => {
-    return fetchData(`/v1/shops/${customShopId || defaultShopId}/connection.json`, {
-      method: 'DELETE',
-    });
-  };
+const deleteOne = function (this: method, customShopId?: string): Promise<void> {
+  return this.request(`/v1/shops/${customShopId ?? this.shopId}/connection.json`, {
+    method: 'DELETE',
+  });
+};
 
 export default deleteOne;
