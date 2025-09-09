@@ -15,8 +15,9 @@ export type DeleteWebhookResponse = {
  * //   "id": "5cb87a8cd490a2ccb256cec4"
  * // }
  */
-const deleteOne = function (this: method, webhookId: string): Promise<DeleteWebhookResponse> {
-  return this.request(`/v1/shops/${this.shopId}/webhooks/${webhookId}.json`, {
+const deleteOne = function (this: method, webhookId: string, host?: string): Promise<DeleteWebhookResponse> {
+  const query = host ? `?host=${encodeURIComponent(host)}` : '';
+  return this.request(`/v1/shops/${this.shopId}/webhooks/${webhookId}.json${query}`, {
     method: 'DELETE',
   });
 };
