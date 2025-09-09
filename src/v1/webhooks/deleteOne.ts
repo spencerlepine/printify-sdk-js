@@ -6,6 +6,7 @@ export type DeleteWebhookResponse = {
  * Delete a webhook
  *
  * @param {string} webhookId - The ID of the webhook to be deleted
+ * @param {string} host - The hostname of the webhook to be deleted (optional)
  * @returns {Promise<DeleteWebhookResponse>}
  *
  * @example
