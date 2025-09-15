@@ -302,4 +302,5 @@ export interface Webhook {
 export interface NewWebhook {
   topic: string;
   url: string;
+  secret?: string;
 }

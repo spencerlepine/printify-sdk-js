@@ -6,6 +6,7 @@ export type DeleteWebhookResponse = {
  * Delete a webhook
  *
  * @param {string} webhookId - The ID of the webhook to be deleted
+ * @param {string} host - The hostname of the webhook to be deleted (optional)
  * @returns {Promise<DeleteWebhookResponse>}
  *
  * @example
@@ -15,8 +16,9 @@ export type DeleteWebhookResponse = {
  * //   "id": "5cb87a8cd490a2ccb256cec4"
  * // }
  */
-const deleteOne = function (this: method, webhookId: string): Promise<DeleteWebhookResponse> {
-  return this.request(`/v1/shops/${this.shopId}/webhooks/${webhookId}.json`, {
+const deleteOne = function (this: method, webhookId: string, host?: string): Promise<DeleteWebhookResponse> {
+  const query = host ? `?host=${encodeURIComponent(host)}` : '';
+  return this.request(`/v1/shops/${this.shopId}/webhooks/${webhookId}.json${query}`, {
     method: 'DELETE',
   });
 };
