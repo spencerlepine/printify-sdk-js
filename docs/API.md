@@ -1955,7 +1955,11 @@ await printify.webhooks.list();
 - **Description:** Create a new webhook
 
 ```js
-const data = { topic: 'order:created', url: 'https://example.com/webhooks/order/created' };
+const data = {
+  topic: 'order:created',
+  url: 'https://example.com/webhooks/order/created',
+  secret: '<string>', // (optional)
+};
 await printify.webhooks.create(data);
 ```
 
@@ -1993,7 +1997,7 @@ await printify.webhooks.updateOne('webhookId', data);
 - **Description:** Delete a webhook
 
 ```js
-await printify.webhooks.deleteOne(webhookId);
+await printify.webhooks.deleteOne(webhookId, host?);
 ```
 
 <details>
