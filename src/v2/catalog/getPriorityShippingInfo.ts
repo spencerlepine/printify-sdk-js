@@ -1,6 +1,8 @@
 import { ShippingInfoSpecific } from '../types';
 
-export type GetPriorityShippingInfoResponse = ShippingInfoSpecific;
+export type GetPriorityShippingInfoResponse = {
+  data: ShippingInfoSpecific[];
+};
 
 /**
  * Retrieve priority shipping method information

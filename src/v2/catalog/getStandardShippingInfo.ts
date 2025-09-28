@@ -1,6 +1,8 @@
 import { ShippingInfoSpecific } from '../types';
 
-export type GetStandardShippingInfoResponse = ShippingInfoSpecific;
+export type GetStandardShippingInfoResponse = {
+  data: ShippingInfoSpecific[];
+};
 
 /**
  * Retrieve standard shipping method information
