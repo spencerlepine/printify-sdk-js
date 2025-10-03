@@ -1,10 +1,3 @@
-/**
- * Shared Axios Mock Setup
- *
- * This file can be imported at the top of test files to set up axios mocking.
- * It must be imported BEFORE any other imports to ensure Jest hoisting works correctly.
- */
-
 import { MockAxiosInstance, resetAxiosMocks } from './axiosMock';
 
 // Mock axios-retry
@@ -33,5 +26,4 @@ jest.mock('axios', () => {
   };
 });
 
-// Re-export the reset helper for convenience
 export { resetAxiosMocks };
