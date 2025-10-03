@@ -2,42 +2,6 @@
  * Centralized Axios Mock Setup
  *
  * This module provides a reusable helper for resetting axios mocks in tests.
- * Due to Jest's hoisting behavior, the mock setup itself must be inlined in each test file.
- *
- * USAGE PATTERN:
- *
- * ```typescript
- * import { resetAxiosMocks } from './mocks/axiosMock';
- *
- * // Setup axios mocks
- * jest.mock('axios-retry', () => jest.fn());
- *
- * const mockAxiosInstance = {
- *   get: jest.fn(),
- *   post: jest.fn(),
- *   put: jest.fn(),
- *   delete: jest.fn(),
- *   patch: jest.fn(),
- * };
- *
- * jest.mock('axios', () => {
- *   const actual = jest.requireActual('axios');
- *   return {
- *     __esModule: true,
- *     ...actual,
- *     default: {
- *       ...actual.default,
- *       create: jest.fn(() => mockAxiosInstance),
- *     },
- *     create: jest.fn(() => mockAxiosInstance),
- *   };
- * });
- *
- * // In beforeEach:
- * beforeEach(() => {
- *   resetAxiosMocks(mockAxiosInstance);
- * });
- * ```
  */
 
 export interface MockAxiosInstance {
