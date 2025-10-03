@@ -1,3 +1,4 @@
+import { mockAxiosInstance, resetAxiosMocks } from './mocks/setupAxiosMock';
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
@@ -6,6 +7,10 @@ describe('Orders V1', () => {
 
   beforeAll(() => {
     printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
+  });
+
+  beforeEach(() => {
+    resetAxiosMocks(mockAxiosInstance);
   });
 
   it('should handle the calculate shipping endpoint', async () => {
@@ -32,7 +37,7 @@ describe('Orders V1', () => {
     await printify.orders.calculateShipping(mockData);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders/shipping.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders/shipping.json`, mockData);
   });
 
   it('should handle the cancel unpaid order endpoint', async () => {
@@ -41,7 +46,7 @@ describe('Orders V1', () => {
     await printify.orders.cancelUnpaid(mockOrderId);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders/${mockOrderId}/cancel.json`);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders/${mockOrderId}/cancel.json`);
   });
 
   it('should handle the get order details endpoint', async () => {
@@ -50,7 +55,7 @@ describe('Orders V1', () => {
     await printify.orders.getOne(mockOrderId);
 
     // Assert
-    assertAxiosCall('get', `/v1/shops/${printify.shopId}/orders/${mockOrderId}.json`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/shops/${printify.shopId}/orders/${mockOrderId}.json`);
   });
 
   it('should handle submitting an order by productId', async () => {
@@ -77,7 +82,7 @@ describe('Orders V1', () => {
     };
     await printify.orders.submit(mockData);
 
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order by external image URL (simple image positioning)', async () => {
@@ -104,7 +109,7 @@ describe('Orders V1', () => {
     };
     await printify.orders.submit(mockData);
 
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order by external image URL (advanced image positioning)', async () => {
@@ -144,7 +149,7 @@ describe('Orders V1', () => {
     };
     await printify.orders.submit(mockData);
 
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order with specifying print details for printing on sides', async () => {
@@ -184,7 +189,7 @@ describe('Orders V1', () => {
     };
     await printify.orders.submit(mockData);
 
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle submitting an order by only an existing SKU', async () => {
@@ -216,7 +221,7 @@ describe('Orders V1', () => {
     };
     await printify.orders.submit(mockData);
 
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders.json`, mockData);
   });
 
   it('should handle the list orders endpoint', async () => {
@@ -225,7 +230,7 @@ describe('Orders V1', () => {
     await printify.orders.list({ page: mockPage });
 
     // Assert
-    assertAxiosCall('get', `/v1/shops/${printify.shopId}/orders.json?page=${mockPage}`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/shops/${printify.shopId}/orders.json?page=${mockPage}`);
   });
 
   it('should handle the send order to production endpoint', async () => {
@@ -234,7 +239,7 @@ describe('Orders V1', () => {
     await printify.orders.sendToProduction(mockOrderId);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/orders/${mockOrderId}/send_to_production.json`);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/orders/${mockOrderId}/send_to_production.json`);
   });
 
   it('should handle the submit express order endpoint', async () => {
@@ -264,6 +269,6 @@ describe('Orders V1', () => {
     await printify.orders.submitExpress(mockData);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/express.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/express.json`, mockData);
   });
 });

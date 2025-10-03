@@ -1,13 +1,12 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import axiosRetry from 'axios-retry';
-
-axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
 
 interface HttpConfig {
   accessToken: string;
   shopId?: string;
   enableLogging?: boolean;
   host?: string;
+  axios?: AxiosInstance;
   timeout?: number;
 }
 
@@ -18,6 +17,7 @@ class HttpClient {
   private timeout: number;
   private enableLogging?: boolean;
   private baseUrl: string;
+  protected axios: AxiosInstance;
 
   constructor(config: HttpConfig) {
     this.accessToken = config.accessToken;
@@ -26,6 +26,8 @@ class HttpClient {
     this.timeout = config.timeout || 5000;
     this.enableLogging = config.enableLogging ?? true;
     this.baseUrl = `https://${this.host}`;
+    this.axios = config.axios ?? Axios.create();
+    axiosRetry(this.axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
   }
 
   private logError(message: string) {
@@ -64,17 +66,17 @@ class HttpClient {
       let response;
       switch (method) {
         case 'post':
-          response = await axios.post<T>(url, config.data, requestConfig);
+          response = await this.axios.post<T>(url, config.data, requestConfig);
           break;
         case 'put':
-          response = await axios.put<T>(url, config.data, requestConfig);
+          response = await this.axios.put<T>(url, config.data, requestConfig);
           break;
         case 'delete':
-          response = await axios.delete<T>(url, requestConfig);
+          response = await this.axios.delete<T>(url, requestConfig);
           break;
         case 'get':
         default:
-          response = await axios.get<T>(url, requestConfig);
+          response = await this.axios.get<T>(url, requestConfig);
           break;
       }
       return response.data;

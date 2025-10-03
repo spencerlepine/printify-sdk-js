@@ -1,3 +1,4 @@
+import { mockAxiosInstance, resetAxiosMocks } from './mocks/setupAxiosMock';
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
@@ -8,13 +9,17 @@ describe('Uploads V1', () => {
     printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
   });
 
+  beforeEach(() => {
+    resetAxiosMocks(mockAxiosInstance);
+  });
+
   it('should handle the archive upload endpoint', async () => {
     // Act
     const mockImageId = '5cb87a8cd490a2ccb256cec4';
     await printify.uploads.archive(mockImageId);
 
     // Assert
-    assertAxiosCall('post', `/v1/uploads/${mockImageId}/archive.json`);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/uploads/${mockImageId}/archive.json`);
   });
 
   it('should handle the getById upload endpoint', async () => {
@@ -23,7 +28,7 @@ describe('Uploads V1', () => {
     await printify.uploads.getById(mockImageId);
 
     // Assert
-    assertAxiosCall('get', `/v1/uploads/${mockImageId}.json`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/uploads/${mockImageId}.json`);
   });
 
   it('should handle the list uploads endpoint with page and limit parameters', async () => {
@@ -33,7 +38,7 @@ describe('Uploads V1', () => {
     await printify.uploads.list(mockPage, mockLimit);
 
     // Assert
-    assertAxiosCall('get', `/v1/uploads.json?page=${mockPage}&limit=${mockLimit}`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/uploads.json?page=${mockPage}&limit=${mockLimit}`);
   });
 
   it('should handle uploading an image via URL', async () => {
@@ -44,7 +49,7 @@ describe('Uploads V1', () => {
     await printify.uploads.uploadImage(mockData);
 
     // Assert
-    assertAxiosCall('post', '/v1/uploads/images.json', mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', '/v1/uploads/images.json', mockData);
   });
 
   it('should handle uploading an image via base64 content', async () => {
@@ -55,6 +60,6 @@ describe('Uploads V1', () => {
     await printify.uploads.uploadImage(mockData);
 
     // Assert
-    assertAxiosCall('post', '/v1/uploads/images.json', mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', '/v1/uploads/images.json', mockData);
   });
 });

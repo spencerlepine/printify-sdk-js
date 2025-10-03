@@ -1,3 +1,4 @@
+import { mockAxiosInstance, resetAxiosMocks } from './mocks/setupAxiosMock';
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
@@ -8,12 +9,16 @@ describe('Shops V1', () => {
     printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
   });
 
+  beforeEach(() => {
+    resetAxiosMocks(mockAxiosInstance);
+  });
+
   it('should handle deleting a shop by default shopId', async () => {
     // Act
     await printify.shops.deleteOne();
 
     // Assert
-    assertAxiosCall('delete', `/v1/shops/${printify.shopId}/connection.json`);
+    assertAxiosCall(mockAxiosInstance, 'delete', `/v1/shops/${printify.shopId}/connection.json`);
   });
 
   it('should handle deleting a shop by custom shopId', async () => {
@@ -22,7 +27,7 @@ describe('Shops V1', () => {
     await printify.shops.deleteOne(customShopId);
 
     // Assert
-    assertAxiosCall('delete', `/v1/shops/${customShopId}/connection.json`);
+    assertAxiosCall(mockAxiosInstance, 'delete', `/v1/shops/${customShopId}/connection.json`);
   });
 
   it('should handle listing shops', async () => {
@@ -30,6 +35,6 @@ describe('Shops V1', () => {
     await printify.shops.list();
 
     // Assert
-    assertAxiosCall('get', '/v1/shops.json');
+    assertAxiosCall(mockAxiosInstance, 'get', '/v1/shops.json');
   });
 });

@@ -1,14 +1,6 @@
-import axios from 'axios';
+import { mockAxiosInstance, resetAxiosMocks } from './mocks/setupAxiosMock';
 import { assertAxiosCall } from './testUtils';
 import HttpClient from '../src/http';
-
-jest.mock('axios', () => ({
-  get: jest.fn(),
-  post: jest.fn(),
-  put: jest.fn(),
-  delete: jest.fn(),
-  patch: jest.fn(),
-}));
 
 describe('HttpClient', () => {
   const shopId = 'testShopId';
@@ -20,11 +12,7 @@ describe('HttpClient', () => {
   });
 
   beforeEach(() => {
-    (axios.get as jest.Mock).mockReset();
-    (axios.post as jest.Mock).mockReset();
-    (axios.put as jest.Mock).mockReset();
-    (axios.delete as jest.Mock).mockReset();
-    (axios.patch as jest.Mock).mockReset();
+    resetAxiosMocks(mockAxiosInstance);
     (global.console.log as jest.Mock).mockReset();
     (global.console.error as jest.Mock).mockReset();
   });
@@ -40,20 +28,19 @@ describe('HttpClient', () => {
     const http: HttpClient = new HttpClient({ shopId, accessToken });
 
     const mockResponse = { success: 'true' };
-    const mockedAxios = axios as jest.Mocked<typeof axios>;
-    mockedAxios.get.mockResolvedValueOnce({ data: mockResponse });
+    mockAxiosInstance.get.mockResolvedValueOnce({ data: mockResponse });
 
     const url = '/test-url';
     const result = await http.request(url);
 
     expect(result).toEqual(mockResponse);
-    assertAxiosCall('get', url);
+    assertAxiosCall(mockAxiosInstance, 'get', url);
   });
 
   it('request() should throw error for failed response', async () => {
     const http: HttpClient = new HttpClient({ shopId, accessToken });
 
-    (axios as unknown as jest.Mock).mockResolvedValueOnce({
+    mockAxiosInstance.get.mockRejectedValueOnce({
       response: {
         status: 404,
         statusText: 'Not Found',
@@ -69,7 +56,7 @@ describe('HttpClient', () => {
     const http: HttpClient = new HttpClient({ shopId, accessToken });
 
     const errorMessage = 'Network Error';
-    (axios as unknown as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
+    mockAxiosInstance.get.mockRejectedValueOnce(new Error(errorMessage));
 
     const url = '/test-url';
 
@@ -82,7 +69,7 @@ describe('HttpClient', () => {
     const method = 'GET';
     const url = '/test-url';
 
-    (axios.get as jest.Mock).mockResolvedValueOnce({ response: { status: 200, statusText: 'Hello, world!' } });
+    mockAxiosInstance.get.mockResolvedValueOnce({ data: { status: 200, statusText: 'Hello, world!' } });
     await http.request(url);
 
     expect(console.log).toHaveBeenCalledWith(`Request: ${method.toUpperCase()} https://${http['host']}${url}`);
@@ -94,7 +81,7 @@ describe('HttpClient', () => {
     const method = 'GET';
     const url = '/test-url';
 
-    (axios.get as jest.Mock).mockResolvedValueOnce({ response: { status: 200, statusText: 'Hello, world!' } });
+    mockAxiosInstance.get.mockResolvedValueOnce({ data: { status: 200, statusText: 'Hello, world!' } });
     await http.request(url);
 
     expect(console.log).toHaveBeenCalledWith(`Request: ${method.toUpperCase()} https://${http['host']}${url}`);
@@ -104,7 +91,7 @@ describe('HttpClient', () => {
     const http: HttpClient = new HttpClient({ shopId, accessToken, enableLogging: false });
     const url = '/test-url';
 
-    (axios.get as jest.Mock).mockResolvedValueOnce({ response: { status: 200, statusText: 'Hello, world!' } });
+    mockAxiosInstance.get.mockResolvedValueOnce({ data: { status: 200, statusText: 'Hello, world!' } });
     await http.request(url);
 
     expect(console.log).not.toHaveBeenCalled();
@@ -112,7 +99,7 @@ describe('HttpClient', () => {
 
   it('should log the error when enableLogging is default', async () => {
     const http: HttpClient = new HttpClient({ shopId, accessToken });
-    (axios.get as jest.Mock).mockRejectedValueOnce({ response: { status: 500, statusText: 'Server Error' } });
+    mockAxiosInstance.get.mockRejectedValueOnce({ response: { status: 500, statusText: 'Server Error' } });
 
     try {
       await http.request('/test-url');
@@ -123,7 +110,7 @@ describe('HttpClient', () => {
 
   it('should log the error when enableLogging is true', async () => {
     const http: HttpClient = new HttpClient({ shopId, accessToken, enableLogging: true });
-    (axios.get as jest.Mock).mockRejectedValueOnce({ response: { status: 500, statusText: 'Server Error' } });
+    mockAxiosInstance.get.mockRejectedValueOnce({ response: { status: 500, statusText: 'Server Error' } });
 
     try {
       await http.request('/test-url');
@@ -135,7 +122,7 @@ describe('HttpClient', () => {
   it('should not log the error when enableLogging is false', async () => {
     const http: HttpClient = new HttpClient({ shopId, accessToken, enableLogging: false });
 
-    (axios.get as jest.Mock).mockRejectedValueOnce({ response: { status: 500, statusText: 'Server Error' } });
+    mockAxiosInstance.get.mockRejectedValueOnce({ response: { status: 500, statusText: 'Server Error' } });
 
     try {
       await http.request('/test-url');
@@ -158,7 +145,7 @@ describe('HttpClient', () => {
     axiosError.config = {};
     axiosError.code = 'ERR_BAD_REQUEST';
 
-    (axios.get as jest.Mock).mockRejectedValueOnce(axiosError);
+    mockAxiosInstance.get.mockRejectedValueOnce(axiosError);
 
     const url = '/test-url';
 

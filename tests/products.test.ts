@@ -1,3 +1,4 @@
+import { mockAxiosInstance, resetAxiosMocks } from './mocks/setupAxiosMock';
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
@@ -6,6 +7,10 @@ describe('Products V1', () => {
 
   beforeAll(() => {
     printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
+  });
+
+  beforeEach(() => {
+    resetAxiosMocks(mockAxiosInstance);
   });
 
   it('should handle the create product endpoint', async () => {
@@ -31,7 +36,7 @@ describe('Products V1', () => {
     await printify.products.create(mockData);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/products.json`, mockData);
   });
 
   it('should handle listing products with default parameters', async () => {
@@ -39,7 +44,7 @@ describe('Products V1', () => {
     await printify.products.list();
 
     // Assert
-    assertAxiosCall('get', `/v1/shops/${printify.shopId}/products.json`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/shops/${printify.shopId}/products.json`);
   });
 
   it('should handle listing products with pagination and limit', async () => {
@@ -47,7 +52,7 @@ describe('Products V1', () => {
     await printify.products.list({ page: 2, limit: 2 });
 
     // Assert
-    assertAxiosCall('get', `/v1/shops/${printify.shopId}/products.json?page=${2}&limit=${2}`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/shops/${printify.shopId}/products.json?page=${2}&limit=${2}`);
   });
 
   it('should handle the delete product endpoint', async () => {
@@ -56,7 +61,7 @@ describe('Products V1', () => {
     await printify.products.deleteOne(mockProductId);
 
     // Assert
-    assertAxiosCall('delete', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`);
+    assertAxiosCall(mockAxiosInstance, 'delete', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`);
   });
 
   it('should handle the get one product endpoint', async () => {
@@ -65,7 +70,7 @@ describe('Products V1', () => {
     await printify.products.getOne(mockProductId);
 
     // Assert
-    assertAxiosCall('get', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`);
   });
 
   it('should handle the notify unpublished product endpoint', async () => {
@@ -74,7 +79,7 @@ describe('Products V1', () => {
     await printify.products.notifyUnpublished(mockProductId);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/unpublish.json`);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/products/${mockProductId}/unpublish.json`);
   });
 
   it('should handle the publishOne product endpoint', async () => {
@@ -92,7 +97,7 @@ describe('Products V1', () => {
     await printify.products.publishOne(mockProductId, mockData);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publish.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publish.json`, mockData);
   });
 
   it('should handle the setPublishFailed product endpoint', async () => {
@@ -102,7 +107,7 @@ describe('Products V1', () => {
     await printify.products.setPublishFailed(mockProductId, mockData);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publishing_failed.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publishing_failed.json`, mockData);
   });
 
   it('should handle the setPublishSucceeded product endpoint', async () => {
@@ -112,7 +117,7 @@ describe('Products V1', () => {
     await printify.products.setPublishSucceeded(mockProductId, mockData);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publishing_succeeded.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/products/${mockProductId}/publishing_succeeded.json`, mockData);
   });
 
   it('should handle the update product endpoint', async () => {
@@ -122,6 +127,6 @@ describe('Products V1', () => {
     await printify.products.updateOne(mockProductId, mockData);
 
     // Assert
-    assertAxiosCall('put', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'put', `/v1/shops/${printify.shopId}/products/${mockProductId}.json`, mockData);
   });
 });
