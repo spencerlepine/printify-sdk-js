@@ -1,6 +1,8 @@
 import { ShippingInfoSpecific } from '../types';
 
-export type GetEconomyShippingInfoResponse = ShippingInfoSpecific;
+export type GetEconomyShippingInfoResponse = {
+  data: ShippingInfoSpecific[];
+};
 
 /**
  * Retrieve economy shipping method information
