@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-export const assertAxiosCall = (method: 'get' | 'post' | 'put' | 'delete' | 'patch', endpoint: string, data?: any, headers: Record<string, string> = {}) => {
+export const assertAxiosCall = (axiosInstance: any, method: 'get' | 'post' | 'put' | 'delete' | 'patch', endpoint: string, data?: any, headers: Record<string, string> = {}) => {
   const mockOptions = {
     headers: {
       'Content-Type': 'application/json',
@@ -13,8 +11,8 @@ export const assertAxiosCall = (method: 'get' | 'post' | 'put' | 'delete' | 'pat
   };
 
   if (method === 'get' || method === 'delete') {
-    expect(axios[method]).toHaveBeenCalledWith(endpoint, expect.objectContaining(mockOptions));
+    expect(axiosInstance[method]).toHaveBeenCalledWith(endpoint, expect.objectContaining(mockOptions));
   } else {
-    expect(axios[method]).toHaveBeenCalledWith(endpoint, data ? JSON.stringify(data) : undefined, expect.objectContaining(mockOptions));
+    expect(axiosInstance[method]).toHaveBeenCalledWith(endpoint, data ? JSON.stringify(data) : undefined, expect.objectContaining(mockOptions));
   }
 };

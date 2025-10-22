@@ -5,6 +5,7 @@ import Products from './v1/products';
 import Shops from './v1/shops';
 import Uploads from './v1/uploads';
 import Webhooks from './v1/webhooks';
+import { AxiosInstance } from 'axios';
 
 export interface PrintifyConfig {
   accessToken: string;
@@ -12,6 +13,7 @@ export interface PrintifyConfig {
   enableLogging?: boolean;
   host?: string;
   timeout?: number;
+  axios?: AxiosInstance;
 }
 
 class PrintifyClient {

@@ -1,3 +1,4 @@
+import { mockAxiosInstance, resetAxiosMocks } from './mocks/setupAxiosMock';
 import Printify from '../src/client';
 import { assertAxiosCall } from './testUtils';
 
@@ -8,13 +9,17 @@ describe('Webhooks V1', () => {
     printify = new Printify({ shopId: '123456', accessToken: 'mockAccessToken' });
   });
 
+  beforeEach(() => {
+    resetAxiosMocks(mockAxiosInstance);
+  });
+
   it('should handle the create webhook endpoint', async () => {
     // Act
     const mockData = { topic: 'order:created', url: 'https://example.com/webhooks/order/created' };
     await printify.webhooks.create(mockData);
 
     // Assert
-    assertAxiosCall('post', `/v1/shops/${printify.shopId}/webhooks.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'post', `/v1/shops/${printify.shopId}/webhooks.json`, mockData);
   });
 
   it('should handle the delete webhook endpoint', async () => {
@@ -23,7 +28,7 @@ describe('Webhooks V1', () => {
     await printify.webhooks.deleteOne(webhookId);
 
     // Assert
-    assertAxiosCall('delete', `/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`);
+    assertAxiosCall(mockAxiosInstance, 'delete', `/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`);
   });
 
   it('should handle the list webhooks endpoint', async () => {
@@ -31,7 +36,7 @@ describe('Webhooks V1', () => {
     await printify.webhooks.list();
 
     // Assert
-    assertAxiosCall('get', `/v1/shops/${printify.shopId}/webhooks.json`);
+    assertAxiosCall(mockAxiosInstance, 'get', `/v1/shops/${printify.shopId}/webhooks.json`);
   });
 
   it('should handle the update webhook endpoint', async () => {
@@ -41,6 +46,6 @@ describe('Webhooks V1', () => {
     await printify.webhooks.updateOne(webhookId, mockData);
 
     // Assert
-    assertAxiosCall('put', `/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`, mockData);
+    assertAxiosCall(mockAxiosInstance, 'put', `/v1/shops/${printify.shopId}/webhooks/${webhookId}.json`, mockData);
   });
 });
