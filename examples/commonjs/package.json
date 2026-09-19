@@ -2,7 +2,7 @@
   "name": "printify-node-examples",
   "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.cjs"
   },
   "dependencies": {
     "printify-sdk-js": "*"
