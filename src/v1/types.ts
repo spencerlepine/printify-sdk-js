@@ -205,6 +205,8 @@ export interface Product {
     variant_ids: number[];
     placeholders: Array<{
       position: string;
+      decoration_method?: string;
+      /** Empty for placements with no artwork. Such placeholders are rejected on update. */
       images: Array<{
         id: string;
         name: string;
@@ -215,9 +217,14 @@ export interface Product {
         y: number;
         scale: number;
         angle: number;
+        src?: string;
+        flipX?: boolean;
+        flipY?: boolean;
+        layerType?: string;
+        imageId?: string;
       }>;
     }>;
-    background: string;
+    background?: string;
   }>;
   print_details?: { print_on_side: 'regular' | 'mirror' | 'off' };
   external?: ExternalProductData[];
@@ -226,8 +233,10 @@ export interface Product {
   is_printify_express_enabled?: boolean;
   is_economy_shipping_eligible: boolean;
   is_economy_shipping_enabled: boolean;
-  sales_channel_properties?: { [key: string]: any };
+  sales_channel_properties?: { [key: string]: any } | any[];
   views?: Array<{ [key: string]: any }>;
+  is_deleted?: boolean;
+  original_product_id?: string;
 }
 
 export interface NewProduct {
@@ -243,13 +252,30 @@ export interface NewProduct {
   print_areas: PrintArea[];
 }
 
-export interface UpdateProductData {
-  title?: string;
-  description?: string;
-  images?: string[];
-  variants?: any[];
-  tags?: string[];
+/**
+ * Fields accepted by `products.updateOne()`.
+ *
+ * A product can be updated partially (send only the fields that change) or as a
+ * whole document, so every `Product` field is optional here and a product
+ * fetched with `products.getOne()` / `products.list()` can be passed straight
+ * back in.
+ *
+ * Two caveats when sending a whole document back:
+ * - When `variants` is present, **all** variants must be present.
+ * - Printify returns `print_areas[].placeholders[]` entries with an empty
+ *   `images` array for placements that have no artwork, but rejects them on
+ *   update with `8150 - The print_areas.N.placeholders.N.images field is
+ *   required.` Drop those placeholders (or `print_areas` entirely) before
+ *   updating.
+ *
+ * @see https://developers.printify.com/#update-a-product
+ */
+export interface UpdateProductData extends Partial<Omit<Product, 'variants'>> {
+  /** All variants must be present when this field is sent. */
+  variants?: Array<Partial<Product['variants'][number]> & { id: number }>;
+  /** @deprecated Not part of the Printify API. Kept for backwards compatibility. */
   keyFeatures?: string[];
+  /** @deprecated Not part of the Printify API. Kept for backwards compatibility. */
   shipping_template?: string;
 }
 

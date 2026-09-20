@@ -1,5 +1,8 @@
 // @ts-nocheck
+import fs from 'fs';
+import path from 'path';
 import Printify from '../src/index';
+import { PrintifyError } from '../src/http';
 import Catalog from '../src/v1/catalog';
 import Orders from '../src/v1/orders';
 import Products from '../src/v1/products';
@@ -77,5 +80,14 @@ describe('PrintifyClient', () => {
   it('should handle missing accessToken gracefully', () => {
     const printifyMissingToken = () => new Printify({ shopId });
     expect(printifyMissingToken).toThrowError('accessToken is required');
+  });
+
+  it('should keep the default export callable via CommonJS require()', () => {
+    const entrypoint = fs.readFileSync(path.join(__dirname, '../src/index.ts'), 'utf8');
+    expect(entrypoint).not.toMatch(/^export \{/m);
+
+    const error = new PrintifyError('boom');
+    expect(error).toBeInstanceOf(Error);
+    expect(error.name).toBe('PrintifyError');
   });
 });

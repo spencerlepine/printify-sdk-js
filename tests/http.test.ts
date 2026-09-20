@@ -1,6 +1,6 @@
 import { mockAxiosInstance, resetAxiosMocks } from './mocks/setupAxiosMock';
 import { assertAxiosCall } from './testUtils';
-import HttpClient from '../src/http';
+import HttpClient, { PrintifyError } from '../src/http';
 
 describe('HttpClient', () => {
   const shopId = 'testShopId';
@@ -152,5 +152,100 @@ describe('HttpClient', () => {
     await expect(http.request(url)).rejects.toThrow('Printify SDK: 404 Not Found - Requested URL: https://' + http['host'] + url);
 
     expect(console.error).toHaveBeenCalledWith(`Printify SDK: 404 Not Found - Requested URL: https://${http['host']}${url}`);
+  });
+  describe('API error details', () => {
+    const axiosErrorWith = (data: unknown, status = 400, statusText = 'Bad Request') => {
+      const axiosError = new Error('Request failed') as any;
+      axiosError.isAxiosError = true;
+      axiosError.toJSON = () => {};
+      axiosError.response = { status, statusText, data };
+      axiosError.config = {};
+      axiosError.code = 'ERR_BAD_REQUEST';
+      return axiosError;
+    };
+
+    it('surfaces the validation reason Printify returns in the response body', async () => {
+      const http: HttpClient = new HttpClient({ shopId, accessToken });
+      mockAxiosInstance.put.mockRejectedValueOnce(
+        axiosErrorWith({
+          status: 'error',
+          code: 8150,
+          message: 'Validation failed.',
+          errors: { reason: 'print_areas.0.placeholders.0.images: The print_areas.0.placeholders.0.images field is required.', code: 8150 },
+        })
+      );
+
+      const url = '/v1/shops/testShopId/products/abc.json';
+      const error: PrintifyError = await http.request(url, { method: 'PUT' }).catch(e => e);
+
+      expect(error).toBeInstanceOf(PrintifyError);
+      expect(error.message).toBe(
+        `Printify SDK: 400 Bad Request - Requested URL: https://${http['host']}${url} - Validation failed. - ` +
+          'print_areas.0.placeholders.0.images: The print_areas.0.placeholders.0.images field is required.'
+      );
+      expect(error.status).toBe(400);
+      expect(error.statusText).toBe('Bad Request');
+      expect(error.url).toBe(`https://${http['host']}${url}`);
+      expect(error.code).toBe(8150);
+      expect(error.errors).toEqual({ reason: expect.any(String), code: 8150 });
+      expect(error.stack).toBeDefined();
+    });
+
+    it('flattens per-field error arrays', async () => {
+      const http: HttpClient = new HttpClient({ shopId, accessToken });
+      mockAxiosInstance.get.mockRejectedValueOnce(axiosErrorWith({ code: 8151, message: 'Validation failed.', errors: { title: ['The title field is required.'] } }));
+
+      const error: PrintifyError = await http.request('/test-url').catch(e => e);
+
+      expect(error.message).toContain('Validation failed. - title: The title field is required.');
+      expect(error.code).toBe(8151);
+    });
+
+    it('uses a string error body as-is', async () => {
+      const http: HttpClient = new HttpClient({ shopId, accessToken });
+      mockAxiosInstance.get.mockRejectedValueOnce(axiosErrorWith('  Service unavailable  ', 503, 'Service Unavailable'));
+
+      const error: PrintifyError = await http.request('/test-url').catch(e => e);
+
+      expect(error.message).toContain('Service unavailable');
+      expect(error.code).toBe('ERR_BAD_REQUEST');
+    });
+
+    it('truncates long bodies so the message stays readable', async () => {
+      const http: HttpClient = new HttpClient({ shopId, accessToken });
+      mockAxiosInstance.get.mockRejectedValueOnce(axiosErrorWith({ message: 'Validation failed.', errors: { reason: `Client error:\n\n${'<html>'.repeat(500)}` } }));
+
+      const error: PrintifyError = await http.request('/test-url').catch(e => e);
+
+      expect(error.message).toContain('Validation failed. - Client error: <html>');
+      expect(error.message.endsWith('…')).toBe(true);
+      expect(error.message.length).toBeLessThan(700);
+      // The untouched body is still available for callers that want all of it.
+      expect((error.response as any).errors.reason.length).toBeGreaterThan(1000);
+    });
+
+    it('falls back to the axios error code when the body has none', async () => {
+      const http: HttpClient = new HttpClient({ shopId, accessToken });
+      mockAxiosInstance.get.mockRejectedValueOnce(axiosErrorWith(null, 500, 'Server Error'));
+
+      const error: PrintifyError = await http.request('/test-url').catch(e => e);
+
+      expect(error.message).toBe(`Printify SDK: 500 Server Error - Requested URL: https://${http['host']}/test-url`);
+      expect(error.code).toBe('ERR_BAD_REQUEST');
+    });
+
+    it('handles a missing response object', async () => {
+      const http: HttpClient = new HttpClient({ shopId, accessToken });
+      const axiosError = new Error('timeout of 5000ms exceeded') as any;
+      axiosError.isAxiosError = true;
+      axiosError.code = 'ECONNABORTED';
+      mockAxiosInstance.get.mockRejectedValueOnce(axiosError);
+
+      const error: PrintifyError = await http.request('/test-url').catch(e => e);
+
+      expect(error).toBeInstanceOf(PrintifyError);
+      expect(error.code).toBe('ECONNABORTED');
+      expect(error.status).toBeUndefined();
+    });
   });
 });

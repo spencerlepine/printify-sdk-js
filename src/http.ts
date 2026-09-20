@@ -10,6 +10,66 @@ interface HttpConfig {
   timeout?: number;
 }
 
+/**
+ * Error thrown for every failed Printify request.
+ *
+ * Printify explains *why* a request failed in the response body, so that body is
+ * kept on the error (`status`, `code`, `errors`, `response`) and summarised in
+ * `message` instead of being discarded.
+ */
+export class PrintifyError extends Error {
+  status?: number;
+  statusText?: string;
+  url?: string;
+  /** Printify's numeric error code (e.g. 8150 for a validation failure). */
+  code?: string | number;
+  /** Printify's `errors` object, typically `{ reason: string, code: number }`. */
+  errors?: unknown;
+  /** The raw, unmodified response body. */
+  response?: unknown;
+
+  constructor(message: string) {
+    super(message);
+    this.name = 'PrintifyError';
+  }
+}
+
+const MAX_ERROR_DETAIL_LENGTH = 500;
+
+/** Keeps error messages readable when the API answers with an HTML page or a long body. */
+function truncate(detail: string): string {
+  const collapsed = detail.replace(/\s+/g, ' ').trim();
+  return collapsed.length > MAX_ERROR_DETAIL_LENGTH ? `${collapsed.slice(0, MAX_ERROR_DETAIL_LENGTH)}…` : collapsed;
+}
+
+/** Flattens a Printify error body into a single human-readable line. */
+function describeApiError(data: unknown): string {
+  if (typeof data === 'string') return truncate(data);
+  if (!data || typeof data !== 'object') return '';
+
+  const body = data as { message?: unknown; errors?: unknown };
+  const parts: string[] = [];
+
+  if (typeof body.message === 'string' && body.message) parts.push(body.message);
+
+  const errors = body.errors;
+  if (typeof errors === 'string' && errors) {
+    parts.push(errors);
+  } else if (errors && typeof errors === 'object') {
+    const reason = (errors as { reason?: unknown }).reason;
+    if (typeof reason === 'string' && reason) {
+      parts.push(reason);
+    } else {
+      const fields = Object.entries(errors)
+        .filter(([key]) => key !== 'code')
+        .map(([key, value]) => `${key}: ${Array.isArray(value) ? value.join(', ') : String(value)}`);
+      if (fields.length) parts.push(fields.join('; '));
+    }
+  }
+
+  return truncate(parts.join(' - '));
+}
+
 class HttpClient {
   private accessToken: string;
   shopId?: string;
@@ -81,13 +141,23 @@ class HttpClient {
       }
       return response.data;
     } catch (error: any) {
-      let message = 'Printify SDK Error';
+      const printifyError = new PrintifyError('Printify SDK Error');
+
       if ((error as AxiosError).isAxiosError) {
-        message = `Printify SDK: ${error.response?.status} ${error.response?.statusText} - Requested URL: ${this.baseUrl}${url}`;
+        const { status, statusText, data } = error.response ?? {};
+        const requestUrl = `${this.baseUrl}${url}`;
+        const details = describeApiError(data);
+
+        printifyError.message = `Printify SDK: ${status} ${statusText} - Requested URL: ${requestUrl}${details ? ` - ${details}` : ''}`;
+        printifyError.status = status;
+        printifyError.statusText = statusText;
+        printifyError.url = requestUrl;
+        printifyError.code = data?.code ?? error.code;
+        printifyError.errors = data?.errors;
+        printifyError.response = data;
       }
-      this.logError(message);
-      const printifyError = new Error(message);
-      printifyError.stack = undefined;
+
+      this.logError(printifyError.message);
       throw printifyError;
     }
   }

@@ -7,6 +7,7 @@
 - [Orders](#orders)
 - [Uploads](#uploads)
 - [Webhooks](#webhooks)
+- [Error handling](#error-handling)
 
 ### Shops
 
@@ -1006,10 +1007,37 @@ await printify.products.create(data);
 - `PUT /v1/shops/{shop_id}/products/{product_id}.json`
 - **Description:** Update a product
 
+A product can be updated partially or as a whole document. Prefer a partial update and send only the fields you are changing.
+
 ```js
 const data = { title: 'Product' };
 await printify.products.updateOne('productId', data);
 ```
+
+**When updating variants, all variants must be present in the request.**
+
+```js
+// Reprice every variant
+const product = await printify.products.getOne('productId');
+await printify.products.updateOne(product.id, {
+  variants: product.variants.map(v => ({ ...v, price: v.price + 100 })),
+});
+```
+
+> **Careful when sending a whole product document back.** Printify returns `print_areas[].placeholders[]` entries with an empty `images` array for placements that carry no artwork,
+> but the update endpoint rejects them:
+>
+> ```
+> 400 Bad Request
+> { "code": 8150, "message": "Validation failed.",
+>   "errors": { "reason": "print_areas.0.placeholders.0.images: The print_areas.0.placeholders.0.images field is required." } }
+> ```
+>
+> Omit `print_areas` when you are not changing artwork, or strip the empty placeholders first:
+>
+> ```js
+> const printAreas = product.print_areas.map(area => ({ ...area, placeholders: area.placeholders.filter(p => p.images?.length) })).filter(area => area.placeholders.length);
+> ```
 
 <details>
   <summary>View Response</summary>
@@ -1019,6 +1047,7 @@ await printify.products.updateOne('productId', data);
   "id": "5d39b411749d0a000f30e0f4",
   "title": "Product",
   "description": "Good product",
+  "safety_information": "GPSR information: John Doe, test@example.com, 123 Main St, Apt 1, New York, NY, 10001, US",
   "tags": ["Home & Living", "Stickers"],
   "options": [
     {
@@ -2006,3 +2035,31 @@ await printify.webhooks.deleteOne(webhookId, host?);
 ```json
 { "id": "5cb87a8cd490a2ccb256cec4" }
 ```
+
+### Error handling
+
+Every failed request rejects with a `PrintifyError`. Printify explains _why_ a request failed in the response body, so that body is summarised in `message` and kept on the error
+itself:
+
+| Property     | Description                                                          |
+| ------------ | -------------------------------------------------------------------- |
+| `status`     | HTTP status code, e.g. `400`                                         |
+| `statusText` | HTTP status text, e.g. `"Bad Request"`                               |
+| `url`        | The full request URL                                                 |
+| `code`       | Printify's numeric error code (e.g. `8150`), or the axios error code |
+| `errors`     | Printify's `errors` object, typically `{ reason, code }`             |
+| `response`   | The raw, untruncated response body                                   |
+
+```js
+try {
+  await printify.products.updateOne(product.id, product);
+} catch (error) {
+  console.error(error.message);
+  // Printify SDK: 400 Bad Request - Requested URL: https://api.printify.com/v1/shops/1337/products/abc.json
+  //   - Validation failed. - print_areas.0.placeholders.0.images: The print_areas.0.placeholders.0.images field is required.
+
+  if (error.status === 400) console.error(error.errors.reason);
+}
+```
+
+`message` is truncated to keep it readable when the API answers with a long body or an HTML page; `error.response` always holds the full body.
