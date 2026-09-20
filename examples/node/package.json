@@ -1,5 +1,6 @@
 {
   "name": "printify-node-examples",
+  "type": "module",
   "scripts": {
     "start": "node app.js"
   },

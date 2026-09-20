@@ -26,19 +26,19 @@
     "node-sdk"
   ],
   "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
   "files": [
     "dist/index.cjs.js",
-    "dist/index.esm.js",
+    "dist/index.mjs",
     "dist/index.d.mts",
     "docs/API.md"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.mts"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs.js"
     }
   },
   "scripts": {

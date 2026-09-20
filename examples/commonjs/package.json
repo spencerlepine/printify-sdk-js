@@ -1,6 +1,5 @@
 {
-  "name": "printify-node-examples",
-  "type": "module",
+  "name": "printify-commonjs-examples",
   "scripts": {
     "start": "node app.cjs"
   },

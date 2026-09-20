@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Surface Printify's API error body (`message`, `reason`, `code`) on thrown errors instead of discarding it, and fix `UpdateProductData` so a fetched `Product` can be passed back
   to `products.updateOne()`. ([#43](https://github.com/spencerlepine/printify-sdk-js/issues/43))
 - Bump axios to resolve vulnerability
+- Fixed ESM support: `import Printify from 'printify-sdk-js'` failed with `Cannot use import statement outside a module`, because the ESM bundle shipped as `dist/index.esm.js` and
+  Node parsed it as CommonJS. It is now `dist/index.mjs`.
 
 ## [1.4.0] - 2025-10-28
 
